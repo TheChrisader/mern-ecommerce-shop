@@ -1,0 +1,26 @@
+{
+  "name": "mern-ecommerce-shop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheChrisader/mern-ecommerce-shop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheChrisader/mern-ecommerce-shop/issues"
+  },
+  "homepage": "https://github.com/TheChrisader/mern-ecommerce-shop#readme",
+  "devDependencies": {
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.4.0",
+    "prettier": "2.6.2"
+  }
+}
