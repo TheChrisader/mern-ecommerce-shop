@@ -5,13 +5,15 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="left">
         <div className="hamburger">
-          <div className="burger"></div>
-          <div className="burger"></div>
-          <div className="burger"></div>
+          <div>
+            <div className="burger"></div>
+            <div className="burger"></div>
+            <div className="burger"></div>
+          </div>
         </div>
-      </div>
-      <div className="center">
         <span className="nav-title">ShopLite.</span>
+      </div>
+      <div className="icons-wrapper">
         <div className="icons">
           <i className="icon fa-solid fa-magnifying-glass"></i>
           <i className="icon fa-solid fa-heart"></i>
@@ -21,8 +23,8 @@ const Navbar = () => {
           </div>
           <div className="icon login">Login</div>
         </div>
+        <div className="right"></div>
       </div>
-      <div className="right"></div>
     </nav>
   );
 };
