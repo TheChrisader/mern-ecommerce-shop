@@ -1,14 +1,30 @@
-import "./Product.css";
+import "./Product.scss";
 
-const Product = () => {
+type Props = {
+  img: string;
+  title: string;
+  price: number;
+  oldPrice?: number;
+  border?: boolean;
+};
+
+const Product: React.FC<Props> = ({ img, title, price, oldPrice, border }) => {
   return (
     <div className="product-item-wrapper">
-      <div className="product-item-image">
-        <img src="" alt="" />
+      <div className="image-wrapper">
+        <div className="triangle"></div>
+        <img
+          className={"product-item-image " + (border ? "circle-border" : "")}
+          src={img}
+          alt=""
+        />
       </div>
       <div className="product-item-text-wrapper">
-        <h3 className="product-title">Learn Python</h3>
-        <span className="product-price">$54.99</span>
+        <h3 className="product-title">{title}</h3>
+        <div>
+          <span className="product-price">${price} </span>
+          {oldPrice && <s className="product-price">${oldPrice}</s>}
+        </div>
       </div>
       <button className="product-cart-button">
         <i className="icon fa-solid fa-cart-shopping"></i>

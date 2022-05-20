@@ -1,0 +1,32 @@
+.home-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 150px - 150px);
+}
+
+.products-heading {
+  color: rgb(57, 61, 70);
+  margin-top: 200px;
+  margin-bottom: 50px;
+  font-weight: 400;
+  font-size: 60px;
+}
+
+.trend {
+  background-color: rgb(57, 61, 70);
+  height: 500px;
+}
+
+@media screen and (max-width: 1024px) {
+  .home {
+    width: 100%;
+    padding: 25px 20px;
+  }
+}

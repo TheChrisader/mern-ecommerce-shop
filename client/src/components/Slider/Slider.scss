@@ -7,7 +7,6 @@
   display: flex;
   flex-wrap: wrap;
   background-color: white;
-  width: calc(100% - 150px - 150px);
   z-index: 1;
   position: relative;
 }
@@ -69,11 +68,6 @@
 }
 
 @media (max-width: 1024px) {
-  .slider {
-    width: 100%;
-    margin: 20px;
-  }
-
   .slider-text-wrapper {
     padding: 20px;
   }
