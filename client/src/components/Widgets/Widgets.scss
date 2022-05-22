@@ -1,0 +1,11 @@
+.widgets-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+@media screen and (max-width: 425px) {
+  .widgets-container {
+    flex-direction: column;
+  }
+}

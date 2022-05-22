@@ -27,7 +27,7 @@ const Product: React.FC<Props> = ({ img, title, price, oldPrice, border }) => {
         </div>
       </div>
       <button className="product-cart-button">
-        <i className="icon fa-solid fa-cart-shopping"></i>
+        <i className="item-icon fa-solid fa-cart-shopping"></i>
         <span className="product-button-text">ADD TO CART</span>
       </button>
     </div>

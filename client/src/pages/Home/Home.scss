@@ -24,9 +24,43 @@
   height: 500px;
 }
 
+.trend-container {
+  display: flex;
+  flex-direction: column;
+  padding: 85px;
+  margin-top: 40px;
+}
+
+.trend-title {
+  color: white;
+  font-weight: 400;
+  font-size: 60px;
+  margin-bottom: 50px;
+}
+
 @media screen and (max-width: 1024px) {
   .home {
     width: 100%;
     padding: 25px 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .trend {
+    height: 400px;
+  }
+
+  .trend-container {
+    padding: 20px;
+  }
+
+  .trend-title {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .trend {
+    height: auto;
   }
 }
