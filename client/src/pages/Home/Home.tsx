@@ -1,11 +1,25 @@
+import Footer from "../../components/Footer/Footer";
+import Products from "../../components/Products/Products";
 import Slider from "../../components/Slider/Slider";
+import Widgets from "../../components/Widgets/Widgets";
 
-import "./Home.css";
+import "./Home.scss";
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
-    <div className="home">
-      <Slider />
+    <div className="home-wrapper">
+      <div className="home">
+        <Slider />
+        <h2 className="products-heading">Our Products</h2>
+        <Products />
+        <div className="trend">
+          <div className="trend-container">
+            <h1 className="trend-title">Stay in Trend with ShopLite</h1>
+            <Widgets />
+          </div>
+        </div>
+        <Footer />
+      </div>
     </div>
   );
 };
