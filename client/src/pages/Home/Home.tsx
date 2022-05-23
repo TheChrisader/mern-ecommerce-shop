@@ -1,3 +1,4 @@
+import Footer from "../../components/Footer/Footer";
 import Products from "../../components/Products/Products";
 import Slider from "../../components/Slider/Slider";
 import Widgets from "../../components/Widgets/Widgets";
@@ -17,6 +18,7 @@ const Home: React.FC = () => {
             <Widgets />
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );
