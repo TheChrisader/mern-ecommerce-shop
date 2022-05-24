@@ -1,3 +1,5 @@
+@import "../../styles/_global-imports.scss";
+
 .navbar {
   height: 9.375rem;
   display: flex;
@@ -13,7 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(57, 61, 70);
+  background-color: $primaryColor;
   width: 9.375rem;
 }
 
@@ -29,8 +31,7 @@
   font-weight: 600;
   font-size: 25px;
   align-self: center;
-
-  color: rgb(57, 61, 70);
+  color: $priaryTextColor;
 }
 
 .icons-wrapper {
@@ -63,7 +64,7 @@
   font-size: 0.625rem;
   font-weight: 500;
   color: white;
-  background-color: rgb(57, 61, 70);
+  background-color: $primaryColor;
   width: 15px;
   height: 15px;
   text-align: center;
@@ -75,7 +76,7 @@
   font-size: 15px;
   font-weight: 500;
   padding: 10px 30px;
-  background-color: rgb(57, 61, 70);
+  background-color: $primaryColor;
 }
 
 .right {

@@ -1,3 +1,5 @@
+@import "../../styles/global-imports";
+
 .slider-wrapper {
   display: flex;
   justify-content: center;
@@ -6,7 +8,7 @@
 .slider {
   display: flex;
   flex-wrap: wrap;
-  background-color: white;
+  background-color: $secondaryBackgroundColor;
   z-index: 1;
   position: relative;
 }
@@ -20,7 +22,7 @@
 }
 
 .slider-heading {
-  color: rgb(57, 61, 70);
+  color: $priaryTextColor;
   font-weight: 400;
   font-size: 100px;
   line-height: 128%;
@@ -30,7 +32,7 @@
 .slider-desc {
   display: inline-block;
   padding-top: 32px;
-  color: rgb(105, 128, 143);
+  color: $secondaryTextColor;
 }
 
 .slider-price-wrapper {
@@ -41,11 +43,11 @@
 }
 
 .slider-price {
-  color: rgb(105, 128, 143);
+  color: $secondaryTextColor;
 }
 
 .slider-price-number {
-  color: rgb(57, 61, 70);
+  color: $priaryTextColor;
   font-size: 150%;
   font-weight: 600;
   padding: 10px;
@@ -54,8 +56,8 @@
 .slider-button {
   padding: 20px;
   width: 190px;
-  background-color: rgb(246, 247, 251);
-  border: solid 2px rgb(57, 61, 70);
+  background-color: $backgroundColor;
+  border: solid 2px $primaryColor;
 }
 
 .slider-img-wrapper {
