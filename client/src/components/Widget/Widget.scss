@@ -1,36 +1,38 @@
+@import "../../styles/global-imports";
+
 .widget-wrapper {
-  background-color: white;
+  background-color: $white;
   display: flex;
   flex-direction: column;
   padding: 45px;
 }
 
 .widget-icon {
-  color: rgb(57, 61, 70);
-  font-size: 50px;
+  color: $primaryColor;
+  font-size: toRem(50px);
   margin-bottom: 30px;
 }
 
 .widget-title {
-  color: rgb(57, 61, 70);
+  color: $textColor;
   font-weight: 500;
-  font-size: 24px;
+  font-size: toRem(24px);
   margin-bottom: 25px;
 }
 
 .widget-desc {
-  font-size: 15px;
-  color: rgb(105, 128, 143);
+  font-size: toRem(15px);
+  color: $textLightColor;
   margin-bottom: 30px;
   line-height: 25px;
 }
 
 .more {
-  color: rgb(57, 61, 70);
+  color: $textColor;
   font-weight: 500;
 }
 
-@media screen and (max-width: 768px) {
+@include tabletBreakpoint {
   .widget-wrapper {
     padding: 20px;
   }

@@ -1,0 +1,50 @@
+@import "./variables";
+
+// Breakpoints
+@mixin smMobileBreakpoint {
+  @media screen and (max-width: #{$mobile-sm}) {
+    @content;
+  }
+}
+
+@mixin mdMobileBreakpoint {
+  @media screen and (max-width: #{$mobile-md}) {
+    @content;
+  }
+}
+
+@mixin lgMobileBreakpoint {
+  @media screen and (max-width: #{$mobile-lg}) {
+    @content;
+  }
+}
+
+@mixin tabletBreakpoint {
+  @media screen and (max-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin laptopBreakpoint {
+  @media screen and (max-width: #{$laptop}) {
+    @content;
+  }
+}
+
+@mixin lgLaptopBreakpoint {
+  @media screen and (max-width: #{$lapotp-lg}) {
+    @content;
+  }
+}
+
+@mixin xxlBreakpoint {
+  @media screen and (max-width: #{$xxl}) {
+    @content;
+  }
+}
+
+@mixin customBreakpoint($value) {
+  @media screen and (max-width: #{$value}) {
+    @content;
+  }
+}

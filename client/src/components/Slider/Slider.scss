@@ -1,3 +1,5 @@
+@import "../../styles/global-imports";
+
 .slider-wrapper {
   display: flex;
   justify-content: center;
@@ -6,7 +8,7 @@
 .slider {
   display: flex;
   flex-wrap: wrap;
-  background-color: white;
+  background-color: $white;
   z-index: 1;
   position: relative;
 }
@@ -15,47 +17,47 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 150px;
+  padding-left: toRem(150px);
   width: 50%;
 }
 
 .slider-heading {
-  color: rgb(57, 61, 70);
+  color: $textColor;
   font-weight: 400;
-  font-size: 100px;
+  font-size: toRem(100px);
   line-height: 128%;
   overflow-wrap: break-word;
 }
 
 .slider-desc {
   display: inline-block;
-  padding-top: 32px;
-  color: rgb(105, 128, 143);
+  padding-top: toRem(32px);
+  color: $textLightColor;
 }
 
 .slider-price-wrapper {
   display: flex;
   align-items: center;
-  margin-top: 40px;
-  margin-bottom: 30px;
+  margin-top: toRem(40px);
+  margin-bottom: toRem(30px);
 }
 
 .slider-price {
-  color: rgb(105, 128, 143);
+  color: $textLightColor;
 }
 
 .slider-price-number {
-  color: rgb(57, 61, 70);
+  color: $textColor;
   font-size: 150%;
   font-weight: 600;
-  padding: 10px;
+  padding: toRem(10px);
 }
 
 .slider-button {
-  padding: 20px;
-  width: 190px;
-  background-color: rgb(246, 247, 251);
-  border: solid 2px rgb(57, 61, 70);
+  padding: toRem(20px);
+  width: toRem(190px);
+  background-color: $backgroundColor;
+  border: solid 2px $primaryColor;
 }
 
 .slider-img-wrapper {
@@ -64,22 +66,22 @@
 
 .slider-img {
   height: 46.3vw;
-  margin-top: 70px;
+  margin-top: toRem(70px);
 }
 
-@media (max-width: 1024px) {
+@include laptopBreakpoint {
   .slider-text-wrapper {
-    padding: 20px;
+    padding: toRem(20px);
   }
 
   .slider-heading {
-    font-size: 60px;
+    font-size: toRem(60px);
   }
 }
 
-@media (max-width: 768px) {
+@include tabletBreakpoint {
   .slider-heading {
-    font-size: 50px;
+    font-size: toRem(50px);
   }
 
   .slider-text-wrapper,
