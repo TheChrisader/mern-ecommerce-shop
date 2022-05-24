@@ -1,5 +1,7 @@
+@import "../../styles/global-imports";
+
 .footer-wrapper {
-  height: 300px;
+  height: toRem(300px);
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -18,27 +20,27 @@
 }
 
 .footer-brand {
-  color: rgb(57, 61, 70);
-  font-size: 25px;
+  color: $textColor;
+  font-size: toRem(25px);
 }
 
 .copyright {
-  color: rgb(105, 128, 143);
+  color: $textLightColor;
 }
 
 .footer-center {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: toRem(20px);
 }
 
 .footer-icon {
-  font-size: 30px;
-  color: rgb(105, 128, 143);
+  font-size: toRem(30px);
+  color: $textLightColor;
   transition: all 0.3s;
 
   &:hover {
-    color: rgb(57, 61, 70);
+    color: $textColor;
     transform: scale(1.25);
   }
 }
@@ -48,10 +50,10 @@
   justify-content: flex-end;
 }
 
-@media screen and (max-width: 600px) {
+@include customBreakpoint(600px) {
   .footer-wrapper {
     flex-direction: column;
-    height: 150px;
+    height: toRem(150px);
   }
 
   .footer-left,
