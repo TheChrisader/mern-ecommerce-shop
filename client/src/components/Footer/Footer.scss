@@ -5,12 +5,14 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  transition: all 1s ease;
 }
 
 .footer-left,
 .footer-right,
 .footer-center {
   flex: 1;
+  transition: all 1s ease;
 }
 
 .footer-left {
@@ -48,6 +50,12 @@
 .footer-right {
   display: flex;
   justify-content: flex-end;
+}
+
+@include tabletBreakpoint {
+  .footer-wrapper {
+    height: toRem(100px);
+  }
 }
 
 @include customBreakpoint(600px) {
