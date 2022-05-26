@@ -1,5 +1,16 @@
+@import "../../styles/global-imports";
+
 .products-wrapper {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 200px;
+  transition: all 1s ease;
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+.products-active {
+  // @include animate(fade-up, 1s, 0.25s);
+  opacity: 1;
+  transform: translateY(0px);
 }
