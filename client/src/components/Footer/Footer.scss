@@ -5,14 +5,13 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  transition: all 1s ease;
+  transition: height 1s ease;
 }
 
 .footer-left,
 .footer-right,
 .footer-center {
   flex: 1;
-  transition: all 1s ease;
 }
 
 .footer-left {
@@ -39,7 +38,7 @@
 .footer-icon {
   font-size: toRem(30px);
   color: $textLightColor;
-  transition: all 0.3s;
+  transition: transform 0.3s;
 
   &:hover {
     color: $textColor;
