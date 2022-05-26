@@ -20,6 +20,7 @@
   justify-content: center;
   padding-left: toRem(150px);
   width: 50%;
+  @include animate(fade-right, 1s, 0.5s);
 }
 
 .slider-heading {
