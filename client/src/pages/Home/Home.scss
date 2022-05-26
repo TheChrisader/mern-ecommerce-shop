@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   width: calc(100% - 150px - 150px);
+  transition: width 0.5s ease;
 }
 
 .products-heading {
@@ -23,6 +24,7 @@
   background-color: rgb(57, 61, 70);
   height: 500px;
   margin-bottom: 350px;
+  transition: margin bottom 1s ease;
 }
 
 .trend-container {
