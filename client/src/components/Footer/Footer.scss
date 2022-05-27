@@ -12,6 +12,11 @@
 .footer-right,
 .footer-center {
   flex: 1;
+  @include fadeStartAnimation(2s, -100px);
+}
+
+.footer-active {
+  @include fadeEndAnimation;
 }
 
 .footer-left {

@@ -6,6 +6,12 @@
   flex-direction: column;
   padding: 45px;
   transition: padding 0.5s ease;
+
+  @include fadeStartAnimation(2s, -100px);
+}
+
+.widget-active {
+  @include fadeEndAnimation;
 }
 
 .widget-icon {

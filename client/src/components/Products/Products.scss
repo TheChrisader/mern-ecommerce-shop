@@ -4,9 +4,9 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 200px;
-  @include fadeUpStartAnimation(2s, 100px);
+  @include fadeStartAnimation(2s, 100px);
 }
 
 .products-active {
-  @include fadeUpEndAnimation;
+  @include fadeEndAnimation;
 }

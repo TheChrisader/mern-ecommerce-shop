@@ -1,3 +1,6 @@
+import { useRef } from "react";
+import useObserver from "../../utils/hooks/useObserver";
+
 import "./Widget.scss";
 
 type Props = {
@@ -7,8 +10,14 @@ type Props = {
 };
 
 const Widget: React.FC<Props> = ({ icon, title, description }) => {
+  const widgetRef = useRef<HTMLDivElement | null>(null);
+  const isWidgetVisible = useObserver(widgetRef);
+
   return (
-    <div className="widget-wrapper">
+    <div
+      className={"widget-wrapper " + (isWidgetVisible && "widget-active")}
+      ref={widgetRef}
+    >
       <i className={"widget-icon " + icon}></i>
       <h3 className="widget-title">{title}</h3>
       <span className="widget-desc">{description}</span>
