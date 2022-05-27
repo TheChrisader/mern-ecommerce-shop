@@ -5,7 +5,7 @@
   animation: $type $length cubic-bezier(0.165, 0.84, 0.44, 1) $delay both;
 }
 
-@mixin fadeUpStartAnimation($length, $position) {
+@mixin fadeStartAnimation($length, $position) {
   transition-property: opacity, transform;
   transition-duration: $length;
   transition-timing-function: ease;
@@ -13,7 +13,7 @@
   transform: translateY($position);
 }
 
-@mixin fadeUpEndAnimation {
+@mixin fadeEndAnimation {
   opacity: 1;
   transform: translateY(0px);
 }
