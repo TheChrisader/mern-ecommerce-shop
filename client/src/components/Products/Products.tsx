@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef } from "react";
 import useObserver from "../../utils/hooks/useObserver";
 import Product from "../Product/Product";
 
