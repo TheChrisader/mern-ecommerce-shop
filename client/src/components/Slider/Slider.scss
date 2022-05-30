@@ -61,6 +61,13 @@
   width: toRem(190px);
   background-color: $backgroundColor;
   border: solid 2px $primaryColor;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $primaryColor;
+    color: $white;
+  }
 }
 
 .slider-img-wrapper {

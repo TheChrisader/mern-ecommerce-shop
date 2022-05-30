@@ -13,7 +13,6 @@ const Home: React.FC = () => {
 
   const trendTitleRef = useRef<HTMLHeadingElement | null>(null);
   let isTrendVisible = useObserver(trendTitleRef);
-  console.log(isTrendVisible);
 
   return (
     <>

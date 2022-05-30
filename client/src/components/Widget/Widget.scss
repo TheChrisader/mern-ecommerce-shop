@@ -37,6 +37,7 @@
 .more {
   color: $textColor;
   font-weight: 500;
+  cursor: pointer;
 }
 
 @include tabletBreakpoint {
