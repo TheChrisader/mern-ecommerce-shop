@@ -3,6 +3,7 @@
 .slider-wrapper {
   display: flex;
   justify-content: center;
+  @include animate(fade-up, 1s, 0.25s);
 }
 
 .slider {
@@ -19,6 +20,7 @@
   justify-content: center;
   padding-left: toRem(150px);
   width: 50%;
+  @include animate(fade-right, 1s, 0.5s);
 }
 
 .slider-heading {
@@ -27,6 +29,7 @@
   font-size: toRem(100px);
   line-height: 128%;
   overflow-wrap: break-word;
+  transition: font-size 0.5s ease;
 }
 
 .slider-desc {
@@ -58,6 +61,13 @@
   width: toRem(190px);
   background-color: $backgroundColor;
   border: solid 2px $primaryColor;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $primaryColor;
+    color: $white;
+  }
 }
 
 .slider-img-wrapper {
@@ -76,6 +86,12 @@
 
   .slider-heading {
     font-size: toRem(60px);
+  }
+}
+
+@include customBreakpoint(1244px) {
+  .slider-heading {
+    font-size: toRem(80px);
   }
 }
 

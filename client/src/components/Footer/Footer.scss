@@ -5,12 +5,18 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  transition: height 1s ease;
 }
 
 .footer-left,
 .footer-right,
 .footer-center {
   flex: 1;
+  @include fadeStartAnimation(2s, -100px);
+}
+
+.footer-active {
+  @include fadeEndAnimation;
 }
 
 .footer-left {
@@ -37,17 +43,24 @@
 .footer-icon {
   font-size: toRem(30px);
   color: $textLightColor;
-  transition: all 0.3s;
+  transition: transform 0.3s;
 
   &:hover {
     color: $textColor;
     transform: scale(1.25);
+    cursor: pointer;
   }
 }
 
 .footer-right {
   display: flex;
   justify-content: flex-end;
+}
+
+@include tabletBreakpoint {
+  .footer-wrapper {
+    height: toRem(100px);
+  }
 }
 
 @include customBreakpoint(600px) {

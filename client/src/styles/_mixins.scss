@@ -1,5 +1,23 @@
 @import "./variables";
 
+// Animations
+@mixin animate($type, $length, $delay: 0) {
+  animation: $type $length cubic-bezier(0.165, 0.84, 0.44, 1) $delay both;
+}
+
+@mixin fadeStartAnimation($length, $position) {
+  transition-property: opacity, transform;
+  transition-duration: $length;
+  transition-timing-function: ease;
+  opacity: 0;
+  transform: translateY($position);
+}
+
+@mixin fadeEndAnimation {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
 // Breakpoints
 @mixin smMobileBreakpoint {
   @media screen and (max-width: #{$mobile-sm}) {
@@ -32,7 +50,7 @@
 }
 
 @mixin lgLaptopBreakpoint {
-  @media screen and (max-width: #{$lapotp-lg}) {
+  @media screen and (max-width: #{$laptop-lg}) {
     @content;
   }
 }
