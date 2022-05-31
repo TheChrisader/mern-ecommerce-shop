@@ -1,1 +1,53 @@
 @import "../../styles/global-imports";
+
+.account-title {
+  color: $primaryColor;
+  font-weight: 500;
+  font-size: toRem(50px);
+  margin-top: toRem(50px);
+  margin-bottom: toRem(30px);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0;
+  border: 0.5px solid $secondaryLightColor;
+  padding: toRem(30px);
+  border-radius: 10px;
+}
+
+.login-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: toRem(15px);
+}
+
+.login-input-label {
+  color: $primaryColor;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  margin-bottom: toRem(10px);
+}
+
+.login-input {
+  border: 1px solid $secondaryLightColor;
+  height: toRem(50px);
+  padding: toRem(10px);
+}
+
+.login-button {
+  border-style: none;
+  border-radius: 5px;
+  background-color: $primaryColor;
+  color: $white;
+  font-size: toRem(18px);
+  padding: toRem(15px);
+  width: fit-content;
+  margin-bottom: toRem(15px);
+  cursor: pointer;
+
+  &:active {
+    background-color: $primaryDarkColor;
+  }
+}
