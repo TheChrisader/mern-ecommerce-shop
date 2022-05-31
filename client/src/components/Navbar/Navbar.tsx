@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./Navbar.scss";
 
 const Navbar = () => {
@@ -11,7 +13,11 @@ const Navbar = () => {
             <div className="burger"></div>
           </div>
         </div>
-        <span className="nav-title">ShopLite.</span>
+        <span className="nav-title">
+          <Link to="/" className="link">
+            ShopLite.
+          </Link>
+        </span>
       </div>
       <div className="icons-wrapper">
         <div className="icons">
@@ -21,7 +27,11 @@ const Navbar = () => {
             <div className="cart-number">9+</div>
             <i className="icon fa-solid fa-cart-shopping"></i>
           </div>
-          <div className="icon login">Login</div>
+          <div className="icon login">
+            <Link to="/login" className="link">
+              Login
+            </Link>
+          </div>
         </div>
         <div className="right"></div>
       </div>
