@@ -1,5 +1,18 @@
 @import "../../styles/global-imports";
 
+.products-heading {
+  color: $textColor;
+  margin-top: toRem(200px);
+  margin-bottom: toRem(50px);
+  font-weight: 400;
+  font-size: toRem(60px);
+  @include fadeStartAnimation(2s, 100px);
+}
+
+.products-heading-active {
+  @include fadeEndAnimation;
+}
+
 .products-wrapper {
   display: flex;
   flex-wrap: wrap;

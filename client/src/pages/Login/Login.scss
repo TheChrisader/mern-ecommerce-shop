@@ -34,6 +34,10 @@
   border: 1px solid $secondaryLightColor;
   height: toRem(50px);
   padding: toRem(10px);
+
+  &:focus {
+    border-color: $primaryColor;
+  }
 }
 
 .login-button {
