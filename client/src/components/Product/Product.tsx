@@ -5,20 +5,12 @@ type Props = {
   title: string;
   price: number;
   oldPrice?: number;
-  border?: boolean;
 };
 
-const Product: React.FC<Props> = ({ img, title, price, oldPrice, border }) => {
+const Product: React.FC<Props> = ({ img, title, price, oldPrice }) => {
   return (
     <div className="product-item-wrapper">
-      <div className="image-wrapper">
-        <div className="triangle"></div>
-        <img
-          className={"product-item-image " + (border ? "circle-border" : "")}
-          src={img}
-          alt=""
-        />
-      </div>
+      <img className="product-item-image " src={img} alt="" />
       <div className="product-item-text-wrapper">
         <h3 className="product-title">{title}</h3>
         <div>

@@ -9,7 +9,6 @@ export type Props = {
   title: string;
   price: number;
   oldPrice?: number;
-  border?: boolean;
 };
 
 const Products: React.FC = () => {
@@ -61,28 +60,24 @@ const Products: React.FC = () => {
           title="Learn Python"
           price={54.99}
           oldPrice={100.99}
-          border={true}
         />
         <Product
           img="https://static.live.templately.com/2021/06/297c6a78-image0.png"
           title="Learn Python"
           price={54.99}
           oldPrice={100.99}
-          border={true}
         />
         <Product
           img="https://static.live.templately.com/2021/06/297c6a78-image0.png"
           title="Learn Python"
           price={54.99}
           oldPrice={100.99}
-          border={true}
         />
         <Product
           img="https://static.live.templately.com/2021/06/297c6a78-image0.png"
           title="Learn Python"
           price={54.99}
           oldPrice={100.99}
-          border={true}
         />
       </div>
     </>

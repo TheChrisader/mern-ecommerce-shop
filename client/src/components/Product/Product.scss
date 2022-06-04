@@ -11,18 +11,6 @@
   padding: 15px;
 }
 
-.image-wrapper {
-  position: relative;
-}
-
-.triangle {
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-top: 50px solid #ff2a13;
-  border-right: 50px solid transparent;
-}
-
 .product-item-image {
   width: toRem(200px);
 }
