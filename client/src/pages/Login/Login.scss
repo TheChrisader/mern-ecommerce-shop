@@ -1,6 +1,6 @@
 @import "../../styles/global-imports";
 
-.account-title {
+.login-title {
   color: $primaryColor;
   font-weight: 500;
   font-size: toRem(50px);
@@ -15,19 +15,25 @@
   border: 0.5px solid $secondaryLightColor;
   padding: toRem(30px);
   border-radius: 10px;
+  margin-bottom: toRem(50px);
 }
 
 .login-input-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-bottom: toRem(15px);
 }
 
 .login-input-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(10px, 13px);
+  transition: transform 0.25s ease;
   color: $primaryColor;
   font-weight: 300;
   letter-spacing: 0.5px;
-  margin-bottom: toRem(10px);
 }
 
 .login-input {
@@ -36,8 +42,18 @@
   padding: toRem(10px);
 
   &:focus {
+    outline: none;
     border-color: $primaryColor;
   }
+}
+
+.login-input:focus + .login-input-label,
+.login-input:not(:placeholder-shown) + .login-input-label {
+  transform: translate(10px, -10px) scale(0.8);
+  font-weight: 400;
+  border-radius: 20px;
+  padding-inline: 5px;
+  background-color: $white;
 }
 
 .login-button {
@@ -49,6 +65,26 @@
   padding: toRem(15px);
   width: fit-content;
   margin-bottom: toRem(15px);
+  margin-top: toRem(15px);
+  cursor: pointer;
+
+  &:active {
+    background-color: $primaryDarkColor;
+  }
+}
+
+.link-padding {
+  margin-bottom: 80px;
+}
+
+.alt-button {
+  border-style: none;
+  border-radius: 5px;
+  background-color: $primaryColor;
+  color: $white;
+  font-size: toRem(18px);
+  padding: toRem(15px);
+  width: 100%;
   cursor: pointer;
 
   &:active {
