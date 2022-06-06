@@ -12,7 +12,7 @@ const Product: React.FC<Props> = ({ img, title, price, oldPrice }) => {
     <div className="product-item-wrapper">
       <img className="product-item-image " src={img} alt="" />
       <div className="product-item-text-wrapper">
-        <h3 className="product-title">{title}</h3>
+        <h3 className="product-item-title">{title}</h3>
         <div>
           <span className="product-price">${price} </span>
           {oldPrice && <s className="product-price">${oldPrice}</s>}
