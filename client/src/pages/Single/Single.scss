@@ -1,0 +1,86 @@
+@import "../../styles/global-imports";
+
+.product-page-wrapper {
+  display: flex;
+  background-color: $white;
+  padding: toRem(100px);
+  gap: 100px;
+}
+
+.product-image-wrapper {
+  flex: 1;
+}
+
+.product-image-slider-wrapper {
+  width: 100%;
+}
+
+.product-image-slider {
+  width: 100%;
+}
+
+.product-images {
+  display: flex;
+  gap: toRem(10px);
+}
+
+.product-slider-image {
+  height: toRem(100px);
+}
+
+.product-text-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: toRem(50px);
+}
+
+.product-title-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: toRem(50px);
+}
+
+.product-title {
+  font-size: toRem(50px);
+  font-weight: 400;
+}
+
+.product-gender {
+  border: 1px solid black;
+  border-radius: 50px;
+  text-align: center;
+  width: fit-content;
+  padding: toRem(3px) toRem(15px);
+  margin-bottom: toRem(10px);
+}
+
+.product-review {
+  color: $textLightColor;
+}
+
+.product-description {
+  color: $textLightColor;
+  line-height: toRem(35px);
+  margin-bottom: toRem(80px);
+}
+
+.product-page-cart {
+  background-color: $white;
+  width: fit-content;
+  padding: toRem(15px) toRem(30px);
+  font-weight: 500;
+  color: $primaryColor;
+  border: 2px solid $primaryColor;
+  transition: background-color 0.25s ease, color 0.25s ease;
+
+  &:hover {
+    background-color: $primaryColor;
+    color: $white;
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: $primaryDarkColor;
+  }
+}
