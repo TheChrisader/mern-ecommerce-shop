@@ -5,7 +5,7 @@ const useObserver = (ref: React.MutableRefObject<any>): boolean => {
 
   useEffect(() => {
     const refCopy = ref;
-    const callback = (entries: any): void => {
+    const checkVisibiity = (entries: any): void => {
       const [entry] = entries;
       if (!isVisible) setIsVisible(entry.isIntersecting);
     };
@@ -17,7 +17,7 @@ const useObserver = (ref: React.MutableRefObject<any>): boolean => {
     };
 
     const observer: IntersectionObserver = new IntersectionObserver(
-      callback,
+      checkVisibiity,
       options
     );
     if (ref.current) observer.observe(ref.current);
