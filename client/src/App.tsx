@@ -11,6 +11,7 @@ import User from "./pages/User/User";
 import ProductsPage from "./pages/Products/ProductsPage";
 import Single from "./pages/Single/Single";
 import Settings from "./pages/Settings/Settings";
+import Cart from "./pages/Cart/Cart";
 
 function App() {
   return (
@@ -23,9 +24,10 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/user/:id" element={<User />} />
-            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/products/:category" element={<ProductsPage />} />
             <Route path="/product/:slug" element={<Single />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/cart" element={<Cart />} />
             <Route
               path="*"
               element={

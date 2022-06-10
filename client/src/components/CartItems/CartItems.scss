@@ -1,0 +1,7 @@
+@import "../../styles/global-imports";
+
+.cart-items-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(20px);
+}

@@ -1,0 +1,29 @@
+@import "../../styles/global-imports";
+
+.cart-item-wrapper {
+  display: flex;
+}
+
+.cart-img {
+  width: 180px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.cart-product-info-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: toRem(15px);
+}
+
+.cart-product-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-product-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: toRem(15px);
+}
