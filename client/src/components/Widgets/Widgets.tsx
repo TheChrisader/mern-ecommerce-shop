@@ -13,7 +13,7 @@ export type Props = {
 
 const Widgets: React.FC = () => {
   const trendTitleRef = useRef<HTMLHeadingElement | null>(null);
-  let isTrendVisible = useObserver(trendTitleRef);
+  const isTrendVisible = useObserver(trendTitleRef);
 
   return (
     <div className="trend">

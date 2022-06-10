@@ -13,10 +13,10 @@ export type Props = {
 
 const Products: React.FC = () => {
   const productsRef = useRef<HTMLDivElement | null>(null);
-  let isVisible = useObserver(productsRef);
+  const isVisible = useObserver(productsRef);
 
   const productTitleRef = useRef<HTMLHeadingElement | null>(null);
-  let isProductVisible = useObserver(productTitleRef);
+  const isProductVisible = useObserver(productTitleRef);
 
   return (
     <>
