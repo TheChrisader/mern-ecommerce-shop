@@ -2,7 +2,7 @@
 
 .products-heading {
   color: $textColor;
-  margin-top: toRem(100px);
+  margin-top: toRem(50px);
   margin-bottom: toRem(50px);
   font-weight: 400;
   font-size: toRem(60px);
@@ -22,4 +22,10 @@
 
 .products-active {
   @include fadeEndAnimation;
+}
+
+@include tabletBreakpoint {
+  .products-heading {
+    font-size: toRem(45px);
+  }
 }

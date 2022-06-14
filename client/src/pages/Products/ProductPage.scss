@@ -1,0 +1,42 @@
+@import "../../styles/global-imports";
+
+.filter-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: toRem(20px);
+}
+
+.filter-products-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.filter-products {
+  color: $primaryColor;
+  font-size: toRem(20px);
+  font-weight: 600;
+  margin-right: toRem(20px);
+}
+
+.filter-products-options-wrapper {
+  display: flex;
+  gap: toRem(15px);
+}
+
+.filter-products-options {
+  font-size: toRem(15px);
+  padding: toRem(5px);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@include tabletBreakpoint {
+  .filter-wrapper {
+    margin-top: toRem(5px);
+    flex-direction: column;
+    gap: toRem(30px);
+  }
+}
