@@ -4,13 +4,6 @@ import Product from "../Product/Product";
 
 import "./Products.scss";
 
-export type Props = {
-  img: string;
-  title: string;
-  price: number;
-  oldPrice?: number;
-};
-
 const Products: React.FC = () => {
   const productsRef = useRef<HTMLDivElement | null>(null);
   const isVisible = useObserver(productsRef);
