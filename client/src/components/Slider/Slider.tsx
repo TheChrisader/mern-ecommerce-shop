@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./Slider.scss";
 
 const Slider = () => {
@@ -14,7 +16,9 @@ const Slider = () => {
             <span className="slider-price">Price</span>
             <span className="slider-price-number">$117.99</span>
           </div>
-          <button className="slider-button">Shop Now</button>
+          <Link to="product/:slug" className="link">
+            <button className="slider-button">Shop Now</button>
+          </Link>
         </div>
         <div className="slider-img-wrapper">
           <img

@@ -59,12 +59,14 @@
 .account-details-username {
   margin-bottom: toRem(45px);
   font-size: toRem(30px);
+  font-weight: 300;
   color: $primaryColor;
 }
 
 .account-details-email {
   margin-bottom: toRem(80px);
   font-size: toRem(20px);
+  font-weight: 300;
   color: $secondaryColor;
 }
 

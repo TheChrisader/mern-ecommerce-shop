@@ -21,12 +21,18 @@ const Navbar = () => {
       </div>
       <div className="icons-wrapper">
         <div className="icons">
-          <i className="icon fa-solid fa-magnifying-glass"></i>
-          <i className="icon fa-solid fa-heart"></i>
-          <div className="cart">
-            <div className="cart-number">9+</div>
-            <i className="icon fa-solid fa-cart-shopping"></i>
-          </div>
+          <Link to="/products/:slug" className="link navbar-icon-link">
+            <i className="icon fa-solid fa-magnifying-glass"></i>
+          </Link>
+          <Link to="/user/:id/saved" className="link navbar-icon-link">
+            <i className="icon fa-solid fa-heart"></i>
+          </Link>
+          <Link to="/cart" className="link navbar-icon-link">
+            <div className="cart">
+              <div className="cart-number">9+</div>
+              <i className="icon fa-solid fa-cart-shopping"></i>
+            </div>
+          </Link>
           <div className="icon login">
             <Link to="/login" className="link">
               Login
