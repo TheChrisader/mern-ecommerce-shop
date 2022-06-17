@@ -1,12 +1,66 @@
 @import "../../styles/global-imports";
 
+.trend {
+  background-color: $primaryColor;
+  height: toRem(500px);
+  margin-bottom: toRem(250px);
+  transition: margin-bottom 1s ease, height 1s ease;
+}
+
+.trend-container {
+  display: flex;
+  flex-direction: column;
+  padding: toRem(85px);
+  margin-top: toRem(40px);
+  transition: padding 1s ease;
+}
+
+.trend-title {
+  color: white;
+  font-weight: 400;
+  font-size: toRem(60px);
+  margin-bottom: toRem(50px);
+  transition: font-size 1s ease;
+
+  @include fadeStartAnimation(2s, 100px);
+}
+
+.trend-title-active {
+  @include fadeEndAnimation;
+}
+
 .widgets-container {
   display: flex;
   justify-content: space-between;
   gap: 30px;
 }
 
+@include customBreakpoint(1110px) {
+  .trend-container {
+    padding: toRem(30px);
+  }
+}
+
+@include tabletBreakpoint {
+  .trend {
+    height: toRem(400px);
+  }
+
+  .trend-container {
+    padding: toRem(20px);
+  }
+
+  .trend-title {
+    font-size: toRem(36px);
+  }
+}
+
 @include customBreakpoint(600px) {
+  .trend {
+    height: auto;
+    margin-bottom: toRem(50px);
+  }
+
   .widgets-container {
     flex-direction: column;
   }

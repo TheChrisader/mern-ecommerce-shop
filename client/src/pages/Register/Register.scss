@@ -1,6 +1,6 @@
 @import "../../styles/global-imports";
 
-.login-title {
+.register-title {
   color: $primaryColor;
   font-weight: 500;
   font-size: toRem(50px);
@@ -8,7 +8,7 @@
   margin-bottom: toRem(30px);
 }
 
-.login-form {
+.register-form {
   display: flex;
   flex-direction: column;
   margin: 30px 0;
@@ -18,14 +18,14 @@
   margin-bottom: toRem(50px);
 }
 
-.login-input-wrapper {
+.register-input-wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
   margin-bottom: toRem(15px);
 }
 
-.login-input-label {
+.register-input-label {
   position: absolute;
   top: 0;
   left: 0;
@@ -36,7 +36,7 @@
   letter-spacing: 0.5px;
 }
 
-.login-input {
+.register-input {
   border: 1px solid $secondaryLightColor;
   height: toRem(50px);
   padding: toRem(10px);
@@ -47,16 +47,15 @@
   }
 }
 
-.login-input:focus + .login-input-label,
-.login-input:not(:placeholder-shown) + .login-input-label {
-  transform: translate(10px, -10px) scale(0.8);
-  font-weight: 400;
+.register-input:focus + .register-input-label,
+.register-input:not(:placeholder-shown) + .register-input-label {
+  transform: translate(-1px, -10px) scale(0.8);
   border-radius: 20px;
   padding-inline: 5px;
   background-color: $white;
 }
 
-.login-button {
+.register-button {
   border-style: none;
   border-radius: 5px;
   background-color: $primaryColor;
@@ -66,25 +65,6 @@
   width: fit-content;
   margin-bottom: toRem(15px);
   margin-top: toRem(15px);
-  cursor: pointer;
-
-  &:active {
-    background-color: $primaryDarkColor;
-  }
-}
-
-.link-padding {
-  margin-bottom: 80px;
-}
-
-.alt-button {
-  border-style: none;
-  border-radius: 5px;
-  background-color: $primaryColor;
-  color: $white;
-  font-size: toRem(18px);
-  padding: toRem(15px);
-  width: 100%;
   cursor: pointer;
 
   &:active {

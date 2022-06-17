@@ -11,18 +11,6 @@
   padding: 15px;
 }
 
-.image-wrapper {
-  position: relative;
-}
-
-.triangle {
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-top: 50px solid #ff2a13;
-  border-right: 50px solid transparent;
-}
-
 .product-item-image {
   width: toRem(200px);
 }
@@ -38,11 +26,14 @@
   padding: 20px;
 }
 
-.product-title {
+.product-item-title-link {
+  margin-bottom: 10px;
+}
+
+.product-item-title {
   color: rgb(57, 61, 70);
   font-weight: 500;
   text-align: center;
-  margin-bottom: 10px;
 }
 
 .product-price {

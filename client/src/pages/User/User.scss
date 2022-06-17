@@ -1,0 +1,114 @@
+@import "../../styles/global-imports";
+
+.user-page-wrapper {
+  background-color: $white;
+  padding: toRem(15px);
+}
+
+.account-title {
+  font-size: toRem(25px);
+  font-weight: 500;
+  color: $textColor;
+  padding: toRem(5px);
+  text-align: center;
+  margin-bottom: toRem(15px);
+  border-radius: 5px;
+  border-bottom: 1px solid $secondaryLightColor;
+}
+
+.user-page-layout-wrapper {
+  display: flex;
+  gap: 15px;
+}
+
+.account-details-wrapper {
+  flex: 2;
+  border-radius: 20px;
+  padding: toRem(20px);
+  box-shadow: $shadowTwo;
+}
+
+.account-details-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid $secondaryLightColor;
+  margin-bottom: toRem(10px);
+}
+
+.account-details-title {
+  font-size: toRem(25px);
+  font-weight: 400;
+  color: $textColor;
+}
+
+.account-icon {
+  color: $secondaryColor;
+
+  &:hover {
+    color: $primaryColor;
+  }
+}
+
+.account-details {
+  display: flex;
+  flex-direction: column;
+  padding: toRem(15px);
+}
+
+.account-details-username {
+  margin-bottom: toRem(45px);
+  font-size: toRem(30px);
+  font-weight: 300;
+  color: $primaryColor;
+}
+
+.account-details-email {
+  margin-bottom: toRem(80px);
+  font-size: toRem(20px);
+  font-weight: 300;
+  color: $secondaryColor;
+}
+
+.account-details-change-password {
+  font-size: toRem(25px);
+}
+
+.saved-items-wrapper {
+  flex: 1;
+  border-radius: 20px;
+  padding: toRem(20px);
+  box-shadow: $shadowTwo;
+}
+
+.saved-items-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid $secondaryLightColor;
+  margin-bottom: toRem(10px);
+}
+
+.saved-items-title {
+  font-size: toRem(25px);
+  font-weight: 400;
+  color: $textColor;
+}
+
+.saved-items-product {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.saved-items-img {
+  width: toRem(40px);
+  height: toRem(40px);
+  object-fit: cover;
+  border-radius: 50px;
+}
+
+.saved-items-table-item {
+  color: $textColor;
+  font-weight: 300;
+}

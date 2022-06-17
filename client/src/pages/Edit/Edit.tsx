@@ -1,16 +1,14 @@
-import { Link } from "react-router-dom";
-
-import "./Login.scss";
+import "./Edit.scss";
 
 const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
   e.preventDefault();
 };
 
-const Login: React.FC = () => {
+const Edit = () => {
   return (
-    <>
-      <h1 className="login-title">Log into your Account</h1>
-      <form action="submit" className="login-form">
+    <div className="user-edit-wrapper">
+      <h1 className="edit-title">Details</h1>
+      <form action="submit" className="edit-details-wrapper">
         <label htmlFor="username" className="login-input-wrapper">
           <input
             type="text"
@@ -19,6 +17,15 @@ const Login: React.FC = () => {
             placeholder=" "
           />
           <span className="login-input-label">Username</span>
+        </label>
+        <label htmlFor="email" className="login-input-wrapper">
+          <input
+            type="text"
+            className="login-input"
+            id="email"
+            placeholder=" "
+          />
+          <span className="login-input-label">Email</span>
         </label>
         <label htmlFor="password" className="login-input-wrapper">
           <input
@@ -32,16 +39,9 @@ const Login: React.FC = () => {
         <button type="submit" className="login-button" onClick={handleSubmit}>
           Log in
         </button>
-
-        <span className="forgot-password">Lost your password?</span>
       </form>
-      <Link to="/register" className="link link-padding">
-        <button type="submit" className="alt-button">
-          Register
-        </button>
-      </Link>
-    </>
+    </div>
   );
 };
 
-export default Login;
+export default Edit;
