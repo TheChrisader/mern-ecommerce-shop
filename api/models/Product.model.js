@@ -12,17 +12,17 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    images: {
-      type: [String],
-    },
+    images: [{ type: String }],
     description: {
       type: String,
       required: true,
     },
-    categories: {
-      type: mongoose.Schema.ObjectId,
-      ref: "Category",
-    },
+    categories: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
     seller: {
       type: mongoose.Schema.ObjectId,
       ref: "User",
@@ -35,14 +35,18 @@ const productSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    colors: {
-      type: [String],
-      default: [],
-    },
-    sizes: {
-      type: [String],
-      default: [],
-    },
+    colors: [
+      {
+        type: String,
+        default: "",
+      },
+    ],
+    sizes: [
+      {
+        type: String,
+        default: "",
+      },
+    ],
     quantity: {
       type: Number,
       default: 0,

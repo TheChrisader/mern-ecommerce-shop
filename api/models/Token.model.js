@@ -10,9 +10,10 @@ const TokenSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "User",
     },
-    expires: {
+    createdAt: {
       type: Date,
-      required: true,
+      expires: "3d",
+      default: Date.now,
     },
   },
   { timestamps: true }

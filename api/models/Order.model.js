@@ -2,7 +2,12 @@ const mongoose = require("mongoose");
 
 const OrderSchema = new mongoose.Schema(
   {
-    products: Array,
+    products: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Product",
+      },
+    ],
     user: {
       type: mongoose.Types.ObjectId,
       ref: "User",
