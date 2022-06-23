@@ -6,6 +6,7 @@ const connectDB = require("./config/db");
 const authRoute = require("./routes/auth.routes");
 const userRoute = require("./routes/user.routes");
 const productRoute = require("./routes/product.routes");
+const cartRoute = require("./routes/cart.routes");
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(cookieParser());
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
+app.use("/api/cart", cartRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
