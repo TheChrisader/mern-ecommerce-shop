@@ -1,6 +1,6 @@
 const User = require("../models/User.model");
 const bcrypt = require("bcrypt");
-const { createError } = require("../utils/error");
+const createError = require("../utils/error");
 const { generateAuthToken } = require("../utils/verifyToken");
 
 const register = async (req, res, next) => {
@@ -36,12 +36,13 @@ const login = async (req, res, next) => {
       id: user._id,
       isAdmin: user.isAdmin,
     });
-
-    const { password, isAdmin, ...otherDetails } = user._doc;
     res
-      .cookie("access_token", token, { httpOnly: true })
+      .cookie("token", token, {
+        maxAge: 3 * 86400000,
+        httpOnly: true,
+      })
       .status(200)
-      .json({ details: { ...otherDetails }, isAdmin });
+      .json({ details: { ...user } });
   } catch (err) {
     next(err);
   }

@@ -2,12 +2,15 @@ const jwt = require("jsonwebtoken");
 
 const Token = require("../models/Token.model");
 const config = require("../config/config");
-const { createError } = require("./error");
+const createError = require("./error");
 
 const { JWT_SEC } = config;
 
-const generateToken = (payload, expires) => {
-  return jwt.sign({ ...payload }, JWT_SEC, { expiresIn: expires });
+const generateToken = (payload, type) => {
+  if (type === "ACCESS")
+    return jwt.sign({ ...payload }, JWT_SEC, { expiresIn: "1h" });
+  if (type === "REFRESH")
+    return jwt.sign({ ...payload }, JWT_SEC, { expiresIn: "3d" });
 };
 
 const saveToken = async (token, userId) => {
@@ -20,60 +23,81 @@ const saveToken = async (token, userId) => {
 };
 
 const generateAuthToken = async (payload) => {
-  const accessToken = generateToken(payload, "1h");
+  const accessToken = generateToken(payload, "ACCESS");
 
-  const refreshToken = generateToken(payload, "3d");
+  const refreshToken = generateToken(payload, "REFRESH");
 
   await saveToken(refreshToken, payload.id);
 
-  return accessToken;
+  const token = `${accessToken} ${refreshToken}`;
+
+  return token;
 };
 
 const verifyToken = async (req, res, next) => {
-  const token = req.cookies.access_token;
+  const token = req.cookies.token?.split(" ");
   if (!token) return next(createError(401, "You are not authenticated"));
 
-  const payload = jwt.verify(token, JWT_SEC, (err, user) => {
-    if (err) return next(createError(403, "Invalid Token"));
-    req.user = user;
-  });
+  let access_token = token[0];
+  let refresh_token = token[1];
 
-  const tokenDoc = await Token.findOne({
-    token,
-    user: payload.id,
-  });
+  // empty callback to override the default behaviour for errors
+  let user = jwt.verify(access_token, JWT_SEC, () => {});
 
-  if (!tokenDoc) {
-    return next(createError(403, "Token not Found"));
+  if (!user) {
+    user = jwt.verify(refresh_token, JWT_SEC);
+
+    const refreshToken = await Token.findOne({
+      user: user.id,
+    });
+
+    if (!refreshToken) return next(createError(403, "Token not Found"));
+
+    access_token = generateToken(
+      { id: user.id, isAdmin: user.isAdmin },
+      "ACCESS"
+    );
+
+    let cookieToken = `${access_token} ${refresh_token}`;
+
+    res.cookie("token", cookieToken, {
+      maxAge: 3 * 86400000,
+      httpOnly: true,
+    });
   }
 
-  next();
+  return user;
 };
 
-const verifyUser = (req, res, next) => {
-  verifyToken(req, res, next, () => {
-    if (req.user.id === req.params.id || req.user.isAdmin) {
+const verifyUser = async (req, res, next) => {
+  try {
+    let user = await verifyToken(req, res, next);
+    if (user?.id === req.params.id || user?.isAdmin) {
       next();
     } else {
       return next(createError(403, "Forbidden Access"));
     }
-  });
+  } catch (err) {
+    next(err);
+  }
 };
 
-const verifyAdmin = (req, res, next) => {
-  verifyToken(req, res, next, () => {
-    if (req.user.isAdmin) {
+const verifyAdmin = async (req, res, next) => {
+  try {
+    let user = await verifyToken(req, res, next);
+    if (user?.isAdmin) {
       next();
     } else {
       return next(createError(403, "Forbidden Access"));
     }
-  });
+  } catch (err) {
+    next(err);
+  }
 };
 
 module.exports = {
   generateToken,
   saveToken,
-
   generateAuthToken,
   verifyToken,
   verifyUser,
