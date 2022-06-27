@@ -6,17 +6,18 @@ const {
   deleteCart,
   getAllCarts,
 } = require("../controllers/Cart.controller");
+const { verifyUser, verifyAdmin } = require("../utils/verifyToken");
 
 const router = express.Router();
 
-router.get("/:id", getCart);
+router.get("/:id", verifyUser, getCart);
 
-router.post("/", createCart);
+router.post("/", verifyUser, createCart);
 
-router.put("/:id", updateCart);
+router.put("/:id", verifyUser, updateCart);
 
-router.delete("/:id", deleteCart);
+router.delete("/:id", verifyUser, deleteCart);
 
-router.get("/", getAllCarts);
+router.get("/", verifyAdmin, getAllCarts);
 
 module.exports = router;

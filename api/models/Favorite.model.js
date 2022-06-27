@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const SavedItemsSchema = new mongoose.Schema(
+const FavoriteSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Types.ObjectId,
@@ -21,4 +21,4 @@ const SavedItemsSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("SavedItems", SavedItemsSchema);
+module.exports = mongoose.model("Favorite", FavoriteSchema);

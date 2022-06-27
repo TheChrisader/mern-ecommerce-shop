@@ -7,12 +7,15 @@ const authRoute = require("./routes/auth.routes");
 const userRoute = require("./routes/user.routes");
 const productRoute = require("./routes/product.routes");
 const cartRoute = require("./routes/cart.routes");
+const categoryRoute = require("./routes/category.routes");
+const orderRoute = require("./routes/order.routes");
+const favoriteRoute = require("./routes/favorite.routes");
 
 const app = express();
 
 //middleware
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 app.use(cookieParser());
 
 //routes
@@ -20,7 +23,11 @@ app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 app.use("/api/cart", cartRoute);
+app.use("/api/category", categoryRoute);
+app.use("/api/order", orderRoute);
+app.use("/api/favorite", favoriteRoute);
 
+//error handler
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong";
@@ -34,9 +41,10 @@ app.use((err, req, res, next) => {
 
 app.listen(8800, async () => {
   try {
-    await connectDB();
     console.log("Server is running");
+    await connectDB();
   } catch (err) {
-    console.log("Database connection failed");
+    console.log(err.message);
+    process.exit();
   }
 });
