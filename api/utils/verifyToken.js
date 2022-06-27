@@ -23,6 +23,10 @@ const saveToken = async (token, userId) => {
 };
 
 const generateAuthToken = async (payload) => {
+  let oldToken = await Token.findOne({ user: payload.id });
+
+  if (oldToken) await Token.findByIdAndDelete(oldToken.id);
+
   const accessToken = generateToken(payload, "ACCESS");
 
   const refreshToken = generateToken(payload, "REFRESH");
