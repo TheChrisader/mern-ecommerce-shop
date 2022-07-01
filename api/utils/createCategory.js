@@ -1,5 +1,3 @@
-const mongoose = require("mongoose");
-
 const Category = require("../models/Category.model");
 
 const createCategory = (categories) => {
