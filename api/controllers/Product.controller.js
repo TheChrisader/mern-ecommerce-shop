@@ -6,6 +6,16 @@ const createSlug = require("../utils/createSlug");
 const makeProduct = async (req, res, next) => {
   try {
     createCategory(req.body.categories);
+    if (req.body.mainImage) {
+      let url = uploadImage(req.body.mainImage);
+      req.body.mainImage = url;
+    }
+    if (req.body.images.length !== 0) {
+      for (i = 0; i < req.body.images.length; i++) {
+        let url = uploadImage(req.body.images.length[i]);
+        req.body.images.length[i] = url;
+      }
+    }
 
     const slug = createSlug(req.body);
 
@@ -36,6 +46,18 @@ const updateProduct = async (req, res, next) => {
 
     if (req.body.categories) {
       createCategory(req.body.categories);
+    }
+
+    if (req.body.mainImage) {
+      let url = uploadImage(req.body.mainImage);
+      req.body.mainImage = url;
+    }
+
+    if (req.body.images.length !== 0) {
+      for (i = 0; i < req.body.images.length; i++) {
+        let url = uploadImage(req.body.images.length[i]);
+        req.body.images.length[i] = url;
+      }
     }
 
     const updatedProduct = await Product.findByIdAndUpdate(
