@@ -1,0 +1,10 @@
+@import "../../styles/global-imports";
+
+.home {
+  flex: 5;
+}
+
+.home-middle-wrapper {
+  display: flex;
+  gap: toRem(10px);
+}

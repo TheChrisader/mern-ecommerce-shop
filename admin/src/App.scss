@@ -1,0 +1,9 @@
+@import "./styles/global-imports";
+
+.App {
+  padding: toRem(20px);
+}
+
+.container {
+  display: flex;
+}

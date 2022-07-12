@@ -1,0 +1,21 @@
+@import "../../styles/global-imports";
+
+.chart-wrapper {
+  flex: 3;
+  max-width: 100%;
+  height: toRem(300px);
+  background-color: $white;
+  border-radius: 5px;
+  box-shadow: $shadowTwo;
+  padding: toRem(25px);
+}
+
+.chart-title {
+  color: $primaryColor;
+  font-weight: 400;
+  font-size: toRem(20px);
+}
+
+.chart-container {
+  height: 90%;
+}

@@ -1,0 +1,52 @@
+@import "../../styles/global-imports";
+
+.navbar-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  position: sticky;
+  top: 20px;
+  box-shadow: $shadowThree;
+  padding: toRem(15px);
+  border-radius: 10px;
+  background-color: $white;
+  margin-bottom: toRem(20px);
+}
+
+.nav-header {
+  font-size: toRem(25px);
+  color: $textColor;
+  font-weight: 500;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: toRem(20px);
+}
+
+.nav-list-item {
+  list-style: none;
+}
+
+.nav-icon {
+  font-size: toRem(25px);
+  color: $secondaryColor;
+  transition: color 0.5s ease;
+
+  &:hover {
+    color: $primaryColor;
+  }
+
+  &:active {
+    color: $primaryColor;
+  }
+}
+
+.nav-account-image {
+  background-color: $secondaryColor;
+  border-radius: 50px;
+  width: toRem(40px);
+  height: toRem(40px);
+}

@@ -1,0 +1,68 @@
+@import "./variables";
+
+// Animations
+@mixin animate($type, $length, $delay: 0) {
+  animation: $type $length cubic-bezier(0.165, 0.84, 0.44, 1) $delay both;
+}
+
+@mixin fadeStartAnimation($length, $position) {
+  transition-property: opacity, transform;
+  transition-duration: $length;
+  transition-timing-function: ease;
+  opacity: 0;
+  transform: translateY($position);
+}
+
+@mixin fadeEndAnimation {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+// Breakpoints
+@mixin smMobileBreakpoint {
+  @media screen and (max-width: #{$mobile-sm}) {
+    @content;
+  }
+}
+
+@mixin mdMobileBreakpoint {
+  @media screen and (max-width: #{$mobile-md}) {
+    @content;
+  }
+}
+
+@mixin lgMobileBreakpoint {
+  @media screen and (max-width: #{$mobile-lg}) {
+    @content;
+  }
+}
+
+@mixin tabletBreakpoint {
+  @media screen and (max-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin laptopBreakpoint {
+  @media screen and (max-width: #{$laptop}) {
+    @content;
+  }
+}
+
+@mixin lgLaptopBreakpoint {
+  @media screen and (max-width: #{$laptop-lg}) {
+    @content;
+  }
+}
+
+@mixin xxlBreakpoint {
+  @media screen and (max-width: #{$xxl}) {
+    @content;
+  }
+}
+
+@mixin customBreakpoint($value) {
+  @media screen and (max-width: #{$value}) {
+    @content;
+  }
+}
