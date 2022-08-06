@@ -19,7 +19,7 @@ const Table = ({ columns, items, rows, check }: tableProps) => {
         <thead>
           <tr>
             {check && (
-              <th>
+              <th className="table-column-check">
                 <input
                   className="table-check"
                   type="checkbox"
@@ -51,7 +51,7 @@ const Table = ({ columns, items, rows, check }: tableProps) => {
           {items.map((item, i) => (
             <tr key={item.id} className="table-row">
               {check && (
-                <td>
+                <td className="table-row-check">
                   <input
                     className="table-check"
                     ref={(element) => {

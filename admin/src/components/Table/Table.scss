@@ -30,7 +30,12 @@
   padding: toRem(5px);
 }
 
-.table-check {
-  margin-right: toRem(10px);
+.table-column-check,
+.table-row-check {
   cursor: pointer;
+  padding: toRem(5px);
+}
+
+.table-column-check {
+  padding-left: 0;
 }
