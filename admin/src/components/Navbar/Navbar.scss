@@ -7,17 +7,20 @@
   z-index: 1;
   position: sticky;
   top: 20px;
-  box-shadow: $shadowThree;
   padding: toRem(15px);
   border-radius: 10px;
-  background-color: $white;
-  margin-bottom: toRem(20px);
+  transition: box-shadow 0.5s ease, backdrop-filter 0.5s ease;
+}
+
+.navbar-wrapper-blur {
+  box-shadow: $shadowThree;
+  backdrop-filter: blur(5px);
 }
 
 .nav-header {
-  font-size: toRem(25px);
-  color: $textColor;
-  font-weight: 500;
+  font-size: toRem(30px);
+  color: $textLightColor;
+  font-weight: 600;
 }
 
 .nav-list {

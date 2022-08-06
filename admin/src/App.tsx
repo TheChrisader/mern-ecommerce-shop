@@ -15,6 +15,15 @@ function App() {
           <Sidebar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Home />} />
+            <Route path="/users" element={<Home />} />
+            <Route path="/product/:slug" element={<Home />} />
+            <Route path="/user/:id" element={<Home />} />
+            <Route path="/product/:slug/edit" element={<Home />} />
+            <Route path="/user/:id/edit" element={<Home />} />
+            <Route path="/login" element={<Home />} />
+            <Route path="/settings" element={<Home />} />
+            <Route path="/profile" element={<Home />} />
             <Route
               path="*"
               element={
