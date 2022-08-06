@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Home from "./pages/Home/Home";
+import Products from "./pages/Products/Products";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           <Sidebar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Home />} />
+            <Route path="/products" element={<Products />} />
             <Route path="/users" element={<Home />} />
             <Route path="/product/:slug" element={<Home />} />
             <Route path="/user/:id" element={<Home />} />
