@@ -32,10 +32,37 @@
 
 .table-column-check,
 .table-row-check {
-  cursor: pointer;
   padding: toRem(5px);
 }
 
 .table-column-check {
   padding-left: 0;
+}
+
+.table-check {
+  cursor: pointer;
+}
+
+.pagination-footer {
+  justify-self: end;
+  align-items: flex-end;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.pagination-button {
+  padding: toRem(5px);
+  font-size: toRem(18px);
+  background-color: $white;
+  color: $tertiaryColor;
+  border: 1px solid $tertiaryColor;
+  border-radius: 10px;
+  font-weight: 400;
+  cursor: pointer;
+
+  &:active {
+    background-color: $tertiaryColor;
+    color: $white;
+  }
 }

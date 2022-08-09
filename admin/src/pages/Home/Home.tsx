@@ -131,6 +131,7 @@ const Home = () => {
           columns={orderColumns}
           rows={orderRows}
           items={transactionData}
+          pageSize={5}
         />
       </section>
     </main>
