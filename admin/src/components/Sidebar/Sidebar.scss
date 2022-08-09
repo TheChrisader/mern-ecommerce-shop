@@ -29,6 +29,12 @@
   width: 100%;
 }
 
+.sidebar-link {
+  &:hover {
+    color: $tertiaryColor;
+  }
+}
+
 .sidebar-item-name {
   text-align: start;
 }
@@ -45,6 +51,7 @@
 .sidebar-icon {
   width: toRem(10px);
   margin-right: toRem(20px);
+  color: $tertiaryColor;
 }
 
 .sidebar-sign-out {
