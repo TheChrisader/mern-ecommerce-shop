@@ -1,0 +1,11 @@
+@import "../../styles/global-imports";
+
+.single-product-wrapper {
+  background-color: $white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 4;
+  gap: toRem(50px);
+  padding: toRem(30px);
+}
