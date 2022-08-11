@@ -2,6 +2,7 @@ const Product = require("../models/Product.model");
 
 const createCategory = require("../utils/createCategory");
 const createSlug = require("../utils/createSlug");
+const uploadImage = require("../utils/uploadImage");
 
 const makeProduct = async (req, res, next) => {
   try {
