@@ -8,10 +8,10 @@ const makeProduct = async (req, res, next) => {
   try {
     createCategory(req.body.categories);
     if (req.body.mainImage) {
-      let url = uploadImage(req.body.mainImage);
+      let url = await uploadImage(req.body.mainImage);
       req.body.mainImage = url;
     }
-    if (req.body.images.length !== 0) {
+    if (req.body.images) {
       for (i = 0; i < req.body.images.length; i++) {
         let url = await uploadImage(req.body.images[i]);
         req.body.images[i] = url;
@@ -50,13 +50,13 @@ const updateProduct = async (req, res, next) => {
     }
 
     if (req.body.mainImage) {
-      let url = uploadImage(req.body.mainImage);
+      let url = await uploadImage(req.body.mainImage);
       req.body.mainImage = url;
     }
 
-    if (req.body.images.length !== 0) {
+    if (req.body.images) {
       for (i = 0; i < req.body.images.length; i++) {
-        let url = uploadImage(req.body.images[i]);
+        let url = await uploadImage(req.body.images[i]);
         req.body.images[i] = url;
       }
     }
