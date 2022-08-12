@@ -13,8 +13,8 @@ const makeProduct = async (req, res, next) => {
     }
     if (req.body.images.length !== 0) {
       for (i = 0; i < req.body.images.length; i++) {
-        let url = uploadImage(req.body.images.length[i]);
-        req.body.images.length[i] = url;
+        let url = await uploadImage(req.body.images[i]);
+        req.body.images[i] = url;
       }
     }
 
@@ -56,8 +56,8 @@ const updateProduct = async (req, res, next) => {
 
     if (req.body.images.length !== 0) {
       for (i = 0; i < req.body.images.length; i++) {
-        let url = uploadImage(req.body.images.length[i]);
-        req.body.images.length[i] = url;
+        let url = uploadImage(req.body.images[i]);
+        req.body.images[i] = url;
       }
     }
 
