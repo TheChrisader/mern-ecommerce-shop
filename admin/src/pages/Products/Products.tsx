@@ -68,7 +68,7 @@ const Products: React.FC = () => {
       name: (item: any) => {
         return (
           <>
-            <Link to="/" className="products-view link">
+            <Link to="/product/:slug" className="products-view link">
               View
             </Link>
             <Link to="/" className="products-delete link">
@@ -83,7 +83,7 @@ const Products: React.FC = () => {
     <main className="products">
       <div className="products-new-product">
         <h2 className="add-new-product">Add New Product</h2>
-        <Link to="/" className="link add-new-button">
+        <Link to="/product/new" className="link add-new-button">
           {" "}
           Add New
         </Link>
