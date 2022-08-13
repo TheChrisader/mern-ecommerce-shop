@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { logOut } from "../../redux/userRedux";
 
 import "./Sidebar.scss";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+
   return (
     <section className="sidebar">
       <div className="sidebar-wrapper">
@@ -62,7 +67,11 @@ const Sidebar = () => {
               </Link>
             </ul>
             <ul className="sidebar-item">
-              <Link to="/login" className="link">
+              <Link
+                to="/login"
+                className="link"
+                onClick={() => dispatch(logOut())}
+              >
                 <span className="sidebar-item-name sidebar-sign-out">
                   Sign Out
                 </span>
