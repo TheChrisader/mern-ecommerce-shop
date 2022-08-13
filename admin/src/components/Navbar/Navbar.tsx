@@ -7,7 +7,6 @@ const Navbar = () => {
 
   const changeNav = () => {
     window.scrollY >= 20 ? setHasScrolled(true) : setHasScrolled(false);
-    console.log(hasScrolled);
   };
   useEffect(() => {
     window.addEventListener("scroll", changeNav);
