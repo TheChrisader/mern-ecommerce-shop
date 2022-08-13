@@ -7,5 +7,6 @@
   flex-direction: column;
   flex: 4;
   gap: toRem(50px);
-  padding: toRem(30px);
+  padding: toRem(40px);
+  min-height: 80vh;
 }

@@ -7,7 +7,7 @@ const SingleProduct: React.FC = () => {
     <main className="single-product-wrapper">
       <section className="single-product-top">
         <h2 className="single-product-title">Product</h2>
-        <Link to="/" className="link">
+        <Link to="/product/new" className="link">
           Create
         </Link>
       </section>
