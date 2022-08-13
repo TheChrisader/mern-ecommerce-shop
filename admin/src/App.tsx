@@ -1,6 +1,7 @@
 import "./App.scss";
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -11,7 +12,7 @@ import CreateProduct from "./pages/CreateProduct/CreateProduct";
 import Login from "./pages/Login/Login";
 
 function App() {
-  let user = true;
+  let user = useSelector((state: any) => state?.user?.currentUser?.isAdmin);
 
   const loginRedirect = (element: JSX.Element) => {
     return user ? element : <Navigate replace to="/login" />;

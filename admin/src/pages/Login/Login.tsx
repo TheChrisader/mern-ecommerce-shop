@@ -1,26 +1,38 @@
-import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { login } from "../../redux/apiCalls";
+import { useIsMount } from "../../utils/hooks/useIsMount";
 
 import "./Login.scss";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const isMount = useIsMount();
+
+  const dispatch = useDispatch();
+  const error = useSelector((state: any) => state.user.error);
+
+  useEffect(() => {
+    if (isMount) {
+      return;
+    } else {
+      setErrorMessage(error);
+    }
+  }, [error]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setErrorMessage(null);
+    if (username === "" || password === "")
+      return setErrorMessage("Please input both username and password");
     const data = {
       username,
       password,
     };
-    try {
-      const res = await axios.post("/auth/login", data);
-      console.log(res.data);
-      // window.location.replace("/")
-    } catch (err: any) {
-      setError(err.response.data.message);
-    }
+    await login(dispatch, data);
   };
 
   return (
@@ -44,10 +56,10 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="login-input"
         />
+        <span>{errorMessage}</span>
         <button type="submit" className="login-button">
           Log In
         </button>
-        <span>{error}</span>
       </form>
     </main>
   );
