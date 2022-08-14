@@ -80,7 +80,7 @@ const Table = ({
           </thead>
           <tbody>
             {currentData.map((item, i) => (
-              <tr key={item.id} className="table-row">
+              <tr key={item.id || item._id} className="table-row">
                 {check && (
                   <td className="table-row-check">
                     <input
