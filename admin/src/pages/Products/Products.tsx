@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -21,6 +22,7 @@ type productRow = {
 const Products: React.FC = () => {
   const dispatch = useDispatch();
   const products = useSelector((state: any) => state.product.products);
+  const isFetching = useSelector((state: any) => state.product.isFetching);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -114,6 +116,11 @@ const Products: React.FC = () => {
           Add New
         </Link>
       </div>
+      {isFetching && (
+        <div className="products-loader-backdrop">
+          <div className="products-loader"></div>
+        </div>
+      )}
       <Table
         columns={productColumns}
         rows={productRows}
