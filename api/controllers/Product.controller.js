@@ -23,7 +23,7 @@ const makeProduct = async (req, res, next) => {
     const newProduct = new Product({ ...req.body, slug });
 
     const savedProduct = await newProduct.save();
-    res.status(200).json({ savedProduct });
+    res.status(200).json(savedProduct);
   } catch (err) {
     next(err);
   }
