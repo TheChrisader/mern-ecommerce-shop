@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
+import { getProducts, deleteProduct } from "../../redux/apiCalls";
 import { savedData } from "../../data";
 import Table from "../../components/Table/Table";
 
 import "./Products.scss";
+import { useEffect } from "react";
 
 type productColumn = {
   id: number;
@@ -15,6 +19,20 @@ type productRow = {
 }[];
 
 const Products: React.FC = () => {
+  const dispatch = useDispatch();
+  const products = useSelector((state: any) => state.product.products);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      getProducts(dispatch);
+    };
+    fetchProducts();
+  }, [dispatch]);
+
+  const handleDelete = (id: string) => {
+    deleteProduct(dispatch, id);
+  };
+
   const productColumns: productColumn = [
     {
       id: 1,
@@ -48,13 +66,17 @@ const Products: React.FC = () => {
     {
       id: 2,
       name: (item: any) => {
-        return <span className="products-item">{item.product}</span>;
+        return <span className="products-item">{item.name}</span>;
       },
     },
     {
       id: 3,
       name: (item: any) => {
-        return <span className="products-item">{item.stock}</span>;
+        return (
+          <span className="products-item">
+            {!item.isOutOfStock ? "In Stock" : "Out of Stock"}
+          </span>
+        );
       },
     },
     {
@@ -67,14 +89,18 @@ const Products: React.FC = () => {
       id: 5,
       name: (item: any) => {
         return (
-          <>
-            <Link to="/product/:slug" className="products-view link">
+          <div className="products-options">
+            <Link to={"/product/" + item.slug} className="products-view link">
               View
             </Link>
-            <Link to="/" className="products-delete link">
+            <button
+              type="button"
+              onClick={() => handleDelete(item._id)}
+              className="products-delete link"
+            >
               Delete
-            </Link>
-          </>
+            </button>
+          </div>
         );
       },
     },
@@ -91,7 +117,7 @@ const Products: React.FC = () => {
       <Table
         columns={productColumns}
         rows={productRows}
-        items={savedData}
+        items={products}
         check={true}
         pageSize={6}
         pagination={true}

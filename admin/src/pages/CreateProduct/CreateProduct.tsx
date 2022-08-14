@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+
+import { addProduct } from "../../redux/apiCalls";
 
 import "./CreateProduct.scss";
 
@@ -9,6 +12,8 @@ const CreateProduct = () => {
   const [images, setImages] = useState({ 0: "" });
   const [categories, setCategories] = useState<string[]>([]);
   const [price, setPrice] = useState(0);
+
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
@@ -22,12 +27,7 @@ const CreateProduct = () => {
       categories,
       price,
     };
-    try {
-      await axios.post("/product", newProduct);
-      console.log("done");
-    } catch (err: unknown) {
-      console.log(err);
-    }
+    await addProduct(dispatch, newProduct);
   };
 
   const handleFileInputChange = (

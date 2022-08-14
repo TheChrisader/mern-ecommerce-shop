@@ -39,6 +39,11 @@
   color: $primaryColor;
 }
 
+.products-options {
+  display: flex;
+  align-items: center;
+}
+
 .products-view {
   margin-right: toRem(15px);
   color: $tertiaryColor;
@@ -49,7 +54,15 @@
 
 .products-delete {
   color: $alertColor;
+  font-size: toRem(15px);
+  background-color: $white;
   border: 1px dotted $alertColor;
   border-radius: 10px;
-  padding: toRem(3px);
+  padding: toRem(5px);
+  cursor: pointer;
+
+  &:active {
+    background-color: $alertColor;
+    color: $white;
+  }
 }

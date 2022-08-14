@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { logOut } from "../../redux/userRedux";
+import { signOut } from "../../redux/apiCalls";
 
 import "./Sidebar.scss";
 
@@ -38,13 +38,13 @@ const Sidebar = () => {
           <h2 className="sidebar-title">CREATE/EDIT</h2>
           <nav className="sidebar-nav">
             <ul className="sidebar-item">
-              <Link to="/product/:slug" className="link sidebar-link">
+              <Link to="/product/new" className="link sidebar-link">
                 <i className="fa-solid fa-circle-plus sidebar-icon"></i>
                 <span className="sidebar-item-name">Product</span>
               </Link>
             </ul>
             <ul className="sidebar-item">
-              <Link to="/user/:id" className="link sidebar-link">
+              <Link to="/user/new" className="link sidebar-link">
                 <i className="fa-solid fa-circle-plus sidebar-icon"></i>
                 <span className="sidebar-item-name">User</span>
               </Link>
@@ -70,7 +70,7 @@ const Sidebar = () => {
               <Link
                 to="/login"
                 className="link"
-                onClick={() => dispatch(logOut())}
+                onClick={() => signOut(dispatch)}
               >
                 <span className="sidebar-item-name sidebar-sign-out">
                   Sign Out

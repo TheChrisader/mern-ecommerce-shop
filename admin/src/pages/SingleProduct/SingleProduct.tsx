@@ -1,8 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import "./SingleProduct.scss";
 
 const SingleProduct: React.FC = () => {
+  const location = useLocation();
+  const productSlug = location.pathname.split("/")[2];
+
+  const product = useSelector((state: any) =>
+    state.product.products.find((product: any) => product.slug === productSlug)
+  );
+
   return (
     <main className="single-product-wrapper">
       <section className="single-product-top">
@@ -13,7 +21,7 @@ const SingleProduct: React.FC = () => {
       </section>
       <section className="single-product-middle">
         <div className="single-product-info-wrapper">
-          <h2 className="single-product-info-title">Product</h2>
+          <h2 className="single-product-info-title">{product.name}</h2>
         </div>
       </section>
       <section className="single-product-bottom">
@@ -25,6 +33,7 @@ const SingleProduct: React.FC = () => {
               </label>
               <input
                 type="text"
+                placeholder={product.name}
                 className="single-product-input"
                 id="product-name"
               />
@@ -38,6 +47,7 @@ const SingleProduct: React.FC = () => {
               </label>
               <input
                 type="text"
+                placeholder={product.description}
                 className="single-product-input"
                 id="product-description"
               />
@@ -48,6 +58,7 @@ const SingleProduct: React.FC = () => {
               </label>
               <input
                 type="text"
+                placeholder={product.price}
                 className="single-product-input"
                 id="product-price"
               />
