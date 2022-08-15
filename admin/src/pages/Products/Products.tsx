@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -7,7 +7,6 @@ import { savedData } from "../../data";
 import Table from "../../components/Table/Table";
 
 import "./Products.scss";
-import { useEffect } from "react";
 
 type productColumn = {
   id: number;
@@ -20,7 +19,10 @@ type productRow = {
 }[];
 
 const Products: React.FC = () => {
+  const [idArray, setIdArray] = useState<string[]>([]);
+
   const dispatch = useDispatch();
+
   const products = useSelector((state: any) => state.product.products);
   const isFetching = useSelector((state: any) => state.product.isFetching);
 
@@ -31,8 +33,15 @@ const Products: React.FC = () => {
     fetchProducts();
   }, [dispatch]);
 
-  const handleDelete = (id: string) => {
-    deleteProduct(dispatch, id);
+  const handleDelete = (id: string, idArray: string[]) => {
+    if (idArray.length !== 0) {
+      for (let i = 0; i < idArray.length; i++) {
+        deleteProduct(dispatch, idArray[i]);
+      }
+      setIdArray([]);
+    } else {
+      deleteProduct(dispatch, id);
+    }
   };
 
   const productColumns: productColumn = [
@@ -97,7 +106,7 @@ const Products: React.FC = () => {
             </Link>
             <button
               type="button"
-              onClick={() => handleDelete(item._id)}
+              onClick={() => handleDelete(item._id, idArray)}
               className="products-delete link"
             >
               Delete
@@ -128,6 +137,7 @@ const Products: React.FC = () => {
         check={true}
         pageSize={6}
         pagination={true}
+        getIdArray={(id) => setIdArray(id)}
       />
     </main>
   );

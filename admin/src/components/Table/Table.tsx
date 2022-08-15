@@ -1,4 +1,5 @@
-import { useRef, useState, useMemo } from "react";
+import { useRef, useState, useMemo, useEffect } from "react";
+import { useIsMount } from "../../utils/hooks/useIsMount";
 
 import "./Table.scss";
 
@@ -9,6 +10,7 @@ type tableProps = {
   check?: boolean;
   pageSize: number;
   pagination?: boolean;
+  getIdArray?: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 const Table = ({
@@ -18,11 +20,15 @@ const Table = ({
   check,
   pageSize,
   pagination,
+  getIdArray,
 }: tableProps) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [allRefState, setAllRefState] = useState<any>(null);
 
   const allRef = useRef<HTMLInputElement | null>(null);
   const refs = useRef<HTMLInputElement[]>([]);
+
+  const isMount = useIsMount();
 
   let lastPage = Math.ceil(items.length / pageSize);
   let firstPageIndex = (currentPage - 1) * pageSize;
@@ -35,13 +41,51 @@ const Table = ({
   const handlePagination = (params: string) => {
     if (params === "back" && currentPage !== 1) {
       setCurrentPage(currentPage - 1);
-      if (allRef.current) allRef.current.checked = false;
+      if (allRef.current) {
+        allRef.current.checked = false;
+        setAllRefState(allRef.current.checked);
+      }
+      getIdArray && getIdArray([]);
     }
     if (params === "forward" && currentPage !== lastPage) {
       setCurrentPage(currentPage + 1);
-      if (allRef.current) allRef.current.checked = false;
+      if (allRef.current) {
+        allRef.current.checked = false;
+        setAllRefState(allRef.current.checked);
+      }
+      getIdArray && getIdArray([]);
     }
   };
+
+  const checkedHandler = (itemId: string, i: number) => {
+    if (refs.current[i].checked === true) {
+      if (getIdArray) getIdArray((prev) => [...prev, itemId]);
+    } else if (refs.current[i].checked === false) {
+      if (getIdArray) getIdArray((prev) => prev.filter((id) => id !== itemId));
+    }
+  };
+
+  useEffect(() => {
+    if (!isMount) {
+      if (allRef.current?.checked == true) {
+        if (getIdArray)
+          currentData.forEach((data) => {
+            getIdArray((prev: string[]) =>
+              !prev.find((element) =>
+                element === data._id ? data._id : data.id
+              )
+                ? [...prev, data._id]
+                : [...prev]
+            );
+          });
+      } else if (
+        allRef.current?.checked == false &&
+        refs.current.findIndex((ref) => ref.checked == true) == -1
+      ) {
+        if (getIdArray) getIdArray([]);
+      }
+    }
+  }, [allRefState]);
 
   return (
     <>
@@ -56,6 +100,7 @@ const Table = ({
                     type="checkbox"
                     ref={allRef}
                     onChange={(e) => {
+                      setAllRefState(allRef.current?.checked);
                       if (e.target.checked === false) {
                         refs.current.forEach((ref) => {
                           if (ref === null) return;
@@ -90,7 +135,13 @@ const Table = ({
                       }}
                       type="checkbox"
                       onChange={(e) => {
-                        if (allRef.current) allRef.current.checked = false;
+                        if (allRef.current) {
+                          allRef.current.checked = false;
+                          setAllRefState(allRef.current.checked);
+                        }
+                        {
+                          getIdArray && checkedHandler(item._id, i);
+                        }
                       }}
                     />
                   </td>
