@@ -5,3 +5,7 @@
   min-height: 80vh;
   padding: toRem(40px);
 }
+
+.create-product-loader {
+  @include loader(20px, 2px);
+}

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 
 import { addProduct } from "../../redux/apiCalls";
 
@@ -12,8 +11,16 @@ const CreateProduct = () => {
   const [images, setImages] = useState({ 0: "" });
   const [categories, setCategories] = useState<string[]>([]);
   const [price, setPrice] = useState(0);
+  const [discountPrice, setDiscountPrice] = useState<number | undefined>(
+    undefined
+  );
+  const [colors, setColors] = useState<string[]>([]);
+  const [sizes, setSizes] = useState<string[]>([]);
+  const [quantity, setQuantity] = useState<number | undefined>(undefined);
 
   const dispatch = useDispatch();
+
+  const isFetching = useSelector((state: any) => state.product.isFetching);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
@@ -26,6 +33,10 @@ const CreateProduct = () => {
       description,
       categories,
       price,
+      discountPrice,
+      colors,
+      sizes,
+      quantity,
     };
     await addProduct(dispatch, newProduct);
   };
@@ -61,7 +72,7 @@ const CreateProduct = () => {
               <img src={value} alt="" key={i} />
             ))}
             <label htmlFor="image" className="create-product-label">
-              Image
+              Image*
             </label>
             <input
               type="file"
@@ -75,53 +86,106 @@ const CreateProduct = () => {
               onChange={(e) => handleFileInputChange(e, 1)}
             />
           </div>
-          <div className="create-product-input-wrapper">
-            <label htmlFor="title" className="create-product-label">
-              Title
-            </label>
-            <input
-              type="text"
-              id="title"
-              onChange={(e) => setTitle(e.target.value)}
-              className="create-image-input"
-            />
-          </div>
-          <div className="create-product-input-wrapper">
-            <label htmlFor="description" className="create-product-label">
-              Description
-            </label>
-            <input
-              type="text"
-              id="description"
-              onChange={(e) => setDescription(e.target.value)}
-              className="create-image-input"
-            />
-          </div>
-          <div className="create-product-input-wrapper">
-            <label htmlFor="categories" className="create-product-label">
-              Categories
-            </label>
-            <input
-              type="text"
-              id="categories"
-              onChange={(e) =>
-                setCategories((prev) => [...prev, e.target.value])
-              }
-              className="create-image-input"
-            />
-          </div>
-          <div className="create-product-input-wrapper">
-            <label htmlFor="price" className="create-product-label">
-              Price
-            </label>
-            <input
-              type="number"
-              id="price"
-              onChange={(e) => setPrice(Number(e.target.value))}
-              className="create-image-input"
-            />
+
+          <div className="create-product-inputs-group">
+            <div className="create-product-input-wrapper">
+              <label htmlFor="title" className="create-product-label">
+                Title*
+              </label>
+              <input
+                type="text"
+                id="title"
+                onChange={(e) => setTitle(e.target.value)}
+                className="create-image-input"
+              />
+            </div>
+
+            <div className="create-product-input-wrapper">
+              <label htmlFor="description" className="create-product-label">
+                Description*
+              </label>
+              <input
+                type="text"
+                id="description"
+                onChange={(e) => setDescription(e.target.value)}
+                className="create-image-input"
+              />
+            </div>
+
+            <div className="create-product-input-wrapper">
+              <label htmlFor="categories" className="create-product-label">
+                Categories*
+              </label>
+              <input
+                type="text"
+                id="categories"
+                onChange={(e) => setCategories(e.target.value.split(", "))}
+                className="create-image-input"
+              />
+            </div>
+
+            <div className="create-product-input-wrapper">
+              <label htmlFor="price" className="create-product-label">
+                Price*
+              </label>
+              <input
+                type="number"
+                id="price"
+                onChange={(e) => setPrice(Number(e.target.value))}
+                className="create-image-input"
+              />
+            </div>
+
+            <div className="create-product-input-wrapper">
+              <label htmlFor="dicount-price" className="create-product-label">
+                Discount Price
+              </label>
+              <input
+                type="number"
+                id="discount-price"
+                onChange={(e) => setDiscountPrice(Number(e.target.value))}
+                className="create-image-input"
+              />
+            </div>
+
+            <div className="create-product-input-wrapper">
+              <label htmlFor="colors" className="create-product-label">
+                Colors
+              </label>
+              <input
+                type="text"
+                id="colors"
+                onChange={(e) => setColors(e.target.value.split(", "))}
+                className="create-image-input"
+              />
+            </div>
+
+            <div className="create-product-input-wrapper">
+              <label htmlFor="sizes" className="create-product-label">
+                Sizes
+              </label>
+              <input
+                type="text"
+                id="sizes"
+                onChange={(e) => setSizes(e.target.value.split(", "))}
+                className="create-image-input"
+              />
+            </div>
+
+            <div className="create-product-input-wrapper">
+              <label htmlFor="quantity" className="create-product-label">
+                Quantity
+              </label>
+              <input
+                type="text"
+                id="quantity"
+                onChange={(e) => setQuantity(Number(e.target.value))}
+                className="create-image-input"
+              />
+            </div>
           </div>
         </div>
+        {isFetching && <div className="create-product-loader"></div>}
         <button type="submit" className="create-product-submit">
           Create Product
         </button>
