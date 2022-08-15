@@ -83,5 +83,5 @@
 }
 
 .products-loader {
-  @include loader;
+  @include loader(64px, 6px);
 }

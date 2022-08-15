@@ -10,10 +10,12 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const isMount = useIsMount();
 
   const dispatch = useDispatch();
   const error = useSelector((state: any) => state.user.error);
+  const isFetching = useSelector((state: any) => state.user.isFetching);
 
   useEffect(() => {
     if (isMount) {
@@ -57,6 +59,7 @@ const Login = () => {
           className="login-input"
         />
         <span>{errorMessage}</span>
+        {isFetching && <div className="login-loader"></div>}
         <button type="submit" className="login-button">
           Log In
         </button>
