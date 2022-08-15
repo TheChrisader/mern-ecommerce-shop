@@ -21,9 +21,10 @@ const Login = () => {
     if (isMount) {
       return;
     } else {
+      console.log("first");
       setErrorMessage(error);
     }
-  }, [error]);
+  }, [error]); //eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -58,6 +58,8 @@ const Table = ({
   };
 
   const checkedHandler = (itemId: string, i: number) => {
+    if (!getIdArray) return;
+
     if (refs.current[i].checked === true) {
       if (getIdArray) getIdArray((prev) => [...prev, itemId]);
     } else if (refs.current[i].checked === false) {
@@ -67,7 +69,7 @@ const Table = ({
 
   useEffect(() => {
     if (!isMount) {
-      if (allRef.current?.checked == true) {
+      if (allRef.current?.checked === true) {
         if (getIdArray)
           currentData.forEach((data) => {
             getIdArray((prev: string[]) =>
@@ -79,13 +81,13 @@ const Table = ({
             );
           });
       } else if (
-        allRef.current?.checked == false &&
-        refs.current.findIndex((ref) => ref.checked == true) == -1
+        allRef.current?.checked === false &&
+        refs.current.findIndex((ref) => ref.checked === true) === -1
       ) {
         if (getIdArray) getIdArray([]);
       }
     }
-  }, [allRefState]);
+  }, [allRefState, currentData]); //eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -139,9 +141,7 @@ const Table = ({
                           allRef.current.checked = false;
                           setAllRefState(allRef.current.checked);
                         }
-                        {
-                          getIdArray && checkedHandler(item._id, i);
-                        }
+                        checkedHandler(item._id, i);
                       }}
                     />
                   </td>

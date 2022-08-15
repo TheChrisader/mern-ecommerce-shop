@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getProducts, deleteProduct } from "../../redux/apiCalls";
-import { savedData } from "../../data";
+// import { savedData } from "../../data";
 import Table from "../../components/Table/Table";
 
 import "./Products.scss";
@@ -25,6 +25,10 @@ const Products: React.FC = () => {
 
   const products = useSelector((state: any) => state.product.products);
   const isFetching = useSelector((state: any) => state.product.isFetching);
+
+  useEffect(() => {
+    console.log(idArray);
+  }, [idArray]);
 
   useEffect(() => {
     const fetchProducts = async () => {

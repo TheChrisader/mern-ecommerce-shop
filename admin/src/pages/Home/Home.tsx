@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 import { transactionData } from "../../data";
 import Chart from "../../components/Chart/Chart";
