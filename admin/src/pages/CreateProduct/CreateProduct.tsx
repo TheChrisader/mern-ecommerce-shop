@@ -8,7 +8,7 @@ import "./CreateProduct.scss";
 const CreateProduct = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [images, setImages] = useState<{ [index: string]: string }>({ 0: "" });
+  const [images, setImages] = useState<string[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [price, setPrice] = useState(0);
   const [discountPrice, setDiscountPrice] = useState<number | undefined>(
@@ -24,7 +24,7 @@ const CreateProduct = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
-    let imageArray = Object.values(images);
+    let imageArray = images;
     let mainImage = imageArray.shift();
     const newProduct = {
       name: title,
@@ -54,7 +54,11 @@ const CreateProduct = () => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      setImages((prev) => ({ ...prev, [i]: reader.result }));
+      setImages((prev) => {
+        let copy = [...prev];
+        if (typeof reader.result === "string") copy[i] = reader.result;
+        return copy;
+      });
     };
   };
 
@@ -68,7 +72,7 @@ const CreateProduct = () => {
       >
         <div className="create-product-form-wrapper">
           <div className="create-product-image">
-            {Object.values(images).map((value, i) => (
+            {images.map((value, i) => (
               <img src={value} alt="" key={i} />
             ))}
             <label htmlFor="image" className="create-product-label">
