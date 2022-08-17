@@ -8,7 +8,7 @@ import "./CreateProduct.scss";
 const CreateProduct = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [images, setImages] = useState({ 0: "" });
+  const [images, setImages] = useState<{ [index: string]: string }>({ 0: "" });
   const [categories, setCategories] = useState<string[]>([]);
   const [price, setPrice] = useState(0);
   const [discountPrice, setDiscountPrice] = useState<number | undefined>(
