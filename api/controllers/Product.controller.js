@@ -56,8 +56,15 @@ const updateProduct = async (req, res, next) => {
 
     if (req.body.images) {
       for (i = 0; i < req.body.images.length; i++) {
-        let url = await uploadImage(req.body.images[i]);
-        req.body.images[i] = url;
+        if (
+          req.body.images[i] === (undefined || null) ||
+          req.body.images[i].includes("cloudinary")
+        ) {
+          continue;
+        } else {
+          let url = await uploadImage(req.body.images[i]);
+          req.body.images[i] = url;
+        }
       }
     }
 
