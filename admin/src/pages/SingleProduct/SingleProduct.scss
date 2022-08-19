@@ -10,3 +10,10 @@
   padding: toRem(40px);
   min-height: 80vh;
 }
+
+.single-product-image {
+  height: toRem(50px);
+  width: toRem(50px);
+  object-fit: cover;
+  border-radius: 50px;
+}

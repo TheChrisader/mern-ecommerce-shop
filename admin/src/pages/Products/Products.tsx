@@ -27,10 +27,6 @@ const Products: React.FC = () => {
   const isFetching = useSelector((state: any) => state.product.isFetching);
 
   useEffect(() => {
-    console.log(idArray);
-  }, [idArray]);
-
-  useEffect(() => {
     const fetchProducts = async () => {
       getProducts(dispatch);
     };

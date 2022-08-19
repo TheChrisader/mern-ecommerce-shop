@@ -27,7 +27,6 @@ export const login = async (dispatch: Dispatch<any>, user: userResponse) => {
   try {
     const response = await axios.post("/auth/login", user);
     if (!response.data.isAdmin) throw new Error("You Are Not Authorized.");
-    // window.location.replace("/");
     dispatch(loginSuccess(response.data));
   } catch (err: any) {
     dispatch(
@@ -81,9 +80,10 @@ export const updateProduct = async (
 ) => {
   dispatch(updateProductStart());
   try {
-    const response = await axios.post(`/product/${id}`, product);
+    const response = await axios.put(`/product/${id}`, product);
     const updatedProduct = response.data;
     dispatch(updateProductSuccess({ id, updatedProduct }));
+    window.location.replace(`/product/${response.data.slug}`);
   } catch (err: any) {
     dispatch(updateProductFailure(err?.response?.data?.message));
   }

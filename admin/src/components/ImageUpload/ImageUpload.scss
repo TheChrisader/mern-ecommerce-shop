@@ -1,0 +1,32 @@
+@import "../../styles/global-imports";
+
+.product-image-upload-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: toRem(20px);
+}
+
+.product-image {
+  height: toRem(40px);
+  width: toRem(40px);
+  object-fit: cover;
+  border-radius: 50px;
+}
+
+.product-image-upload {
+  cursor: pointer;
+  color: $tertiaryColor;
+  position: relative;
+}
+
+.image-delete-button {
+  background-color: transparent;
+  border: none;
+  font-size: toRem(16px);
+}
+
+.product-image-delete {
+  cursor: pointer;
+  color: $alertColor;
+}
