@@ -4,3 +4,20 @@
   display: flex;
   flex-direction: column;
 }
+
+.product-label {
+  color: $tertiaryColor;
+  margin-bottom: toRem(5px);
+}
+
+.product-input {
+  outline: none;
+  border: 1px solid $primaryColor;
+  border-radius: 10px;
+  padding: toRem(5px);
+  transition: border 0.025s ease;
+
+  &:focus {
+    border: 2px solid $tertiaryColor;
+  }
+}
