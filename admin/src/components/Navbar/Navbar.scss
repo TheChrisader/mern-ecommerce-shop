@@ -19,7 +19,7 @@
 
 .nav-header {
   font-size: toRem(30px);
-  color: $textLightColor;
+  color: $tertiaryColor;
   font-weight: 600;
 }
 
@@ -35,15 +35,12 @@
 
 .nav-icon {
   font-size: toRem(25px);
-  color: $secondaryColor;
+  color: $tertiaryColor;
   transition: color 0.5s ease;
+  cursor: pointer;
 
   &:hover {
-    color: $primaryColor;
-  }
-
-  &:active {
-    color: $primaryColor;
+    color: $tertiaryColorDark;
   }
 }
 

@@ -49,9 +49,6 @@
   margin-bottom: toRem(5px);
 }
 
-// .single-product-select {
-// }
-
 .single-product-form-right {
   display: flex;
   margin-bottom: toRem(30px);
@@ -67,7 +64,6 @@
   font-weight: 600;
   padding: toRem(15px);
   cursor: pointer;
-  outline: none;
 
   &:active {
     background-color: $sucessColorDark;

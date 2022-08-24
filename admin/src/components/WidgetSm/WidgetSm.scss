@@ -19,7 +19,7 @@
 }
 
 .widget-title {
-  color: $textColor;
+  color: $tertiaryColor;
   font-size: toRem(20px);
   font-weight: 400;
 }
@@ -32,8 +32,8 @@
 
 .widget-link {
   outline: none;
-  border-bottom: 1px solid $primaryColor;
+  border-bottom: 1px solid $tertiaryColor;
   width: max-content;
-  color: $textColor;
+  color: $tertiaryColor;
   font-weight: 300;
 }
