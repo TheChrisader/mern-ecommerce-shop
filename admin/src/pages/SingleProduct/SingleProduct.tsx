@@ -145,76 +145,62 @@ const SingleProduct: React.FC = () => {
     <main className="single-product-wrapper">
       <section className="single-product-top">
         <h2 className="single-product-title">Product</h2>
-        <Link to="/product/new" className="link">
+        <Link to="/product/new" className="link single-create-product">
           Create
         </Link>
       </section>
-      <section className="single-product-middle">
-        <div className="single-product-info-wrapper">
-          <h2 className="single-product-info-title">{product?.name}</h2>
+      <h2 className="single-product-info-title">{product?.name}</h2>
+      <form action="submit" onSubmit={handleSubmit}>
+        {/* Inputs */}
+        <div className="single-product-form-divider">
+          {inputs.map((input) => {
+            return (
+              <Input
+                key={input.id}
+                type={input.type}
+                placeholder={input.placeholder}
+                name={input.name}
+                handleInputChange={handleInputChange}
+                setState={input.setState}
+              />
+            );
+          })}
+
+          {/* Stock */}
+          <label htmlFor="product-stock" className="single-product-label">
+            In Stock?
+          </label>
+          <select
+            name="in-stock"
+            id="product-stock"
+            className="single-product-select"
+            onChange={(e) => handleInputChange(e.target.value, setStock)}
+          >
+            <option value="true"> Yes </option>
+            <option value="false"> No </option>
+          </select>
         </div>
-      </section>
-      <section className="single-product-bottom">
-        <form
-          action="submit"
-          onSubmit={handleSubmit}
-          className="single-product-form"
-        >
-          <div className="single-product-form-left">
-            {/* Name */}
-            <div className="single-product-form-divider">
-              {inputs.map((input) => {
-                return (
-                  <Input
-                    key={input.id}
-                    type={input.type}
-                    placeholder={input.placeholder}
-                    name={input.name}
-                    handleInputChange={handleInputChange}
-                    setState={input.setState}
-                  />
-                );
-              })}
-            </div>
 
-            {/* Stock */}
-            <div className="single-product-form-divider">
-              <label htmlFor="product-stock" className="single-product-label">
-                In Stock?
-              </label>
-              <select
-                name="in-stock"
-                id="product-stock"
-                className="single-product-select"
-                onChange={(e) => handleInputChange(e.target.value, setStock)}
-              >
-                <option value="true"> Yes </option>
-                <option value="false"> No </option>
-              </select>
-            </div>
-          </div>
+        <div className="single-product-form-right">
+          {/* Image Upload */}
+          {[0, 1, 2, 3].map((index, i) => {
+            return (
+              <ImageUpload
+                key={i}
+                imagesArray={images}
+                images={product?.images}
+                mainImage={product?.mainImage}
+                ImageInputHandler={handleFileInputChange}
+                ImageDeleteHandler={handleImageDelete}
+                setState={setImages}
+                index={index}
+              />
+            );
+          })}
+        </div>
 
-          <div className="single-product-form-right">
-            {/* Image Upload */}
-            {[0, 1, 2, 3].map((index, i) => {
-              return (
-                <ImageUpload
-                  key={i}
-                  imagesArray={images}
-                  images={product?.images}
-                  mainImage={product?.mainImage}
-                  ImageInputHandler={handleFileInputChange}
-                  ImageDeleteHandler={handleImageDelete}
-                  setState={setImages}
-                  index={index}
-                />
-              );
-            })}
-          </div>
-
-          <button className="single-product-upload">Upload</button>
-        </form>
-      </section>
+        <button className="single-product-upload">Upload</button>
+      </form>
     </main>
   );
 };
