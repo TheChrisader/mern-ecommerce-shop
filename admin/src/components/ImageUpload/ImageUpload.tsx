@@ -12,6 +12,34 @@ type ImageUploadProps = {
   index: number;
 };
 
+type uploadComponent = {
+  index: number;
+  ImageInputHandler: Function;
+  setState: React.Dispatch<React.SetStateAction<(string | undefined)[]>>;
+  children: React.ReactNode;
+};
+
+const UploadComponent: React.FC<uploadComponent> = ({
+  index,
+  ImageInputHandler,
+  setState,
+  children,
+}) => {
+  return (
+    <div>
+      <input
+        type="file"
+        id={"file-upload-" + index}
+        className="product-image-button"
+        onChange={(e) => ImageInputHandler(e, index, setState)}
+      />
+      <label htmlFor={"file-upload-" + index} className="product-image-upload">
+        {children}
+      </label>
+    </div>
+  );
+};
+
 const ImageUpload: React.FC<ImageUploadProps> = ({
   imagesArray,
   images,
@@ -35,19 +63,15 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
           className="product-image"
           alt=""
         />
-        <label
-          htmlFor={"file-upload-" + index}
-          className="product-image-upload"
-          tabIndex={0}
+
+        <UploadComponent
+          index={index}
+          ImageInputHandler={ImageInputHandler}
+          setState={setState}
         >
           <i className="fa-solid fa-upload image-upload-icon"></i>
-          <input
-            type="file"
-            id={"file-upload-" + index}
-            style={{ display: "none" }}
-            onChange={(e) => ImageInputHandler(e, index, setState)}
-          />
-        </label>
+        </UploadComponent>
+
         <button
           type="button"
           className="image-delete-button"

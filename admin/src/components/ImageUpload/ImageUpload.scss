@@ -20,6 +20,15 @@
   position: relative;
 }
 
+.product-image-button {
+  width: 0;
+  height: 0;
+}
+
+.product-image-button:focus + .product-image-upload {
+  outline: 2px solid $tertiaryColor;
+}
+
 .image-delete-button {
   background-color: transparent;
   border: none;
