@@ -118,16 +118,13 @@ const CreateProduct = () => {
   return (
     <main className="create-product-wrapper">
       <h1 className="create-product-title">Add Product</h1>
-      <form
-        action="submit"
-        onSubmit={handleSubmit}
-        className="create-product-form"
-      >
+      <form action="submit" onSubmit={handleSubmit}>
         <div className="create-product-form-wrapper">
           <div className="create-product-image">
-            {[0, 1, 2, 3].map((index) => {
+            {[0, 1, 2, 3].map((index, i) => {
               return (
                 <ImageUpload
+                  key={i}
                   imagesArray={images}
                   ImageInputHandler={handleFileInputChange}
                   ImageDeleteHandler={handleImageDelete}
