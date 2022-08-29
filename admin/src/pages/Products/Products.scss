@@ -33,6 +33,10 @@
   background-color: $sucessColor;
   border-radius: 10px;
   padding: toRem(10px);
+
+  &:active {
+    background-color: $sucessColorDark;
+  }
 }
 
 .products-item {
@@ -52,6 +56,11 @@
   border: 1px dotted $tertiaryColor;
   border-radius: 10px;
   padding: toRem(3px);
+
+  &:active {
+    background-color: $tertiaryColor;
+    color: $white;
+  }
 }
 
 .products-delete {

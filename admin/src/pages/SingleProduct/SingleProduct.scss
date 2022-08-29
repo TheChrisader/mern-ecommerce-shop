@@ -28,6 +28,10 @@
   background-color: $tertiaryColor;
   border-radius: 10px;
   padding: toRem(10px);
+
+  &:active {
+    background-color: $tertiaryColorDark;
+  }
 }
 
 .single-product-info-title {
