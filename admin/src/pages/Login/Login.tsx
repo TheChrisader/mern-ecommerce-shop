@@ -41,29 +41,35 @@ const Login = () => {
   return (
     <main className="login-wrapper">
       <form action="submit" onSubmit={handleSubmit} className="login-form">
-        <label htmlFor="username" className="login-label">
-          Username
-        </label>
-        <input
-          type="text"
-          id="username"
-          onChange={(e) => setUsername(e.target.value)}
-          className="login-input"
-        />
-        <label htmlFor="password" className="login-label">
-          Password
-        </label>
-        <input
-          type="password"
-          id="password"
-          onChange={(e) => setPassword(e.target.value)}
-          className="login-input"
-        />
-        <span>{errorMessage}</span>
-        {isFetching && <div className="login-loader"></div>}
-        <button type="submit" className="login-button">
-          Log In
-        </button>
+        <div className="login-input-wrapper">
+          <label htmlFor="username" className="login-label">
+            Username
+          </label>
+          <input
+            type="text"
+            id="username"
+            onChange={(e) => setUsername(e.target.value)}
+            className="login-input"
+          />
+        </div>
+        <div className="login-input-wrapper">
+          <label htmlFor="password" className="login-label">
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            onChange={(e) => setPassword(e.target.value)}
+            className="login-input"
+          />
+        </div>
+        <div className="login-button-wrapper">
+          {error && <span className="login-error-msg">{errorMessage}</span>}
+          {isFetching && <div className="login-loader"></div>}
+          <button type="submit" className="login-button">
+            Log In
+          </button>
+        </div>
       </form>
     </main>
   );
