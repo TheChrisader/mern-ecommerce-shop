@@ -5,10 +5,12 @@
   background-color: $white;
   padding: toRem(40px);
   border-radius: 10px;
-  height: 95vh;
+  min-height: 70vh;
+  height: max-content;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: toRem(20px);
   position: relative;
 }
 
