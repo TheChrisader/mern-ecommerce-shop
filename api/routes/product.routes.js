@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.post("/", verifyAdmin, makeProduct);
 
-router.get("/:id", getProduct);
+router.get("/:slug", getProduct);
 
 router.put("/:id", verifyAdmin, updateProduct);
 

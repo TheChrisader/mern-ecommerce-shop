@@ -31,7 +31,7 @@ const makeProduct = async (req, res, next) => {
 
 const getProduct = async (req, res, next) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findOne({ slug: req.params.slug });
     res.status(200).json(product);
   } catch (err) {
     next(err);
