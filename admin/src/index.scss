@@ -1,0 +1,24 @@
+@import "./styles/_global-imports.scss";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+
+  // &:focus {
+  //   outline: 2px solid $tertiaryColor;
+  // }
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: $backgroundColor;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}

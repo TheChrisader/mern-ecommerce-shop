@@ -25,8 +25,9 @@ const UserSchema = new mongoose.Schema(
       default: false,
     },
     savedItems: {
-      type: mongoose.Types.ObjectId,
+      type: [mongoose.Types.ObjectId],
       ref: "SavedItems",
+      default: [],
     },
   },
   { timestamps: true }

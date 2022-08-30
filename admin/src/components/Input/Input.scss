@@ -1,0 +1,23 @@
+@import "../../styles/global-imports";
+
+.product-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-label {
+  color: $tertiaryColor;
+  margin-bottom: toRem(5px);
+}
+
+.product-input {
+  outline: none;
+  border: 1px solid $primaryColor;
+  border-radius: 10px;
+  padding: toRem(5px);
+  transition: border 0.025s ease;
+
+  &:focus {
+    outline: 2px solid $tertiaryColor;
+  }
+}

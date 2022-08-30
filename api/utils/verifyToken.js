@@ -40,7 +40,7 @@ const generateAuthToken = async (payload) => {
 
 const verifyToken = async (req, res, next) => {
   const token = req.cookies.token?.split(" ");
-  if (!token) return next(createError(401, "You are not authenticated"));
+  if (!token) throw createError(401, "You are not authenticated");
 
   let access_token = token[0];
   let refresh_token = token[1];

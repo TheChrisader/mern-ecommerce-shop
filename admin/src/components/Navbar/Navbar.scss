@@ -1,0 +1,52 @@
+@import "../../styles/global-imports";
+
+.navbar-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  position: sticky;
+  top: 20px;
+  padding: toRem(15px);
+  border-radius: 10px;
+  transition: box-shadow 0.5s ease, backdrop-filter 0.5s ease;
+}
+
+.navbar-wrapper-blur {
+  box-shadow: $shadowThree;
+  backdrop-filter: blur(5px);
+}
+
+.nav-header {
+  font-size: toRem(30px);
+  color: $tertiaryColor;
+  font-weight: 600;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: toRem(20px);
+}
+
+.nav-list-item {
+  list-style: none;
+}
+
+.nav-icon {
+  font-size: toRem(25px);
+  color: $tertiaryColor;
+  transition: color 0.5s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: $tertiaryColorDark;
+  }
+}
+
+.nav-account-image {
+  background-color: $secondaryColor;
+  border-radius: 50px;
+  width: toRem(40px);
+  height: toRem(40px);
+}

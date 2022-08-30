@@ -23,10 +23,6 @@ const productSchema = new mongoose.Schema(
         required: true,
       },
     ],
-    seller: {
-      type: mongoose.Schema.ObjectId,
-      ref: "User",
-    },
     price: {
       type: Number,
       required: true,

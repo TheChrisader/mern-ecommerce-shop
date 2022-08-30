@@ -1,0 +1,39 @@
+@import "../../styles/global-imports";
+
+.widget-wrapper {
+  flex: 1;
+  display: flex;
+  gap: toRem(60px);
+  justify-content: space-between;
+  padding: toRem(15px);
+  box-shadow: $shadowOne;
+  border-radius: 5px;
+  height: toRem(180px);
+  background-color: $white;
+}
+
+.widget-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.widget-title {
+  color: $tertiaryColor;
+  font-size: toRem(20px);
+  font-weight: 400;
+}
+
+.widget-number {
+  font-size: toRem(40px);
+  font-weight: 300;
+  color: $textColor;
+}
+
+.widget-link {
+  outline: none;
+  border-bottom: 1px solid $tertiaryColor;
+  width: max-content;
+  color: $tertiaryColor;
+  font-weight: 300;
+}

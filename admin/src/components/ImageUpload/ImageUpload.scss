@@ -1,0 +1,45 @@
+@import "../../styles/global-imports";
+
+.product-image-upload-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: toRem(20px);
+}
+
+.product-image {
+  height: toRem(50px);
+  width: toRem(50px);
+  object-fit: cover;
+  border-radius: 50px;
+}
+
+.product-image-upload {
+  cursor: pointer;
+  color: $tertiaryColor;
+  position: relative;
+}
+
+.product-image-button {
+  width: 0;
+  height: 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.product-image-button:focus + .product-image-upload {
+  outline: -webkit-focus-ring-color auto 1px;
+}
+
+.image-delete-button {
+  background-color: transparent;
+  border: none;
+  font-size: toRem(16px);
+}
+
+.product-image-delete {
+  cursor: pointer;
+  color: $alertColor;
+}

@@ -1,0 +1,30 @@
+@import "../../styles/global-imports";
+
+.home {
+  flex: 4;
+}
+
+.home-middle-wrapper {
+  display: flex;
+  gap: toRem(10px);
+  margin-bottom: toRem(20px);
+}
+
+.home-transactions-table {
+  background-color: $white;
+  border-radius: 5px;
+  box-shadow: $shadowTwo;
+  padding: toRem(25px);
+}
+
+.transactions-title {
+  color: $tertiaryColor;
+  margin-bottom: toRem(10px);
+  font-weight: 500;
+}
+
+.transactions-item {
+  display: inline-block;
+  padding: toRem(10px);
+  color: $textColor;
+}

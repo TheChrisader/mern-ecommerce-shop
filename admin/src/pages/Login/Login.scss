@@ -1,0 +1,76 @@
+@import "../../styles/global-imports";
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  margin: toRem(-20px);
+}
+
+.login-form {
+  background-color: $white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: toRem(20px);
+  flex-direction: column;
+  height: 50%;
+  width: 50%;
+  padding: toRem(20px);
+}
+
+.login-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+}
+
+.login-label {
+  margin-bottom: toRem(5px);
+  color: $tertiaryColor;
+}
+
+.login-input {
+  width: 100%;
+  padding: toRem(5px);
+  border-radius: 5px;
+  border: 1px solid $primaryColor;
+}
+
+.login-button-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-error-msg {
+  color: $alertColor;
+  margin-bottom: toRem(5px);
+}
+
+.login-loader {
+  @include loader(20px, 2px);
+  margin-bottom: toRem(5px);
+}
+
+.login-button {
+  color: $white;
+  background-color: $tertiaryColor;
+  padding: toRem(5px);
+  border-radius: 5px;
+  border: none;
+  width: max-content;
+  cursor: pointer;
+
+  &:active {
+    background-color: $tertiaryColorDark;
+  }
+
+  &:focus {
+    outline: 1px solid $tertiaryColor;
+  }
+}

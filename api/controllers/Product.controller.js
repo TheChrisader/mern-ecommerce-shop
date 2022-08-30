@@ -2,18 +2,19 @@ const Product = require("../models/Product.model");
 
 const createCategory = require("../utils/createCategory");
 const createSlug = require("../utils/createSlug");
+const uploadImage = require("../utils/uploadImage");
 
 const makeProduct = async (req, res, next) => {
   try {
     createCategory(req.body.categories);
     if (req.body.mainImage) {
-      let url = uploadImage(req.body.mainImage);
+      let url = await uploadImage(req.body.mainImage);
       req.body.mainImage = url;
     }
-    if (req.body.images.length !== 0) {
+    if (req.body.images) {
       for (i = 0; i < req.body.images.length; i++) {
-        let url = uploadImage(req.body.images.length[i]);
-        req.body.images.length[i] = url;
+        let url = await uploadImage(req.body.images[i]);
+        req.body.images[i] = url;
       }
     }
 
@@ -22,7 +23,7 @@ const makeProduct = async (req, res, next) => {
     const newProduct = new Product({ ...req.body, slug });
 
     const savedProduct = await newProduct.save();
-    res.status(200).json({ savedProduct });
+    res.status(200).json(savedProduct);
   } catch (err) {
     next(err);
   }
@@ -49,14 +50,21 @@ const updateProduct = async (req, res, next) => {
     }
 
     if (req.body.mainImage) {
-      let url = uploadImage(req.body.mainImage);
+      let url = await uploadImage(req.body.mainImage);
       req.body.mainImage = url;
     }
 
-    if (req.body.images.length !== 0) {
+    if (req.body.images) {
       for (i = 0; i < req.body.images.length; i++) {
-        let url = uploadImage(req.body.images.length[i]);
-        req.body.images.length[i] = url;
+        if (
+          req.body.images[i] === (undefined || null) ||
+          req.body.images[i].includes("cloudinary")
+        ) {
+          continue;
+        } else {
+          let url = await uploadImage(req.body.images[i]);
+          req.body.images[i] = url;
+        }
       }
     }
 

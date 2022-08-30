@@ -1,0 +1,7 @@
+@import "../../styles/global-imports";
+
+.widgets-wrapper {
+  display: flex;
+  gap: toRem(10px);
+  margin-bottom: toRem(20px);
+}

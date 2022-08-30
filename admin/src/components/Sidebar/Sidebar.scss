@@ -1,0 +1,63 @@
+@import "../../styles/global-imports";
+
+.sidebar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: calc(100vh - 180px);
+  position: sticky;
+  top: 122px;
+}
+
+.sidebar-wrapper {
+  background-color: $white;
+  color: $primaryColor;
+  box-shadow: $shadowThree;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 70vh;
+  padding: toRem(30px);
+  border-radius: 20px;
+  width: 90%;
+}
+
+.sidebar-menu-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sidebar-link {
+  &:hover {
+    color: $tertiaryColor;
+  }
+}
+
+.sidebar-item-name {
+  text-align: start;
+}
+
+.sidebar-title {
+  text-align: center;
+  font-size: toRem(18px);
+  font-weight: 500;
+  margin-bottom: toRem(10px);
+  border-bottom: 1px solid $secondaryLightColor;
+  outline: none;
+}
+
+.sidebar-icon {
+  width: toRem(10px);
+  margin-right: toRem(20px);
+  color: $tertiaryColor;
+}
+
+.sidebar-sign-out {
+  display: inline-block;
+  margin-top: toRem(30px);
+  color: $alertColor;
+  width: 100%;
+  text-align: center;
+}

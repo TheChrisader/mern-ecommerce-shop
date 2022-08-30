@@ -23,12 +23,14 @@ const register = async (req, res, next) => {
 const login = async (req, res, next) => {
   try {
     const user = await User.findOne({ username: req.body.username });
+
     if (!user) return next(createError(404, "User not found."));
 
     const isPasswordCorrect = await bcrypt.compare(
       req.body.password,
       user.password
     );
+
     if (!isPasswordCorrect)
       return next(createError(400, "Wrong password or username"));
 
@@ -36,13 +38,16 @@ const login = async (req, res, next) => {
       id: user._id,
       isAdmin: user.isAdmin,
     });
+
+    const { password, ...details } = user._doc;
+
     res
       .cookie("token", token, {
         maxAge: 3 * 86400000,
         httpOnly: true,
       })
       .status(200)
-      .json({ details: { ...user } });
+      .json({ ...details });
   } catch (err) {
     next(err);
   }
