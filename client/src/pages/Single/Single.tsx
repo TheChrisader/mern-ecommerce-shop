@@ -1,35 +1,56 @@
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+
 import "./Single.scss";
 
 const Single = () => {
+  const location = useLocation();
+  const productSlug = location.pathname.split("/")[2];
+
+  const [product, setProduct] = useState({} as any);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`/product/${productSlug}`);
+        setProduct(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchProduct();
+  }, []);
+
   return (
     <>
       <section className="product-page-wrapper">
         <div className="product-image-wrapper">
           <div className="product-image-slider-wrapper">
             <img
-              src="https://static.live.templately.com/2020/06/161806cd-image-4.png?_ga=2.136872761.822068025.1654376037-709298264.1648206587"
+              src={product?.mainImage}
               alt=""
               className="product-image-slider"
             />
           </div>
           <div className="product-images">
             <img
-              src="https://static.live.templately.com/2020/06/1210b653-image-1.png?_ga=2.191998755.822068025.1654376037-709298264.1648206587"
+              src={product?.mainImage}
               alt=""
               className="product-slider-image"
             />
             <img
-              src="https://static.live.templately.com/2020/06/e52b191a-image-2.png?_ga=2.200189863.822068025.1654376037-709298264.1648206587"
+              src={product.images && product?.images[0]}
               alt=""
               className="product-slider-image"
             />
             <img
-              src="https://static.live.templately.com/2020/06/161806cd-image-4.png?_ga=2.136872761.822068025.1654376037-709298264.1648206587"
+              src={product.images && product?.images[1]}
               alt=""
               className="product-slider-image"
             />
             <img
-              src="https://static.live.templately.com/2020/06/c529abfd-image-3.png?_ga=2.165144374.822068025.1654376037-709298264.1648206587"
+              src={product.images && product?.images[2]}
               alt=""
               className="product-slider-image"
             />
@@ -37,16 +58,12 @@ const Single = () => {
         </div>
         <div className="product-text-wrapper">
           <div className="product-title-wrapper">
-            <h1 className="product-title">Leather Jacket</h1>
+            <h1 className="product-title">{product?.name}</h1>
             <span className="product-gender">Men</span>
             <span className="product-review">(1.5k customers review)</span>
           </div>
 
-          <span className="product-description">
-            This winter, look bold and sexy in our stylish new leather jackets
-            for men. Enjoy the soft, luxurious comfort of premium leather while
-            staying warm even when you’re out in the cold.
-          </span>
+          <span className="product-description">{product?.description}</span>
           <button type="button" className="product-page-cart">
             Add to Cart
           </button>

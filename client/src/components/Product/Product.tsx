@@ -6,15 +6,16 @@ type Props = {
   img: string;
   title: string;
   price: number;
+  slug: string;
   oldPrice?: number;
 };
 
-const Product: React.FC<Props> = ({ img, title, price, oldPrice }) => {
+const Product: React.FC<Props> = ({ img, title, price, slug, oldPrice }) => {
   return (
     <div className="product-item-wrapper">
       <img className="product-item-image " src={img} alt="" />
       <div className="product-item-text-wrapper">
-        <Link to="/product/:slug" className="link product-item-title-link">
+        <Link to={`/product/${slug}`} className="link product-item-title-link">
           <h3 className="product-item-title">{title}</h3>
         </Link>
         <div>

@@ -1,15 +1,30 @@
-import { useRef } from "react";
+import axios from "axios";
+import { useEffect, useRef, useState } from "react";
 import useObserver from "../../utils/hooks/useObserver";
 import Product from "../Product/Product";
 
 import "./Products.scss";
 
 const Products: React.FC = () => {
+  const [products, setProducts] = useState([] as any);
+
   const productsRef = useRef<HTMLDivElement | null>(null);
   const isVisible = useObserver(productsRef);
 
   const productTitleRef = useRef<HTMLHeadingElement | null>(null);
   const isProductVisible = useObserver(productTitleRef);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("/product");
+        setProducts(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   return (
     <>
@@ -25,53 +40,15 @@ const Products: React.FC = () => {
         className={"products-wrapper " + (isVisible && "products-active")}
         ref={productsRef}
       >
-        <Product
-          img="https://static.live.templately.com/2021/06/297c6a78-image0.png"
-          title="Learn Python Programming Masterclass"
-          price={54.99}
-        />
-        <Product
-          img="https://static.live.templately.com/2021/06/297c6a78-image0.png"
-          title="Learn Python"
-          price={54.99}
-          oldPrice={100.99}
-        />
-        <Product
-          img="https://static.live.templately.com/2021/06/297c6a78-image0.png"
-          title="Learn Python"
-          price={54.99}
-          oldPrice={100.99}
-        />
-        <Product
-          img="https://static.live.templately.com/2021/06/297c6a78-image0.png"
-          title="Learn Python"
-          price={54.99}
-          oldPrice={100.99}
-        />
-        <Product
-          img="https://static.live.templately.com/2021/06/297c6a78-image0.png"
-          title="Learn Python"
-          price={54.99}
-          oldPrice={100.99}
-        />
-        <Product
-          img="https://static.live.templately.com/2021/06/297c6a78-image0.png"
-          title="Learn Python"
-          price={54.99}
-          oldPrice={100.99}
-        />
-        <Product
-          img="https://static.live.templately.com/2021/06/297c6a78-image0.png"
-          title="Learn Python"
-          price={54.99}
-          oldPrice={100.99}
-        />
-        <Product
-          img="https://static.live.templately.com/2021/06/297c6a78-image0.png"
-          title="Learn Python"
-          price={54.99}
-          oldPrice={100.99}
-        />
+        {products.map((product: any, i: number) => (
+          <Product
+            key={i}
+            img={product?.mainImage}
+            title={product.name}
+            price={product.price}
+            slug={product.slug}
+          />
+        ))}
       </div>
     </>
   );
