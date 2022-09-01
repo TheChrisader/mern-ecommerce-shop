@@ -10,7 +10,7 @@ const ProductsPage: React.FC = () => {
           <span className="filter-products">Filter Products:</span>
           <div className="filter-products-options-wrapper">
             <select name="" id="" className="filter-products-options">
-              <option value="" selected disabled>
+              <option value="" defaultValue="" disabled>
                 Color
               </option>
               <option value="">White</option>
