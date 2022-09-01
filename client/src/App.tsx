@@ -30,7 +30,10 @@ function App() {
               <Route path="edit" element={<Edit />} />
               <Route path="saved" element={<Saved />} />
             </Route>
-            <Route path="/products/:category" element={<ProductsPage />} />
+            <Route
+              path={"/products" || "/products/:category"}
+              element={<ProductsPage />}
+            />
             <Route path="/product/:slug" element={<Single />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/cart" element={<Cart />} />
