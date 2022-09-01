@@ -18,6 +18,7 @@ export const login = async (dispatch: Dispatch<any>, user: userResponse) => {
   try {
     const response = await axios.post("/auth/login", user);
     dispatch(loginSuccess(response.data));
+    window.location.replace("/");
   } catch (err: any) {
     dispatch(
       loginFailure(
