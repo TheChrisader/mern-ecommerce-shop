@@ -59,7 +59,14 @@ const Single = () => {
         <div className="product-text-wrapper">
           <div className="product-title-wrapper">
             <h1 className="product-title">{product?.name}</h1>
-            <span className="product-gender">Men</span>
+            <div className="product-categories">
+              {product.categories &&
+                product?.categories.map((category: string, i: number) => (
+                  <span key={i} className="product-category">
+                    {category}
+                  </span>
+                ))}
+            </div>
             <span className="product-review">(1.5k customers review)</span>
           </div>
 

@@ -42,17 +42,20 @@
 }
 
 .product-title {
-  font-size: toRem(50px);
+  font-size: toRem(35px);
   font-weight: 400;
+  margin-bottom: toRem(15px);
 }
 
-.product-gender {
+.product-categories {
+  margin-bottom: toRem(15px);
+}
+
+.product-category {
   border: 1px solid black;
   border-radius: 50px;
-  text-align: center;
-  width: fit-content;
   padding: toRem(3px) toRem(15px);
-  margin-bottom: toRem(10px);
+  margin-right: toRem(5px);
 }
 
 .product-review {
