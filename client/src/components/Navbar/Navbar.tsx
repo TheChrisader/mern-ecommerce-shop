@@ -27,19 +27,19 @@ const Navbar = () => {
             <i className="icon fa-solid fa-magnifying-glass"></i>
           </Link>
           <Link
-            to={"/user/" + user._id + "/saved"}
+            to={"/user/" + user?._id + "/saved"}
             className="link navbar-icon-link"
           >
             <i className="icon fa-solid fa-heart"></i>
           </Link>
-          <Link to={"/cart/" + user._id} className="link navbar-icon-link">
+          <Link to={"/cart/" + user?._id} className="link navbar-icon-link">
             <div className="cart">
               <div className="cart-number">9+</div>
               <i className="icon fa-solid fa-cart-shopping"></i>
             </div>
           </Link>
           {user ? (
-            <Link to={"/user/" + user._id} className="nav-user link">
+            <Link to={"/user/" + user?._id} className="nav-user link">
               <div className="nav-user-profile"></div>
             </Link>
           ) : (

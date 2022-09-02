@@ -40,17 +40,17 @@ const Single = () => {
               className="product-slider-image"
             />
             <img
-              src={product.images && product?.images[0]}
+              src={product?.images && product?.images[0]}
               alt=""
               className="product-slider-image"
             />
             <img
-              src={product.images && product?.images[1]}
+              src={product?.images && product?.images[1]}
               alt=""
               className="product-slider-image"
             />
             <img
-              src={product.images && product?.images[2]}
+              src={product?.images && product?.images[2]}
               alt=""
               className="product-slider-image"
             />
@@ -60,7 +60,7 @@ const Single = () => {
           <div className="product-title-wrapper">
             <h1 className="product-title">{product?.name}</h1>
             <div className="product-categories">
-              {product.categories &&
+              {product?.categories &&
                 product?.categories.map((category: string, i: number) => (
                   <span key={i} className="product-category">
                     {category}
