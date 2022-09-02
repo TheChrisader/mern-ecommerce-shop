@@ -23,7 +23,9 @@ const Table = ({ columns, items, rows }: tableProps) => {
           {items.map((item) => (
             <tr key={item.id} className="table-row">
               {rows.map((row) => (
-                <td className="table-row-item">{row.name(item)}</td>
+                <td className="table-row-item" key={row.id}>
+                  {row.name(item)}
+                </td>
               ))}
             </tr>
           ))}
