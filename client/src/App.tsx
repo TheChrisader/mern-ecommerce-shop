@@ -35,7 +35,7 @@ function App() {
             </Route>
             <Route path="/product/:slug" element={<Single />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart/:id" element={<Cart />} />
             <Route
               path="*"
               element={
