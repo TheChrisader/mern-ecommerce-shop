@@ -21,7 +21,7 @@ const Navbar = () => {
       </div>
       <div className="icons-wrapper">
         <div className="icons">
-          <Link to="/products/:slug" className="link navbar-icon-link">
+          <Link to="/products" className="link navbar-icon-link">
             <i className="icon fa-solid fa-magnifying-glass"></i>
           </Link>
           <Link to="/user/:id/saved" className="link navbar-icon-link">
