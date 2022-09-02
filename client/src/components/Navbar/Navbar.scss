@@ -89,6 +89,13 @@
   }
 }
 
+.nav-user {
+  width: toRem(45px);
+  height: toRem(45px);
+  border-radius: 50px;
+  background-color: $primaryColor;
+}
+
 .right {
   display: flex;
   align-items: center;
