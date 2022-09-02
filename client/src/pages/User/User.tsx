@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import { savedData } from "../../data";
 import Table from "../../components/Table/Table";
 
@@ -15,6 +17,8 @@ type orderRow = {
 }[];
 
 const User = () => {
+  const user = useSelector((state: any) => state.user.currentUser);
+
   const orderColumns: orderColumn = [
     {
       id: 1,
@@ -71,13 +75,15 @@ const User = () => {
         <div className="account-details-wrapper">
           <div className="account-details-title-wrapper">
             <h1 className="account-details-title">Account Details</h1>
-            <Link to="/user/:id/edit">
+            <Link to={"/user/" + user._id + "/edit"}>
               <i className="account-icon fa-solid fa-user-pen"></i>
             </Link>
           </div>
           <div className="account-details">
-            <span className="account-details-username">Username</span>
-            <span className="account-details-email">email@email.com</span>
+            <span className="account-details-username">{user.username}</span>
+            <span className="account-details-email">
+              {user.email}@email.com
+            </span>
             <span className="account-details-change-password">
               CHANGE PASSWORD
             </span>
@@ -86,7 +92,7 @@ const User = () => {
         <div className="saved-items-wrapper">
           <div className="saved-items-title-wrapper">
             <h1 className="saved-items-title">Saved Items</h1>
-            <Link to="/user/:id/saved">
+            <Link to={"/user/" + user._id + "/saved"}>
               <i className="account-icon fa-solid fa-pen"></i>
             </Link>
           </div>
