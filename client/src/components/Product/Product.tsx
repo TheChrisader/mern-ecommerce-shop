@@ -1,9 +1,8 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import { addProduct } from "../../redux/CartRedux";
+import { addToCart } from "../../utils/hooks/services/CartHandlers";
 
 import "./Product.scss";
 
@@ -13,7 +12,8 @@ type Props = {
   price: number;
   slug: string;
   oldPrice?: number;
-  cartProp: any;
+  userId: string | undefined;
+  cartItems: any[];
 };
 
 const Product: React.FC<Props> = ({
@@ -22,38 +22,20 @@ const Product: React.FC<Props> = ({
   price,
   slug,
   oldPrice,
-  cartProp,
+  userId,
+  cartItems,
 }) => {
-  const cartItems = useSelector((state: any) => state?.cart?.cart);
-
   const dispatch = useDispatch();
-  const userId = useSelector((state: any) => state?.user?.currentUser?._id);
-
-  const updateCart = (products: any, slug: string) => {
-    let clone = products.map((item: any) => {
-      return { ...item };
-    });
-    let productItem = clone.find((item: any) => item.productSlug === slug);
-    if (!productItem) {
-      let data = { productSlug: slug, quantity: 1 };
-      let newCart = [...clone, data];
-      console.log(products);
-      dispatch(addProduct(newCart));
-    } else {
-      productItem.quantity++;
-      dispatch(addProduct(clone));
-    }
-  };
 
   const handleAddToCart = async (
     e: React.MouseEvent<HTMLButtonElement>,
-    userId: string,
+    userId: string | undefined,
     products: undefined | { productSlug: string; quantity: number }[],
     slug: string
   ) => {
     if (!userId) throw new Error("Login! Fool, ya fool!");
 
-    updateCart(products, slug);
+    addToCart(dispatch, products, slug);
 
     let data = {
       user: userId,
@@ -61,11 +43,12 @@ const Product: React.FC<Props> = ({
     };
 
     try {
-      let response = await axios.put(`/cart/${userId}`, data);
+      await axios.put(`/cart/${userId}`, data);
     } catch (err) {
       console.error(err);
     }
   };
+
   return (
     <div className="product-item-wrapper">
       <img className="product-item-image " src={img} alt="" />

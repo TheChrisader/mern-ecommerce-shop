@@ -1,8 +1,10 @@
-import { useDispatch } from "react-redux";
 import { addProduct } from "../../../redux/CartRedux";
 
-export const addToCart = (products: any, slug: string) => {
-  const dispatch = useDispatch();
+export const addToCart = (
+  dispatch: React.Dispatch<any>,
+  products: any,
+  slug: string
+) => {
   let clone = products.map((item: any) => {
     return { ...item };
   });
