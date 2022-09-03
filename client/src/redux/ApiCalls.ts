@@ -15,6 +15,7 @@ import {
   getProductsFailure,
   productsLogOut,
 } from "./ProductRedux";
+import { getCart } from "./CartRedux";
 
 type userResponse = {
   username: string;
@@ -26,6 +27,8 @@ export const login = async (dispatch: Dispatch<any>, user: userResponse) => {
   try {
     const response = await axios.post("/auth/login", user);
     dispatch(loginSuccess(response.data));
+    const cart = await axios.get(`/cart/${response.data._id}`);
+    dispatch(getCart(cart.data));
     window.location.replace("/");
   } catch (err: any) {
     dispatch(

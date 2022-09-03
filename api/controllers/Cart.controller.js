@@ -2,7 +2,7 @@ const Cart = require("../models/Cart.model");
 
 const getCart = async (req, res, next) => {
   try {
-    const cart = await Cart.findOne({ user: req.params.userId });
+    const cart = await Cart.findOne({ user: req.params.id });
     res.status(200).json(cart);
   } catch (err) {
     next(err);
