@@ -1,14 +1,24 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 import "./Single.scss";
+import { addToCart } from "../../utils/services/CartHandlers";
+import { useIsMount } from "../../utils/hooks/useIsMount";
 
 const Single = () => {
   const location = useLocation();
   const productSlug = location.pathname.split("/")[2];
 
   const [product, setProduct] = useState({} as any);
+
+  const userId = useSelector((state: any) => state.user.currentUser._id);
+  const cart = useSelector((state: any) => state.cart.cart);
+
+  const dispatch = useDispatch();
+
+  const isMount = useIsMount();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -21,6 +31,28 @@ const Single = () => {
     };
     fetchProduct();
   }, []);
+
+  const handleClick = async () => {
+    if (!userId) throw new Error("Login! Fool, ya fool!");
+
+    addToCart(dispatch, cart, productSlug);
+  };
+
+  useEffect(() => {
+    const updateApiCart = async () => {
+      let data = {
+        user: userId,
+        products: cart,
+      };
+
+      try {
+        await axios.put(`/cart/${userId}`, data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    if (!isMount) updateApiCart();
+  }, [cart]);
 
   return (
     <>
@@ -71,7 +103,11 @@ const Single = () => {
           </div>
 
           <span className="product-description">{product?.description}</span>
-          <button type="button" className="product-page-cart">
+          <button
+            type="button"
+            className="product-page-cart"
+            onClick={handleClick}
+          >
             Add to Cart
           </button>
         </div>

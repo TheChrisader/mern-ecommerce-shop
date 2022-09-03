@@ -9,7 +9,7 @@ const cartSlice = createSlice({
     getCart: (state, action) => {
       state.cart = action.payload;
     },
-    addProduct: (state, action) => {
+    updateCart: (state, action) => {
       state.cart = action.payload;
     },
     cartLogOut: (state) => {
@@ -18,5 +18,5 @@ const cartSlice = createSlice({
   },
 });
 
-export const { getCart, addProduct, cartLogOut } = cartSlice.actions;
+export const { getCart, updateCart, cartLogOut } = cartSlice.actions;
 export default cartSlice.reducer;
