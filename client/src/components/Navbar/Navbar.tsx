@@ -5,6 +5,7 @@ import "./Navbar.scss";
 
 const Navbar = () => {
   const user = useSelector((state: any) => state.user.currentUser);
+  const cartNumber = useSelector((state: any) => state.cart.cart.length);
   return (
     <nav className="navbar">
       <div className="left">
@@ -34,7 +35,9 @@ const Navbar = () => {
           </Link>
           <Link to={"/cart/" + user?._id} className="link navbar-icon-link">
             <div className="cart">
-              <div className="cart-number">9+</div>
+              <div className="cart-number">
+                {cartNumber < 10 ? cartNumber : "9+"}
+              </div>
               <i className="icon fa-solid fa-cart-shopping"></i>
             </div>
           </Link>
