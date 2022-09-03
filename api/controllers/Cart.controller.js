@@ -1,18 +1,8 @@
 const Cart = require("../models/Cart.model");
 
-const createCart = async (req, res, next) => {
-  try {
-    const newCart = new Cart(req.body);
-    const savedCart = await newCart.save();
-    res.status(200).json(savedCart);
-  } catch (err) {
-    next(err);
-  }
-};
-
 const getCart = async (req, res, next) => {
   try {
-    const cart = await Cart.findById(req.params.id);
+    const cart = await Cart.findOne({ user: req.params.userId });
     res.status(200).json(cart);
   } catch (err) {
     next(err);
@@ -21,10 +11,10 @@ const getCart = async (req, res, next) => {
 
 const updateCart = async (req, res, next) => {
   try {
-    const updatedCart = await Cart.findByIdAndUpdate(
-      req.params.id,
+    const updatedCart = await Cart.findOneAndUpdate(
+      { user: req.params.id },
       {
-        $set: req.body,
+        $set: { ...req.body, user: undefined },
       },
       { new: true }
     );
@@ -60,4 +50,4 @@ const getAllCarts = async (req, res, next) => {
   }
 };
 
-module.exports = { createCart, getCart, updateCart, deleteCart, getAllCarts };
+module.exports = { getCart, updateCart, deleteCart, getAllCarts };

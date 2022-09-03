@@ -9,14 +9,13 @@ const CartSchema = new mongoose.Schema(
     },
     products: [
       {
-        productId: {
+        productSlug: {
           type: String,
-          required: true,
-          unique: true,
+          default: "Up",
         },
         quantity: {
           type: Number,
-          default: 1,
+          default: 0,
         },
       },
     ],

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import useObserver from "../../utils/hooks/useObserver";
 import Product from "../Product/Product";
 
@@ -22,6 +23,19 @@ const Products: React.FC<filterProps> = ({ category, filters, sort }) => {
 
   const productTitleRef = useRef<HTMLHeadingElement | null>(null);
   const isProductVisible = useObserver(productTitleRef);
+
+  const [cart, setCart] = useState<undefined | any>(undefined);
+
+  const userId = useSelector((state: any) => state?.user?.currentUser?._id);
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      let response = await axios.get(`/cart/${userId}`);
+      setCart(response.data);
+      console.log(response.data);
+    };
+    if (userId) fetchCart();
+  }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -88,6 +102,7 @@ const Products: React.FC<filterProps> = ({ category, filters, sort }) => {
                 title={product.name}
                 price={product.price}
                 slug={product.slug}
+                cartProp={cart}
               />
             ))
           : products.map((product: any, i: number) => (
@@ -97,6 +112,7 @@ const Products: React.FC<filterProps> = ({ category, filters, sort }) => {
                 title={product.name}
                 price={product.price}
                 slug={product.slug}
+                cartProp={cart}
               />
             ))}
       </div>

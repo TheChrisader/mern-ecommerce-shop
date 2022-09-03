@@ -10,7 +10,7 @@ const FavoriteSchema = new mongoose.Schema(
       {
         type: mongoose.Types.ObjectId,
         ref: "Product",
-        unique: true,
+        required: true,
       },
     ],
     quantity: {

@@ -1,6 +1,14 @@
 import axios from "axios";
 import { Dispatch } from "react";
-import { loginStart, loginSuccess, loginFailure, logOut } from "./UserRedux";
+import {
+  loginStart,
+  loginSuccess,
+  loginFailure,
+  registerStart,
+  registerSuccess,
+  registerFailure,
+  logOut,
+} from "./UserRedux";
 import {
   getProductsStart,
   getProductsSuccess,
@@ -22,6 +30,21 @@ export const login = async (dispatch: Dispatch<any>, user: userResponse) => {
   } catch (err: any) {
     dispatch(
       loginFailure(
+        err?.response?.data?.message ? err.response.data.message : err.message
+      )
+    );
+  }
+};
+
+export const register = async (dispatch: Dispatch<any>, user: any) => {
+  dispatch(registerStart());
+  try {
+    const response = await axios.post("/auth/register", user);
+    dispatch(registerSuccess(response.data));
+    window.location.replace("/");
+  } catch (err: any) {
+    dispatch(
+      registerFailure(
         err?.response?.data?.message ? err.response.data.message : err.message
       )
     );

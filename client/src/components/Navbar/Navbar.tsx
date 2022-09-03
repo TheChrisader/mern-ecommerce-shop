@@ -40,7 +40,7 @@ const Navbar = () => {
           </Link>
           {user ? (
             <Link to={"/user/" + user?._id} className="nav-user link">
-              <div className="nav-user-profile"></div>
+              <img src={user?.profileImage} className="nav-user-profile"></img>
             </Link>
           ) : (
             <div className="icon login">

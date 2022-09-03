@@ -1,6 +1,8 @@
 const gravatar = require("gravatar");
 
-export const createGravatar = (email) => {
-  let imageUrl = gravatar.url(email, { s: "100", r: "pg", d: "404" }, true);
+const createGravatar = async (email) => {
+  let imageUrl = await gravatar.url(email, { s: "100", r: "pg" }, true);
   return imageUrl;
 };
+
+module.exports = createGravatar;

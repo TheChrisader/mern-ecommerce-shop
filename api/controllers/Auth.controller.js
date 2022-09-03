@@ -1,20 +1,43 @@
-const User = require("../models/User.model");
 const bcrypt = require("bcrypt");
+
+const User = require("../models/User.model");
+
+const createCart = require("../utils/createCart");
 const createError = require("../utils/error");
 const { generateAuthToken } = require("../utils/verifyToken");
+const createGravatar = require("../utils/Gravatar");
 
 const register = async (req, res, next) => {
   try {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
+    const imageUrl = await createGravatar(req.body.email);
+
     const newUser = new User({
       ...req.body,
       password: hash,
+      profileImage: imageUrl,
     });
 
-    await newUser.save();
-    res.status(200).send("User has been created.");
+    const savedUser = await newUser.save();
+
+    await createCart(savedUser._id);
+
+    const token = await generateAuthToken({
+      id: savedUser._id,
+      isAdmin: savedUser.isAdmin,
+    });
+
+    const { password, ...details } = savedUser._doc;
+
+    res
+      .cookie("token", token, {
+        maxAge: 3 * 86400000,
+        httpOnly: true,
+      })
+      .status(200)
+      .json({ ...details });
   } catch (err) {
     next(err);
   }
