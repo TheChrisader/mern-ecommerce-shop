@@ -37,6 +37,7 @@ const CartItems = () => {
 
       try {
         await axios.put(`/cart/${userId}`, data);
+        console.log("first");
       } catch (err) {
         console.error(err);
       }
