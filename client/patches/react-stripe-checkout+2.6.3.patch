@@ -1,0 +1,12 @@
+diff --git a/node_modules/react-stripe-checkout/index.d.ts b/node_modules/react-stripe-checkout/index.d.ts
+index 5e0fe31..65929d6 100644
+--- a/node_modules/react-stripe-checkout/index.d.ts
++++ b/node_modules/react-stripe-checkout/index.d.ts
+@@ -37,6 +37,7 @@ declare module "react-stripe-checkout" {
+     }
+ 
+     export interface StripeCheckoutProps {
++        children?: React.ReactNode;
+         token: (token: Token) => void;
+         stripeKey: string;
+         label?: string;
