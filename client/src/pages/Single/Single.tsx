@@ -35,7 +35,13 @@ const Single = () => {
   const handleClick = async () => {
     if (!userId) throw new Error("Login! Fool, ya fool!");
 
-    addToCart(dispatch, cart, productSlug);
+    addToCart(
+      dispatch,
+      cart,
+      productSlug,
+      product?.price,
+      product?.discountPrice
+    );
   };
 
   useEffect(() => {
