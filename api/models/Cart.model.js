@@ -11,11 +11,15 @@ const CartSchema = new mongoose.Schema(
       {
         productSlug: {
           type: String,
-          default: "Up",
         },
         quantity: {
           type: Number,
-          default: 0,
+        },
+        productPrice: {
+          type: Number,
+        },
+        productDiscount: {
+          type: Number,
         },
       },
     ],
