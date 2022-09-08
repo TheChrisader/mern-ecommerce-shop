@@ -37,7 +37,6 @@ const CartItems = () => {
 
       try {
         await axios.put(`/cart/${userId}`, data);
-        console.log("first");
       } catch (err) {
         console.error(err);
       }
@@ -48,9 +47,9 @@ const CartItems = () => {
   return (
     <div className="cart-items-wrapper">
       {cart &&
-        cart.map((item: any) => (
+        cart.map((item: any, i: number) => (
           <CartItem
-            key={item._id}
+            key={i}
             slug={item.productSlug}
             quantity={item.quantity}
             id={item._id}
