@@ -87,3 +87,22 @@
     background-color: $primaryDarkColor;
   }
 }
+
+@include tabletBreakpoint {
+  .product-page-wrapper {
+    flex-direction: column;
+    margin-bottom: toRem(50px);
+  }
+
+  .product-images {
+    overflow-x: scroll;
+  }
+
+  .product-slider-image {
+    flex: 1;
+  }
+
+  .product-page-cart {
+    align-self: center;
+  }
+}
