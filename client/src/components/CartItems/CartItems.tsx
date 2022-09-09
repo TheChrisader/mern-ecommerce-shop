@@ -51,8 +51,11 @@ const CartItems = () => {
           <CartItem
             key={i}
             slug={item.productSlug}
+            name={item.productName}
+            image={item.productImage}
             quantity={item.quantity}
             id={item._id}
+            price={item.productPrice}
             cart={cart}
           />
         ))}

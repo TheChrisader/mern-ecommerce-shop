@@ -4,7 +4,9 @@ export const addToCart = (
   dispatch: React.Dispatch<any>,
   products: any,
   slug: string,
-  price: number,
+  name?: string,
+  image?: string,
+  price?: number,
   discount?: number
 ) => {
   let clone = products.map((item: any) => {
@@ -13,7 +15,9 @@ export const addToCart = (
   let productItem = clone.find((item: any) => item.productSlug === slug);
   if (!productItem) {
     let data = {
+      productName: name,
       productSlug: slug,
+      productImage: image,
       quantity: 1,
       productPrice: price,
       productDiscount: discount ? discount : 0,

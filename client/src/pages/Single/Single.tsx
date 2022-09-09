@@ -39,6 +39,7 @@ const Single = () => {
       dispatch,
       cart,
       productSlug,
+      product?.name,
       product?.price,
       product?.discountPrice
     );

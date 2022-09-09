@@ -34,7 +34,7 @@ const Product: React.FC<Props> = ({
   const handleAddToCart = async () => {
     if (!userId) throw new Error("Login! Fool, ya fool!");
 
-    addToCart(dispatch, cartItems, slug, price, oldPrice);
+    addToCart(dispatch, cartItems, slug, title, img, price, oldPrice);
   };
 
   useEffect(() => {
