@@ -6,17 +6,26 @@ const FavoriteSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "User",
     },
-    product: [
+    products: [
       {
-        type: mongoose.Types.ObjectId,
-        ref: "Product",
-        required: true,
+        productName: {
+          type: String,
+        },
+        productSlug: {
+          type: String,
+        },
+        productImage: {
+          type: String,
+        },
+        productPrice: {
+          type: Number,
+        },
+        inStock: {
+          type: Boolean,
+          default: true,
+        },
       },
     ],
-    quantity: {
-      type: Number,
-      default: 0,
-    },
   },
   { timestamps: true }
 );
