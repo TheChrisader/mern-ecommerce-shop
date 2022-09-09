@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.get("/:id", verifyUser, getFavorite);
 
-router.post("/", verifyUser, createFavorite);
+router.post("/:id", verifyUser, createFavorite);
 
 router.put("/:id", verifyUser, updateFavorite);
 
