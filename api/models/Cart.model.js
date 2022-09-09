@@ -9,7 +9,13 @@ const CartSchema = new mongoose.Schema(
     },
     products: [
       {
+        productName: {
+          type: String,
+        },
         productSlug: {
+          type: String,
+        },
+        productImage: {
           type: String,
         },
         quantity: {
