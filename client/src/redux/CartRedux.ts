@@ -12,11 +12,11 @@ const cartSlice = createSlice({
     updateCart: (state, action) => {
       state.cart = action.payload;
     },
-    cartLogOut: (state) => {
+    emptyCart: (state) => {
       state.cart = [];
     },
   },
 });
 
-export const { getCart, updateCart, cartLogOut } = cartSlice.actions;
+export const { getCart, updateCart, emptyCart } = cartSlice.actions;
 export default cartSlice.reducer;
