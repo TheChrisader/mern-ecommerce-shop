@@ -1,11 +1,13 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import StripeCheckout, { Token } from "react-stripe-checkout";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import CartItems from "../../components/CartItems/CartItems";
+import { emptyCart } from "../../redux/CartRedux";
+
 import "./Cart.scss";
-import axios from "axios";
 
 const STRIPE_PUBISH_KEY = process.env.REACT_APP_STRIPE_KEY;
 
@@ -15,8 +17,10 @@ const Cart = () => {
   const [totalDiscount, setTotalDiscount] = useState(0);
   const [cartTotal, setCartTotal] = useState(0);
 
+  const dispatch = useDispatch();
+
   const cart = useSelector((state: any) => state.cart.cart);
-  const userId = useSelector((state: any) => state.user.currentUser._id);
+  const user = useSelector((state: any) => state.user.currentUser);
 
   const navigate = useNavigate();
 
@@ -49,10 +53,26 @@ const Cart = () => {
   useEffect(() => {
     const makePaymentRequest = async () => {
       try {
-        const response = await axios.post(`/payment/${userId}`, {
+        const response = await axios.post(`/payment/${user?._id}`, {
           amount: Math.round(cartTotal * 100),
           token: stripeToken?.id,
         });
+
+        for (let cartItem of cart) {
+          await axios.post(`/order/${user._id}`, {
+            productSlug: cartItem?.productSlug,
+            productName: cartItem?.productName,
+            productImage: cartItem?.productImage,
+            user: user?._id,
+            userName: user?.username,
+            totalPrice: cartTotal,
+            isPaid: true,
+            paidAt: new Date(),
+          });
+        }
+
+        dispatch(emptyCart());
+
         console.log(response.data);
       } catch (err) {
         console.log(err);
