@@ -32,7 +32,7 @@ const Single = () => {
     fetchProduct();
   }, []);
 
-  const handleClick = async () => {
+  const handleCartClick = async () => {
     if (!userId) throw new Error("Login! Fool, ya fool!");
 
     addToCart(
@@ -43,6 +43,10 @@ const Single = () => {
       product?.price,
       product?.discountPrice
     );
+  };
+
+  const handleLikeClick = async () => {
+    if (!userId) throw new Error("Login! Fool, ya fool!");
   };
 
   useEffect(() => {
@@ -110,13 +114,22 @@ const Single = () => {
           </div>
 
           <span className="product-description">{product?.description}</span>
-          <button
-            type="button"
-            className="product-page-cart"
-            onClick={handleClick}
-          >
-            Add to Cart
-          </button>
+          <div className="product-page-button-wrapper">
+            <button
+              type="button"
+              className="product-page-cart"
+              onClick={handleCartClick}
+            >
+              Add to Cart
+            </button>
+            <button
+              type="button"
+              className="product-page-like"
+              onClick={handleLikeClick}
+            >
+              <i className="fa-solid fa-heart"></i>
+            </button>
+          </div>
         </div>
       </section>
     </>

@@ -72,8 +72,6 @@ const Cart = () => {
         }
 
         dispatch(emptyCart());
-
-        console.log(response.data);
       } catch (err) {
         console.log(err);
       }
