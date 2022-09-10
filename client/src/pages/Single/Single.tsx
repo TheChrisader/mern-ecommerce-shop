@@ -6,6 +6,7 @@ import axios from "axios";
 import "./Single.scss";
 import { addToCart } from "../../utils/services/CartHandlers";
 import { useIsMount } from "../../utils/hooks/useIsMount";
+import { removeSavedItem, updateSavedItems } from "../../redux/UserRedux";
 
 const Single = () => {
   const location = useLocation();
@@ -13,7 +14,7 @@ const Single = () => {
 
   const [product, setProduct] = useState({} as any);
 
-  const userId = useSelector((state: any) => state.user.currentUser._id);
+  const user = useSelector((state: any) => state.user.currentUser);
   const cart = useSelector((state: any) => state.cart.cart);
 
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const Single = () => {
   }, []);
 
   const handleCartClick = async () => {
-    if (!userId) throw new Error("Login! Fool, ya fool!");
+    if (!user._id) throw new Error("Login! Fool, ya fool!");
 
     addToCart(
       dispatch,
@@ -46,24 +47,55 @@ const Single = () => {
   };
 
   const handleLikeClick = async () => {
-    if (!userId) throw new Error("Login! Fool, ya fool!");
+    if (!user._id) throw new Error("Login! Fool, ya fool!");
+
+    let existingSavedItem = user.savedItems.find(
+      (item: any) => productSlug === item.productSlug
+    );
+
+    if (!existingSavedItem) {
+      dispatch(
+        updateSavedItems({
+          productName: product?.name,
+          productSlug,
+          productImage: product?.mainImage,
+          productPrice: product?.price,
+          inStock: !product?.isOutOfStock,
+        })
+      );
+    } else {
+      dispatch(removeSavedItem(productSlug));
+    }
   };
 
   useEffect(() => {
     const updateApiCart = async () => {
       let data = {
-        user: userId,
+        user: user?._id,
         products: cart,
       };
 
       try {
-        await axios.put(`/cart/${userId}`, data);
+        await axios.put(`/cart/${user?._id}`, data);
       } catch (err) {
         console.error(err);
       }
     };
     if (!isMount) updateApiCart();
   }, [cart]);
+
+  useEffect(() => {
+    const updateLikedItems = async () => {
+      try {
+        await axios.put(`/user/${user._id}`, {
+          savedItems: user.savedItems,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    if (!isMount) updateLikedItems();
+  }, [user]);
 
   return (
     <>

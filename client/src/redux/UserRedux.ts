@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    currentUser: null,
+    currentUser: null as any,
     isFetching: false,
     error: null,
   },
@@ -35,6 +35,14 @@ const userSlice = createSlice({
     logOut: (state) => {
       state.currentUser = null;
     },
+    updateSavedItems: (state, action) => {
+      state.currentUser.savedItems.push(action.payload);
+    },
+    removeSavedItem: (state, action) => {
+      state.currentUser.savedItems = state.currentUser.savedItems.filter(
+        (item: any) => item.productSlug !== action.payload
+      );
+    },
   },
 });
 
@@ -46,5 +54,7 @@ export const {
   registerSuccess,
   registerFailure,
   logOut,
+  updateSavedItems,
+  removeSavedItem,
 } = userSlice.actions;
 export default userSlice.reducer;
