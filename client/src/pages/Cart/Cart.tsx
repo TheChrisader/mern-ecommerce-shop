@@ -65,7 +65,7 @@ const Cart = () => {
             productImage: cartItem?.productImage,
             user: user?._id,
             userName: user?.username,
-            totalPrice: cartTotal,
+            totalPrice: cart?.productPrice * cart?.quantity,
             isPaid: true,
             paidAt: new Date(),
           });
