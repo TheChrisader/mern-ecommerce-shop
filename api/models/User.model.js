@@ -46,6 +46,9 @@ const UserSchema = new mongoose.Schema(
             type: Boolean,
             default: true,
           },
+          id: {
+            type: String,
+          },
         },
       ],
       default: [],
