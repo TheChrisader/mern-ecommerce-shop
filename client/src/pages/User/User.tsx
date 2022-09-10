@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { savedData } from "../../data";
+// import { savedData } from "../../data";
 import Table from "../../components/Table/Table";
 
 import "./User.scss";
@@ -40,8 +40,8 @@ const User = () => {
       name: (item: any) => {
         return (
           <Link to="/product/:slug" className="link saved-items-product">
-            <img src={item.img} alt="" className="saved-items-img" />
-            <span className="saved-items-table-item">{item.product}</span>
+            <img src={item.productImage} alt="" className="saved-items-img" />
+            <span className="saved-items-table-item">{item.productName}</span>
           </Link>
         );
       },
@@ -51,7 +51,9 @@ const User = () => {
       name: (item: any) => {
         return (
           <div>
-            <span className="saved-items-table-item">{item.stock}</span>
+            <span className="saved-items-table-item">
+              {item.inStock ? "In Stock" : "Out of Stock"}
+            </span>
           </div>
         );
       },
@@ -61,7 +63,7 @@ const User = () => {
       name: (item: any) => {
         return (
           <div>
-            <span className="saved-items-table-item">{item.price}</span>
+            <span className="saved-items-table-item">{item.productPrice}</span>
           </div>
         );
       },
@@ -96,7 +98,11 @@ const User = () => {
               <i className="account-icon fa-solid fa-pen"></i>
             </Link>
           </div>
-          <Table columns={orderColumns} rows={orderRows} items={savedData} />
+          <Table
+            columns={orderColumns}
+            rows={orderRows}
+            items={user?.savedItems}
+          />
         </div>
       </div>
       <div className="orders-wrapper">

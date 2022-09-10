@@ -111,4 +111,8 @@
 .saved-items-table-item {
   color: $textColor;
   font-weight: 300;
+  max-width: toRem(150px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
