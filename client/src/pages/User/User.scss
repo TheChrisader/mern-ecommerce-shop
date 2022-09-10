@@ -116,3 +116,9 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.orders-wrapper {
+  border-radius: 20px;
+  padding: toRem(20px);
+  box-shadow: $shadowTwo;
+}
