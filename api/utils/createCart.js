@@ -1,7 +1,7 @@
 const Cart = require("../models/Cart.model");
 
 const createCart = async (userId) => {
-  const newCart = new Cart({ user: userId, products: undefined });
+  const newCart = new Cart({ user: userId, products: [] });
   await newCart.save();
 };
 

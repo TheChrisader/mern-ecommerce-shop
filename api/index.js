@@ -10,7 +10,6 @@ const productRoute = require("./routes/product.routes");
 const cartRoute = require("./routes/cart.routes");
 const categoryRoute = require("./routes/category.routes");
 const orderRoute = require("./routes/order.routes");
-const favoriteRoute = require("./routes/favorite.routes");
 const paymentRoute = require("./routes/stripe.routes");
 
 const app = express();
@@ -28,7 +27,6 @@ app.use("/api/product", productRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/order", orderRoute);
-app.use("/api/favorite", favoriteRoute);
 app.use("/api/payment", paymentRoute);
 
 //error handler

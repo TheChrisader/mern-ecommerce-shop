@@ -28,8 +28,26 @@ const UserSchema = new mongoose.Schema(
       default: false,
     },
     savedItems: {
-      type: [mongoose.Types.ObjectId],
-      ref: "SavedItems",
+      type: [
+        {
+          productName: {
+            type: String,
+          },
+          productSlug: {
+            type: String,
+          },
+          productImage: {
+            type: String,
+          },
+          productPrice: {
+            type: Number,
+          },
+          inStock: {
+            type: Boolean,
+            default: true,
+          },
+        },
+      ],
       default: [],
     },
   },

@@ -13,7 +13,7 @@ router.get("/:id", getUser);
 
 router.get("/", verifyAdmin, getAllUsers);
 
-router.post("/:id", verifyUser, updateUser);
+router.put("/:id", verifyUser, updateUser);
 
 router.delete("/:id", verifyUser, deleteUser);
 
