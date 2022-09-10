@@ -61,6 +61,7 @@ const Single = () => {
           productImage: product?.mainImage,
           productPrice: product?.price,
           inStock: !product?.isOutOfStock,
+          id: product?._id,
         })
       );
     } else {

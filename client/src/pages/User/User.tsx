@@ -39,7 +39,10 @@ const User = () => {
       id: 1,
       name: (item: any) => {
         return (
-          <Link to="/product/:slug" className="link saved-items-product">
+          <Link
+            to={`/product/${item.productSlug}`}
+            className="link saved-items-product"
+          >
             <img src={item.productImage} alt="" className="saved-items-img" />
             <span className="saved-items-table-item">{item.productName}</span>
           </Link>
@@ -102,6 +105,7 @@ const User = () => {
             columns={orderColumns}
             rows={orderRows}
             items={user?.savedItems}
+            tableSize={4}
           />
         </div>
       </div>
