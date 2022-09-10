@@ -12,7 +12,7 @@ const createOrder = async (req, res, next) => {
 
 const getOrder = async (req, res, next) => {
   try {
-    const order = await Order.findOne({ user: req.params.id });
+    const order = await Order.find({ user: req.params.id });
     res.status(200).json(order);
   } catch (err) {
     next(err);
