@@ -1,8 +1,10 @@
 @import "../../styles/global-imports";
 
 .footer-wrapper {
-  height: toRem(300px);
+  height: fit-content;
   display: flex;
+  margin-top: auto;
+  padding-bottom: toRem(20px);
   align-items: center;
   justify-content: space-around;
   transition: height 1s ease;
