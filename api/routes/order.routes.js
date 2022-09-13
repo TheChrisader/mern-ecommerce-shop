@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.get("/:id", verifyUser, getOrder);
 
-router.post("/", verifyUser, createOrder);
+router.post("/:id", verifyUser, createOrder);
 
 router.put("/:id", verifyUser, updateOrder);
 

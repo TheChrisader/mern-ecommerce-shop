@@ -1,4 +1,10 @@
+import axios from "axios";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { addToCart } from "../../utils/services/CartHandlers";
+import { useIsMount } from "../../utils/hooks/useIsMount";
 
 import "./Product.scss";
 
@@ -8,9 +14,45 @@ type Props = {
   price: number;
   slug: string;
   oldPrice?: number;
+  userId: string | undefined;
+  cartItems: any[];
 };
 
-const Product: React.FC<Props> = ({ img, title, price, slug, oldPrice }) => {
+const Product: React.FC<Props> = ({
+  img,
+  title,
+  price,
+  slug,
+  oldPrice,
+  userId,
+  cartItems,
+}) => {
+  const dispatch = useDispatch();
+
+  const isMount = useIsMount();
+
+  const handleAddToCart = async () => {
+    if (!userId) throw new Error("Login! Fool, ya fool!");
+
+    addToCart(dispatch, cartItems, slug, title, img, price, oldPrice);
+  };
+
+  useEffect(() => {
+    const updateApiCart = async () => {
+      let data = {
+        user: userId,
+        products: cartItems,
+      };
+
+      try {
+        await axios.put(`/cart/${userId}`, data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    if (!isMount) updateApiCart();
+  }, [cartItems]);
+
   return (
     <div className="product-item-wrapper">
       <img className="product-item-image " src={img} alt="" />
@@ -23,7 +65,7 @@ const Product: React.FC<Props> = ({ img, title, price, slug, oldPrice }) => {
           {oldPrice && <s className="product-price">${oldPrice}</s>}
         </div>
       </div>
-      <button className="product-cart-button">
+      <button className="product-cart-button" onClick={handleAddToCart}>
         <i className="item-icon fa-solid fa-cart-shopping"></i>
         <span className="product-button-text">ADD TO CART</span>
       </button>

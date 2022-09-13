@@ -4,3 +4,15 @@
   background-color: $white;
   padding: toRem(20px);
 }
+
+.saved-title {
+  font-size: toRem(40px);
+  font-weight: 400;
+  color: $textColor;
+  margin-bottom: toRem(20px);
+}
+
+.saved-items-table-items {
+  color: $textColor;
+  font-weight: 300;
+}

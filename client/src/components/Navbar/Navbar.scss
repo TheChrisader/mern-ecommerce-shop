@@ -89,6 +89,17 @@
   }
 }
 
+.nav-user {
+  display: flex;
+  align-items: center;
+}
+
+.nav-user-profile {
+  width: toRem(45px);
+  height: toRem(45px);
+  border-radius: 50px;
+}
+
 .right {
   display: flex;
   align-items: center;

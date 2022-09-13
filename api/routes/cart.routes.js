@@ -1,7 +1,6 @@
 const express = require("express");
 const {
   getCart,
-  createCart,
   updateCart,
   deleteCart,
   getAllCarts,
@@ -11,8 +10,6 @@ const { verifyUser, verifyAdmin } = require("../utils/verifyToken");
 const router = express.Router();
 
 router.get("/:id", verifyUser, getCart);
-
-router.post("/", verifyUser, createCart);
 
 router.put("/:id", verifyUser, updateCart);
 

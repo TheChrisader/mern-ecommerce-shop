@@ -16,6 +16,9 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    profileImage: {
+      type: String,
+    },
     isEmailVerified: {
       type: Boolean,
       default: false,
@@ -25,8 +28,29 @@ const UserSchema = new mongoose.Schema(
       default: false,
     },
     savedItems: {
-      type: [mongoose.Types.ObjectId],
-      ref: "SavedItems",
+      type: [
+        {
+          productName: {
+            type: String,
+          },
+          productSlug: {
+            type: String,
+          },
+          productImage: {
+            type: String,
+          },
+          productPrice: {
+            type: Number,
+          },
+          inStock: {
+            type: Boolean,
+            default: true,
+          },
+          id: {
+            type: String,
+          },
+        },
+      ],
       default: [],
     },
   },

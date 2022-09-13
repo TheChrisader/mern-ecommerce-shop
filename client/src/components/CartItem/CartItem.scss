@@ -2,12 +2,24 @@
 
 .cart-item-wrapper {
   display: flex;
+  box-shadow: $shadowOne;
+  width: 100%;
+  padding: toRem(10px);
+  border-radius: 5px;
 }
 
 .cart-img {
-  width: 180px;
-  height: 120px;
+  max-width: 180px;
+  min-width: 180px;
+  max-height: 120px;
+  min-height: 120px;
   object-fit: cover;
+}
+
+.cart-product-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .cart-product-info-wrapper {
@@ -19,6 +31,8 @@
 .cart-product-info {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .cart-product-right {
@@ -26,4 +40,87 @@
   flex-direction: column;
   justify-content: space-between;
   padding: toRem(15px);
+}
+
+.cart-product-quantity-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: toRem(10px);
+}
+
+.quantity-addition,
+.quantity-subtraction {
+  border-radius: 5px;
+  border: none;
+  padding: toRem(2px);
+  color: $white;
+  background-color: $primaryColor;
+  width: toRem(20px);
+  cursor: pointer;
+
+  &:active {
+    background-color: $primaryDarkColor;
+  }
+}
+
+@include customBreakpoint(599px) {
+  .cart-item-wrapper {
+    width: 100%;
+    font-size: toRem(10px);
+    align-items: center;
+  }
+
+  .cart-product-info-wrapper {
+    padding: toRem(10px);
+  }
+
+  .cart-img {
+    max-width: 80px;
+    min-width: 80px;
+    max-height: 60px;
+    min-height: 60px;
+  }
+}
+
+@include customBreakpoint(399px) {
+  .cart-product-right {
+    padding-left: 0;
+  }
+
+  .cart-img {
+    max-width: 60px;
+    min-width: 60px;
+    max-height: 60px;
+    min-height: 60px;
+  }
+}
+
+@include customBreakpoint(360px) {
+  .cart-item-wrapper {
+    flex-direction: column;
+  }
+
+  .cart-product-right {
+    padding: 0;
+  }
+}
+
+@include customBreakpoint(300px) {
+  .cart-product-info {
+    justify-content: space-around;
+  }
+
+  .cart-product-wrapper {
+    flex-direction: column;
+  }
+
+  .cart-product-quantity-wrapper {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .cart-product-cost {
+    text-align: center;
+  }
 }

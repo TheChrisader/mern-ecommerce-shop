@@ -42,17 +42,20 @@
 }
 
 .product-title {
-  font-size: toRem(50px);
+  font-size: toRem(35px);
   font-weight: 400;
+  margin-bottom: toRem(15px);
 }
 
-.product-gender {
+.product-categories {
+  margin-bottom: toRem(15px);
+}
+
+.product-category {
   border: 1px solid black;
   border-radius: 50px;
-  text-align: center;
-  width: fit-content;
   padding: toRem(3px) toRem(15px);
-  margin-bottom: toRem(10px);
+  margin-right: toRem(5px);
 }
 
 .product-review {
@@ -65,9 +68,15 @@
   margin-bottom: toRem(80px);
 }
 
+.product-page-button-wrapper {
+  display: flex;
+  align-items: center;
+}
+
 .product-page-cart {
   background-color: $white;
   width: fit-content;
+  height: fit-content;
   padding: toRem(15px) toRem(30px);
   font-weight: 500;
   color: $primaryColor;
@@ -82,5 +91,46 @@
 
   &:active {
     background-color: $primaryDarkColor;
+  }
+}
+
+.product-page-like {
+  background-color: $white;
+  width: fit-content;
+  padding: toRem(15px) toRem(30px);
+  margin: toRem(20px);
+  font-weight: 500;
+  color: $primaryColor;
+  border: 2px solid $primaryColor;
+  border-radius: 20px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+
+  &:hover {
+    background-color: $primaryColor;
+    color: $white;
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: $primaryDarkColor;
+  }
+}
+
+@include tabletBreakpoint {
+  .product-page-wrapper {
+    flex-direction: column;
+    margin-bottom: toRem(50px);
+  }
+
+  .product-images {
+    overflow-x: scroll;
+  }
+
+  .product-slider-image {
+    flex: 1;
+  }
+
+  .product-page-button-wrapper {
+    flex-direction: column;
   }
 }

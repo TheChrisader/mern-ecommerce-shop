@@ -1,40 +1,48 @@
+import axios from "axios";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+
+import { register } from "../../redux/ApiCalls";
 
 import "./Register.scss";
 
-const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
-  e.preventDefault();
-};
-
 const Register: React.FC = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      if (password !== confirmPassword) throw new Error("Don't be stupid");
+      let data = {
+        username,
+        email,
+        password,
+      };
+      await register(dispatch, data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
-      <h1 className="register-title">Log into your Account</h1>
-      <form action="submit" className="register-form">
-        <label htmlFor="first-name" className="register-input-wrapper">
-          <input
-            type="text"
-            className="register-input"
-            id="first-name"
-            placeholder=" "
-          />
-          <span className="register-input-label">First Name</span>
-        </label>
-        <label htmlFor="last-name" className="register-input-wrapper">
-          <input
-            type="text"
-            className="register-input"
-            id="last-name"
-            placeholder=" "
-          />
-          <span className="register-input-label">Last Name</span>
-        </label>
+      <h1 className="register-title">Register For An Account</h1>
+      <form action="submit" className="register-form" onSubmit={handleSubmit}>
         <label htmlFor="username" className="register-input-wrapper">
           <input
             type="text"
             className="register-input"
             id="username"
             placeholder=" "
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
           />
           <span className="register-input-label">Username</span>
         </label>
@@ -44,6 +52,9 @@ const Register: React.FC = () => {
             className="register-input"
             id="email"
             placeholder=" "
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           />
           <span className="register-input-label">Email</span>
         </label>
@@ -53,6 +64,9 @@ const Register: React.FC = () => {
             className="register-input"
             id="password"
             placeholder=" "
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           />
           <span className="register-input-label">Password</span>
         </label>
@@ -62,14 +76,13 @@ const Register: React.FC = () => {
             className="register-input"
             id="confirm-password"
             placeholder=" "
+            onChange={(e) => {
+              setConfirmPassword(e.target.value);
+            }}
           />
           <span className="register-input-label">Confirm Password</span>
         </label>
-        <button
-          type="submit"
-          className="register-button"
-          onClick={handleSubmit}
-        >
+        <button type="submit" className="register-button">
           Register
         </button>
       </form>

@@ -3,5 +3,11 @@
 .cart-items-wrapper {
   display: flex;
   flex-direction: column;
-  gap: toRem(20px);
+  gap: toRem(10px);
 }
+
+// @include customBreakpoint(599px) {
+//   .cart-items-wrapper {
+//     overflow-x: scroll;
+//   }
+// }

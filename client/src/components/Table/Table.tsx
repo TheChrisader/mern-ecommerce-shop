@@ -4,9 +4,17 @@ type tableProps = {
   columns: any[];
   rows: any[];
   items: any[];
+  tableSize?: number;
 };
 
-const Table = ({ columns, items, rows }: tableProps) => {
+const Table = ({ columns, items, rows, tableSize }: tableProps) => {
+  let mapItems;
+  if (tableSize) {
+    mapItems = items.slice(0, tableSize);
+  } else {
+    mapItems = items.slice();
+  }
+
   return (
     <div className="table-wrapper">
       <table className="table">
@@ -20,10 +28,12 @@ const Table = ({ columns, items, rows }: tableProps) => {
           </tr>
         </thead>
         <tbody>
-          {items.map((item) => (
-            <tr key={item.id} className="table-row">
+          {mapItems.map((item) => (
+            <tr key={item.id || item._id} className="table-row">
               {rows.map((row) => (
-                <td className="table-row-item">{row.name(item)}</td>
+                <td className="table-row-item" key={row.id}>
+                  {row.name(item)}
+                </td>
               ))}
             </tr>
           ))}

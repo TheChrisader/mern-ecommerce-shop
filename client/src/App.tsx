@@ -30,10 +30,12 @@ function App() {
               <Route path="edit" element={<Edit />} />
               <Route path="saved" element={<Saved />} />
             </Route>
-            <Route path="/products/:category" element={<ProductsPage />} />
+            <Route path="/products" element={<ProductsPage />}>
+              <Route path=":category" element={<ProductsPage />} />
+            </Route>
             <Route path="/product/:slug" element={<Single />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart/:id" element={<Cart />} />
             <Route
               path="*"
               element={
