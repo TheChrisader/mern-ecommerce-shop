@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getProducts, deleteProduct } from "../../redux/apiCalls";
+import {
+  getProducts,
+  deleteProduct,
+} from "../../redux/apiCalls/productApiCalls";
 // import { savedData } from "../../data";
 import Table from "../../components/Table/Table";
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { login } from "../../redux/apiCalls";
+import { login } from "../../redux/apiCalls/userApiCalls";
 import { useIsMount } from "../../utils/hooks/useIsMount";
 
 import "./Login.scss";
