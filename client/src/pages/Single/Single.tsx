@@ -41,6 +41,7 @@ const Single = () => {
       cart,
       productSlug,
       product?.name,
+      product?.mainImage,
       product?.price,
       product?.discountPrice
     );

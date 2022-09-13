@@ -3,6 +3,8 @@
 .user-page-wrapper {
   background-color: $white;
   padding: toRem(15px);
+  margin-bottom: toRem(50px);
+  height: 100%;
 }
 
 .account-title {
@@ -18,11 +20,14 @@
 
 .user-page-layout-wrapper {
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
+  margin-bottom: toRem(20px);
 }
 
 .account-details-wrapper {
   flex: 2;
+  max-width: 100%;
   border-radius: 20px;
   padding: toRem(20px);
   box-shadow: $shadowTwo;
@@ -76,6 +81,7 @@
 
 .saved-items-wrapper {
   flex: 1;
+  max-width: 100%;
   border-radius: 20px;
   padding: toRem(20px);
   box-shadow: $shadowTwo;
@@ -111,14 +117,18 @@
 .saved-items-table-item {
   color: $textColor;
   font-weight: 300;
-  max-width: toRem(150px);
+  // max-width: calc(250px);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  text-align: center;
 }
 
 .orders-wrapper {
   border-radius: 20px;
   padding: toRem(20px);
   box-shadow: $shadowTwo;
+}
+
+@include customBreakpoint(511px) {
 }

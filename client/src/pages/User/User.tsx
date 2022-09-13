@@ -108,7 +108,7 @@ const User = () => {
     },
     {
       id: 3,
-      name: "Amount ($)",
+      name: "Amount",
     },
     {
       id: 4,
@@ -184,9 +184,7 @@ const User = () => {
           </div>
           <div className="account-details">
             <span className="account-details-username">{user.username}</span>
-            <span className="account-details-email">
-              {user.email}@email.com
-            </span>
+            <span className="account-details-email">{user.email}</span>
             <span className="account-details-change-password">
               CHANGE PASSWORD
             </span>

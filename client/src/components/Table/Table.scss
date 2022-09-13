@@ -3,6 +3,8 @@
 .table-wrapper {
   border-radius: 5px;
   padding: toRem(5px);
+  max-width: 100%;
+  overflow-x: scroll;
 }
 
 .table {
