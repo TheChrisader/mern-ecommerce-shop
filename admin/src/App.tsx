@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Home from "./pages/Home/Home";
 import Products from "./pages/Products/Products";
+import Users from "./pages/Users/Users";
 import SingleProduct from "./pages/SingleProduct/SingleProduct";
 import CreateProduct from "./pages/CreateProduct/CreateProduct";
 import Login from "./pages/Login/Login";
@@ -27,7 +28,7 @@ function App() {
           <Routes>
             <Route path="/" element={loginRedirect(<Home />)} />
             <Route path="/products" element={loginRedirect(<Products />)} />
-            <Route path="/users" element={loginRedirect(<Home />)} />
+            <Route path="/users" element={loginRedirect(<Users />)} />
             <Route
               path="/product/:slug"
               element={loginRedirect(<SingleProduct />)}

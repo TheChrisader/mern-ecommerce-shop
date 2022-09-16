@@ -50,3 +50,18 @@
   width: toRem(40px);
   height: toRem(40px);
 }
+
+@include mdMobileBreakpoint {
+  .navbar-wrapper {
+    flex-direction: column;
+  }
+
+  .nav-header {
+    margin-bottom: toRem(10px);
+  }
+
+  .nav-list {
+    width: 100%;
+    justify-content: space-around;
+  }
+}

@@ -1,11 +1,14 @@
 // import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
-import { transactionData } from "../../data";
+// import { transactionData } from "../../data";
 import Chart from "../../components/Chart/Chart";
 import Table from "../../components/Table/Table";
 import WidgetMd from "../../components/WidgetMd/WidgetMd";
 import WidgetsSm from "../../components/WidgetsSm/WidgetsSm";
 import "./Home.scss";
+import { getOrders } from "../../redux/apiCalls/orderApiCalls";
+import { useDispatch, useSelector } from "react-redux";
 
 type orderColumn = {
   id: Number;
@@ -18,6 +21,9 @@ type orderRow = {
 }[];
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const orders = useSelector((state: any) => state.order.orders);
+
   const orderColumns: orderColumn = [
     {
       id: 1,
@@ -41,7 +47,7 @@ const Home = () => {
     },
     {
       id: 6,
-      name: "Payment Method",
+      name: "Quantity",
     },
     {
       id: 7,
@@ -53,57 +59,41 @@ const Home = () => {
     {
       id: 1,
       name: (item: any) => {
-        return <span className="transactions-item">{item.id}</span>;
+        return <span className="transactions-item">{item._id}</span>;
       },
     },
     {
       id: 2,
       name: (item: any) => {
-        return (
-          <div>
-            <span className="transactions-item">{item.product}</span>
-          </div>
-        );
+        return <span className="transactions-item">{item.productName}</span>;
       },
     },
     {
       id: 3,
       name: (item: any) => {
-        return (
-          <div>
-            <span className="transactions-item">{item.customer}</span>
-          </div>
-        );
+        return <span className="transactions-item">{item.userName}</span>;
       },
     },
     {
       id: 4,
       name: (item: any) => {
         return (
-          <div>
-            <span className="transactions-item">{item.date}</span>
-          </div>
+          <span className="transactions-item">
+            {new Date(item.paidAt).toDateString()}
+          </span>
         );
       },
     },
     {
       id: 5,
       name: (item: any) => {
-        return (
-          <div>
-            <span className="transactions-item">{item.amount}</span>
-          </div>
-        );
+        return <span className="transactions-item">{item.totalPrice}</span>;
       },
     },
     {
       id: 6,
       name: (item: any) => {
-        return (
-          <div>
-            <span className="transactions-item">{item.method}</span>
-          </div>
-        );
+        return <span className="transactions-item">{item.quantity}</span>;
       },
     },
     {
@@ -118,6 +108,13 @@ const Home = () => {
     },
   ];
 
+  useEffect(() => {
+    const fetchOrders = async () => {
+      getOrders(dispatch);
+    };
+    fetchOrders();
+  }, [dispatch]);
+
   return (
     <main className="home">
       <WidgetsSm />
@@ -130,7 +127,7 @@ const Home = () => {
         <Table
           columns={orderColumns}
           rows={orderRows}
-          items={transactionData}
+          items={orders}
           pageSize={5}
         />
       </section>

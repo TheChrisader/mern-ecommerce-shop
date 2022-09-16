@@ -3,12 +3,11 @@
 .widget-wrapper {
   flex: 1;
   display: flex;
-  gap: toRem(60px);
   justify-content: space-between;
   padding: toRem(15px);
   box-shadow: $shadowOne;
   border-radius: 5px;
-  height: toRem(180px);
+  height: toRem(150px);
   background-color: $white;
 }
 
@@ -25,8 +24,8 @@
 }
 
 .widget-number {
-  font-size: toRem(40px);
-  font-weight: 300;
+  font-size: 3vw;
+  font-weight: 400;
   color: $textColor;
 }
 
@@ -36,4 +35,16 @@
   width: max-content;
   color: $tertiaryColor;
   font-weight: 300;
+}
+
+@include tabletBreakpoint {
+  .widget-number {
+    font-size: 5vw;
+  }
+}
+
+@include lgMobileBreakpoint {
+  .widget-number {
+    font-size: 10vw;
+  }
 }

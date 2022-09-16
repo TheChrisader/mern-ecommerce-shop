@@ -9,7 +9,7 @@ import {
 // import { savedData } from "../../data";
 import Table from "../../components/Table/Table";
 
-import "./Products.scss";
+import "./Users.scss";
 
 type productColumn = {
   id: number;
