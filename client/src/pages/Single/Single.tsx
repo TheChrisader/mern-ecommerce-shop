@@ -34,7 +34,7 @@ const Single = () => {
   }, []);
 
   const handleCartClick = async () => {
-    if (!user._id) throw new Error("Login! Fool, ya fool!");
+    if (!user?._id) return alert("- Please sign in");
 
     addToCart(
       dispatch,
@@ -48,7 +48,7 @@ const Single = () => {
   };
 
   const handleLikeClick = async () => {
-    if (!user._id) throw new Error("Login! Fool, ya fool!");
+    if (!user?._id) return alert("- Please sign in");
 
     let existingSavedItem = user.savedItems.find(
       (item: any) => productSlug === item.productSlug

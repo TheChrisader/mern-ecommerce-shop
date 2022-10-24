@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Dispatch } from "react";
+import EventBus from "../../utils/services/EventBus";
 import {
   getOrdersStart,
   getOrdersSuccess,
@@ -18,7 +19,12 @@ export const getOrders = async (dispatch: Dispatch<any>) => {
     const response = await axios.get("/order");
     dispatch(getOrdersSuccess(response.data));
   } catch (err: any) {
-    console.log(err);
+    if (
+      err?.response?.data?.message === "You are not authenticated" ||
+      err?.response?.data?.message === "Forbidden Access"
+    ) {
+      await EventBus.dispatch("logout");
+    }
     dispatch(getOrdersFailure(err?.response?.data?.message));
   }
 };
@@ -29,6 +35,12 @@ export const deleteOrder = async (dispatch: Dispatch<any>, id: any) => {
     await axios.delete(`/order/${id}`);
     dispatch(deleteOrderSuccess(id));
   } catch (err: any) {
+    if (
+      err?.response?.data?.message === "You are not authenticated" ||
+      err?.response?.data?.message === "Forbidden Access"
+    ) {
+      await EventBus.dispatch("logout");
+    }
     dispatch(deleteOrderFailure(err?.response?.data?.message));
   }
 };
@@ -45,6 +57,12 @@ export const updateOrder = async (
     dispatch(updateOrderSuccess({ id, updatedProduct }));
     //   window.location.replace(`/order/${response.data.slug}`);
   } catch (err: any) {
+    if (
+      err?.response?.data?.message === "You are not authenticated" ||
+      err?.response?.data?.message === "Forbidden Access"
+    ) {
+      await EventBus.dispatch("logout");
+    }
     dispatch(updateOrderFailure(err?.response?.data?.message));
   }
 };

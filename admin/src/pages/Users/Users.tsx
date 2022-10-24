@@ -2,55 +2,52 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import {
-  getProducts,
-  deleteProduct,
-} from "../../redux/apiCalls/productApiCalls";
+import { getUsers, deleteUser } from "../../redux/apiCalls/usersApiCalls";
 // import { savedData } from "../../data";
 import Table from "../../components/Table/Table";
 
 import "./Users.scss";
 
-type productColumn = {
+type userColumn = {
   id: number;
   name: string;
 }[];
 
-type productRow = {
+type userRow = {
   id: number;
   name: Function;
 }[];
 
-const Products: React.FC = () => {
+const Users: React.FC = () => {
   const [idArray, setIdArray] = useState<string[]>([]);
 
   const dispatch = useDispatch();
 
-  const products = useSelector((state: any) => state.product.products);
-  const isFetching = useSelector((state: any) => state.product.isFetching);
+  const users = useSelector((state: any) => state.users.users);
+  const isFetching = useSelector((state: any) => state.users.isFetching);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      getProducts(dispatch);
+    const fetchUsers = async () => {
+      getUsers(dispatch);
     };
-    fetchProducts();
+    fetchUsers();
   }, [dispatch]);
 
   const handleDelete = (id: string, idArray: string[]) => {
     if (idArray.length !== 0) {
       for (let i = 0; i < idArray.length; i++) {
-        deleteProduct(dispatch, idArray[i]);
+        deleteUser(dispatch, idArray[i]);
       }
       setIdArray([]);
     } else {
-      deleteProduct(dispatch, id);
+      deleteUser(dispatch, id);
     }
   };
 
-  const productColumns: productColumn = [
+  const userColumns: userColumn = [
     {
       id: 1,
-      name: "Product",
+      name: "user",
     },
     {
       id: 2,
@@ -66,19 +63,19 @@ const Products: React.FC = () => {
     },
   ];
 
-  const productRows: productRow = [
+  const userRows: userRow = [
     {
       id: 1,
       name: (item: any) => {
-        return <span className="products-item product-name">{item.name}</span>;
+        return <span className="users-item user-name">{item.username}</span>;
       },
     },
     {
       id: 2,
       name: (item: any) => {
         return (
-          <span className="products-item">
-            {!item.isOutOfStock ? "In Stock" : "Out of Stock"}
+          <span className="users-item">
+            {!item.isEmailVerified ? "In Stock" : "Out of Stock"}
           </span>
         );
       },
@@ -86,21 +83,21 @@ const Products: React.FC = () => {
     {
       id: 3,
       name: (item: any) => {
-        return <span className="products-item">{item.price}</span>;
+        return <span className="users-item">{item.email}</span>;
       },
     },
     {
       id: 4,
       name: (item: any) => {
         return (
-          <div className="products-options">
-            <Link to={"/product/" + item.slug} className="products-view link">
+          <div className="users-options">
+            <Link to={"/user/" + item._id} className="users-view link">
               View
             </Link>
             <button
               type="button"
               onClick={() => handleDelete(item._id, idArray)}
-              className="products-delete link"
+              className="users-delete link"
             >
               Delete
             </button>
@@ -110,23 +107,23 @@ const Products: React.FC = () => {
     },
   ];
   return (
-    <main className="products">
-      <div className="products-new-product">
-        <h2 className="add-new-product">Add New Product</h2>
-        <Link to="/product/new" className="link add-new-button">
+    <main className="users">
+      <div className="users-new-user">
+        <h2 className="add-new-user">Add New User</h2>
+        <Link to="/user/new" className="link add-new-button">
           {" "}
           Add New
         </Link>
       </div>
       {isFetching && (
-        <div className="products-loader-backdrop">
-          <div className="products-loader"></div>
+        <div className="users-loader-backdrop">
+          <div className="users-loader"></div>
         </div>
       )}
       <Table
-        columns={productColumns}
-        rows={productRows}
-        items={products}
+        columns={userColumns}
+        rows={userRows}
+        items={users}
         check={true}
         pageSize={6}
         pagination={true}
@@ -136,4 +133,4 @@ const Products: React.FC = () => {
   );
 };
 
-export default Products;
+export default Users;

@@ -2,6 +2,7 @@ import axios from "axios";
 import { Dispatch } from "react";
 import { productsLogOut } from "../productRedux";
 import { ordersLogOut } from "../orderRedux";
+import { usersLogOut } from "../usersRedux";
 import { loginStart, loginSuccess, loginFailure, logOut } from "../userRedux";
 
 type userResponse = {
@@ -28,4 +29,5 @@ export const signOut = async (dispatch: Dispatch<any>) => {
   dispatch(logOut());
   dispatch(productsLogOut());
   dispatch(ordersLogOut());
+  dispatch(usersLogOut());
 };

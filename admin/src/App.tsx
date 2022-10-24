@@ -1,7 +1,8 @@
 import "./App.scss";
 
+import { useCallback, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -11,13 +12,32 @@ import Users from "./pages/Users/Users";
 import SingleProduct from "./pages/SingleProduct/SingleProduct";
 import CreateProduct from "./pages/CreateProduct/CreateProduct";
 import Login from "./pages/Login/Login";
+import EventBus from "./utils/services/EventBus";
+import { signOut } from "./redux/apiCalls/userApiCalls";
 
 function App() {
   let user = useSelector((state: any) => state?.user?.currentUser?.isAdmin);
+  const dispatch = useDispatch();
+
+  const logout = useCallback(() => {
+    signOut(dispatch);
+  }, []);
 
   const loginRedirect = (element: JSX.Element) => {
     return user ? element : <Navigate replace to="/login" />;
   };
+
+  useEffect(() => {
+    EventBus.on("logout", () => {
+      logout();
+    });
+
+    return () => {
+      EventBus.remove("logout", () => {
+        logout();
+      });
+    };
+  }, [logout]);
 
   return (
     <BrowserRouter>

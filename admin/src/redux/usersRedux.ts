@@ -7,7 +7,7 @@ type myUsersState = {
 };
 
 const userSlice = createSlice({
-  name: "user",
+  name: "users",
   initialState: {
     users: [],
     isFetching: false,

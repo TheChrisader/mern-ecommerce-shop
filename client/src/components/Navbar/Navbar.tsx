@@ -9,13 +9,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="left">
-        <div className="hamburger">
-          <div>
-            <div className="burger"></div>
-            <div className="burger"></div>
-            <div className="burger"></div>
-          </div>
-        </div>
+        <div className="hamburger"></div>
         <span className="nav-title">
           <Link to="/" className="link">
             ShopLite.
@@ -27,20 +21,24 @@ const Navbar = () => {
           <Link to="/products" className="link navbar-icon-link">
             <i className="icon fa-solid fa-magnifying-glass"></i>
           </Link>
-          <Link
-            to={"/user/" + user?._id + "/saved"}
-            className="link navbar-icon-link"
-          >
-            <i className="icon fa-solid fa-heart"></i>
-          </Link>
-          <Link to={"/cart/" + user?._id} className="link navbar-icon-link">
-            <div className="cart">
-              <div className="cart-number">
-                {cartNumber < 10 ? cartNumber : "9+"}
-              </div>
-              <i className="icon fa-solid fa-cart-shopping"></i>
-            </div>
-          </Link>
+          {user && (
+            <>
+              <Link
+                to={"/user/" + user?._id + "/saved"}
+                className="link navbar-icon-link"
+              >
+                <i className="icon fa-solid fa-heart"></i>
+              </Link>
+              <Link to={"/cart/" + user?._id} className="link navbar-icon-link">
+                <div className="cart">
+                  <div className="cart-number">
+                    {cartNumber < 10 ? cartNumber : "9+"}
+                  </div>
+                  <i className="icon fa-solid fa-cart-shopping"></i>
+                </div>
+              </Link>
+            </>
+          )}
           {user ? (
             <Link to={"/user/" + user?._id} className="nav-user link">
               <img src={user?.profileImage} className="nav-user-profile"></img>
