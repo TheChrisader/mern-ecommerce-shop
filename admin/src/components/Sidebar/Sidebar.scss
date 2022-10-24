@@ -17,7 +17,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 70vh;
+  height: 60vh;
   padding: toRem(30px);
   border-radius: 20px;
   width: 90%;
@@ -75,7 +75,6 @@
 
 .sidebar-sign-out {
   display: inline-block;
-  margin-top: toRem(30px);
   color: $alertColor;
   width: 100%;
   text-align: center;
