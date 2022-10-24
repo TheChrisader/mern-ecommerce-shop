@@ -21,6 +21,9 @@
 }
 
 .widget-md-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: $white;
   border-radius: 10px;
   padding: toRem(20px);
@@ -28,10 +31,16 @@
   box-shadow: $shadowTwo;
   max-height: 100%;
   min-height: 80%;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-top: toRem(-60px);
   color: $tertiaryColor;
+}
+
+.widget-md-info-heading {
+  font-size: toRem(25px);
+  font-weight: 500;
 }
 
 @include customBreakpoint(1058px) {
