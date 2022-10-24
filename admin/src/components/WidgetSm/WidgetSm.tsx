@@ -1,20 +1,28 @@
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import "./WidgetSm.scss";
 
 type Props = {
-  type: string;
+  type: "user" | "order" | "product";
 };
 
 type DataObject = {
   title: string;
   isMoney: boolean;
   link: string;
+  url: string;
+  amount: number;
 };
 
 const WidgetSm: React.FC<Props> = ({ type }) => {
   let data: DataObject | undefined = undefined;
 
-  let amount = 200;
-  let percent = 20;
+  const userCount = useSelector((state: any) => state.users.users.length);
+  const productCount = useSelector(
+    (state: any) => state.product.products.length
+  );
+  const orderCount = useSelector((state: any) => state.order.orders.length);
 
   switch (type) {
     case "user":
@@ -22,6 +30,8 @@ const WidgetSm: React.FC<Props> = ({ type }) => {
         title: "USERS",
         isMoney: false,
         link: "See All Users",
+        url: "users",
+        amount: userCount,
       };
       break;
     case "order":
@@ -29,13 +39,17 @@ const WidgetSm: React.FC<Props> = ({ type }) => {
         title: "ORDERS",
         isMoney: false,
         link: "View All Orders",
+        url: "orders",
+        amount: orderCount,
       };
       break;
-    case "earning":
+    case "product":
       data = {
-        title: "EARNINGS",
+        title: "PRODUCTS",
         isMoney: true,
-        link: "See Net Earnings",
+        link: "See All Products",
+        url: "products",
+        amount: productCount,
       };
       break;
     default:
@@ -47,13 +61,16 @@ const WidgetSm: React.FC<Props> = ({ type }) => {
       <div className="widget-left">
         <span className="widget-title">{data?.title}</span>
         <span className="widget-number">
-          {data?.isMoney && "$"} {amount}
+          {/* {data?.isMoney && "$ "} */}
+          {data?.amount}
         </span>
-        <span className="widget-link">{data?.link}</span>
+        <Link to={`${data?.url}`} className="widget-link link">
+          {data?.link}
+        </Link>
       </div>
-      <div className="widget-right">
+      {/* <div className="widget-right">
         <div className="percentage">{percent}%</div>
-      </div>
+      </div> */}
     </section>
   );
 };
