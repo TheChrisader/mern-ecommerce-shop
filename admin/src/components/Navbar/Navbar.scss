@@ -33,6 +33,24 @@
   list-style: none;
 }
 
+.order-notification {
+  position: relative;
+}
+
+.order-notification-number {
+  position: absolute;
+  top: toRem(-6px);
+  right: toRem(-6px);
+  font-size: toRem(10px);
+  font-weight: 500;
+  color: $white;
+  background-color: $alertColor;
+  width: toRem(15px);
+  height: toRem(15px);
+  text-align: center;
+  border-radius: 50%;
+}
+
 .nav-icon {
   font-size: toRem(25px);
   color: $tertiaryColor;
