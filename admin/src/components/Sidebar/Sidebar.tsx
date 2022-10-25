@@ -21,7 +21,9 @@ const Sidebar: React.FC<ISidebar> = ({
   const location = useLocation();
 
   useEffect(() => {
-    setState(true);
+    if (shouldSidebarShow && !state) {
+      setState(true);
+    }
   }, [location]);
 
   return (
