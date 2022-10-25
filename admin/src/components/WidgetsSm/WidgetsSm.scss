@@ -2,6 +2,13 @@
 
 .widgets-wrapper {
   display: flex;
+  flex-wrap: wrap;
   gap: toRem(10px);
   margin-bottom: toRem(20px);
+}
+
+@include customBreakpoint(970px) {
+  .widgets-wrapper {
+    // flex-direction: column;
+  }
 }

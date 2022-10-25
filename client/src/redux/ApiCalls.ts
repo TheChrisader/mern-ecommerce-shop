@@ -15,7 +15,7 @@ import {
   getProductsFailure,
   productsLogOut,
 } from "./ProductRedux";
-import { getCart } from "./CartRedux";
+import { getCart, emptyCart } from "./CartRedux";
 
 type userResponse = {
   username: string;
@@ -57,6 +57,8 @@ export const register = async (dispatch: Dispatch<any>, user: any) => {
 export const signOut = async (dispatch: Dispatch<any>) => {
   dispatch(logOut());
   dispatch(productsLogOut());
+  dispatch(emptyCart());
+  window.location.replace("/");
 };
 
 export const getProducts = async (dispatch: Dispatch<any>) => {

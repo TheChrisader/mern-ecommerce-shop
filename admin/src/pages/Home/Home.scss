@@ -2,6 +2,7 @@
 
 .home {
   flex: 4;
+  max-width: 100%;
 }
 
 .home-middle-wrapper {
@@ -27,4 +28,29 @@
   display: inline-block;
   padding: toRem(10px);
   color: $textColor;
+  max-width: toRem(100px);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  transition: padding 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.transaction-item-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  object-fit: cover;
+}
+
+@include customBreakpoint(1058px) {
+  .home-middle-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@include tabletBreakpoint {
+  .transactions-item {
+    padding: toRem(5px);
+  }
 }

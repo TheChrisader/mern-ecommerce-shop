@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Dispatch } from "react";
-import { loginStart, loginSuccess, loginFailure, logOut } from "./userRedux";
+import EventBus from "../../utils/services/EventBus";
 import {
   getProductsStart,
   getProductsSuccess,
@@ -14,33 +14,7 @@ import {
   updateProductStart,
   updateProductSuccess,
   updateProductFailure,
-  productsLogOut,
-} from "./productRedux";
-
-type userResponse = {
-  username: string;
-  password: string;
-};
-
-export const login = async (dispatch: Dispatch<any>, user: userResponse) => {
-  dispatch(loginStart());
-  try {
-    const response = await axios.post("/auth/login", user);
-    if (!response.data.isAdmin) throw new Error("You Are Not Authorized.");
-    dispatch(loginSuccess(response.data));
-  } catch (err: any) {
-    dispatch(
-      loginFailure(
-        err?.response?.data?.message ? err.response.data.message : err.message
-      )
-    );
-  }
-};
-
-export const signOut = async (dispatch: Dispatch<any>) => {
-  dispatch(logOut());
-  dispatch(productsLogOut());
-};
+} from "../productRedux";
 
 export const getProducts = async (dispatch: Dispatch<any>) => {
   dispatch(getProductsStart());
@@ -48,6 +22,12 @@ export const getProducts = async (dispatch: Dispatch<any>) => {
     const response = await axios.get("/product");
     dispatch(getProductsSuccess(response.data));
   } catch (err: any) {
+    if (
+      err?.response?.data?.message === "You are not authenticated" ||
+      err?.response?.data?.message === "Forbidden Access"
+    ) {
+      await EventBus.dispatch("logout");
+    }
     dispatch(getProductsFailure(err?.response?.data?.message));
   }
 };
@@ -59,6 +39,12 @@ export const addProduct = async (dispatch: Dispatch<any>, newProduct: any) => {
     dispatch(addProductSuccess(response.data));
     window.location.replace(`/product/${response.data.slug}`);
   } catch (err: any) {
+    if (
+      err?.response?.data?.message === "You are not authenticated" ||
+      err?.response?.data?.message === "Forbidden Access"
+    ) {
+      await EventBus.dispatch("logout");
+    }
     dispatch(addProductFailure(err?.response?.data?.message));
   }
 };
@@ -69,6 +55,12 @@ export const deleteProduct = async (dispatch: Dispatch<any>, id: any) => {
     await axios.delete(`/product/${id}`);
     dispatch(deleteProductSuccess(id));
   } catch (err: any) {
+    if (
+      err?.response?.data?.message === "You are not authenticated" ||
+      err?.response?.data?.message === "Forbidden Access"
+    ) {
+      await EventBus.dispatch("logout");
+    }
     dispatch(deleteProductFailure(err?.response?.data?.message));
   }
 };
@@ -85,6 +77,12 @@ export const updateProduct = async (
     dispatch(updateProductSuccess({ id, updatedProduct }));
     window.location.replace(`/product/${response.data.slug}`);
   } catch (err: any) {
+    if (
+      err?.response?.data?.message === "You are not authenticated" ||
+      err?.response?.data?.message === "Forbidden Access"
+    ) {
+      await EventBus.dispatch("logout");
+    }
     dispatch(updateProductFailure(err?.response?.data?.message));
   }
 };

@@ -39,6 +39,8 @@ const Table = ({
   }, [firstPageIndex, lastPageIndex, items]);
 
   const handlePagination = (params: string) => {
+    if (currentData.length === 0) return;
+
     if (params === "back" && currentPage !== 1) {
       setCurrentPage(currentPage - 1);
       if (allRef.current) {

@@ -1,6 +1,6 @@
 @import "../../styles/global-imports";
 
-.products {
+.users {
   flex: 4;
   background-color: $white;
   padding: toRem(40px);
@@ -15,7 +15,7 @@
   position: relative;
 }
 
-.products-new-product {
+.users-new-user {
   display: flex;
   align-items: center;
   width: 100%;
@@ -25,7 +25,7 @@
   z-index: 1;
 }
 
-.add-new-product {
+.add-new-user {
   color: $tertiaryColor;
   font-weight: 500;
   font-size: toRem(30px);
@@ -42,7 +42,7 @@
   }
 }
 
-.products-item {
+.users-item {
   display: inline-block;
   padding: toRem(10px);
   color: $primaryColor;
@@ -53,16 +53,16 @@
   transition: padding 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.product-name {
+.user-name {
   max-width: toRem(450px);
 }
 
-.products-options {
+.users-options {
   display: flex;
   align-items: center;
 }
 
-.products-view {
+.users-view {
   margin-right: toRem(15px);
   color: $tertiaryColor;
   border: 1px dotted $tertiaryColor;
@@ -75,7 +75,7 @@
   }
 }
 
-.products-delete {
+.users-delete {
   color: $alertColor;
   font-size: toRem(15px);
   background-color: $white;
@@ -88,9 +88,13 @@
     background-color: $alertColor;
     color: $white;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
-.products-loader-backdrop {
+.users-loader-backdrop {
   background-color: rgba(236, 236, 236, 0.61);
   position: absolute;
   top: 0;
@@ -103,12 +107,12 @@
   justify-self: center;
 }
 
-.products-loader {
+.users-loader {
   @include loader(64px, 6px);
 }
 
 @include tabletBreakpoint {
-  .add-new-product {
+  .add-new-user {
     font-size: 5vw;
   }
 
@@ -116,21 +120,21 @@
     font-size: 3vw;
   }
 
-  .products-item {
+  .users-item {
     padding: toRem(5px);
   }
 
-  .product-name {
+  .user-name {
     max-width: toRem(250px);
   }
 }
 
 @include lgMobileBreakpoint {
-  .products-item {
+  .users-item {
     max-width: toRem(100px);
   }
 
-  .product-name {
+  .user-name {
     max-width: toRem(300px);
   }
 }

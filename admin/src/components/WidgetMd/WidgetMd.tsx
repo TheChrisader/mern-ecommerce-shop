@@ -71,8 +71,7 @@ const WidgetMd = () => {
         </ResponsiveContainer>
       </div>
       <div className="widget-md-info-wrapper">
-        Stuff about the widget Stuff about the widget Stuff about the widget
-        Stuff about the widget Stuff about the widget Stuff about the widget
+        <span className="widget-md-info-heading">ORDER SALES</span>
       </div>
     </section>
   );

@@ -6,7 +6,7 @@ const WidgetsSm = () => {
     <div className="widgets-wrapper">
       <WidgetSm type="user" />
       <WidgetSm type="order" />
-      <WidgetSm type="earning" />
+      <WidgetSm type="product" />
     </div>
   );
 };

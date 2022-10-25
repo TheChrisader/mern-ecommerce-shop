@@ -3,6 +3,8 @@
 .table-wrapper {
   border-radius: 5px;
   padding: toRem(5px);
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .table {
@@ -45,9 +47,10 @@
 
 .pagination-footer {
   justify-self: end;
-  align-items: flex-end;
+  align-items: center;
   display: flex;
   width: 100%;
+  color: $textColor;
   justify-content: space-around;
 }
 
@@ -64,5 +67,16 @@
   &:active {
     background-color: $tertiaryColor;
     color: $white;
+  }
+}
+
+@include customBreakpoint(500px) {
+  .pagination-footer {
+    flex-direction: column;
+    gap: toRem(2px);
+  }
+
+  .pagination-button {
+    width: 80%;
   }
 }

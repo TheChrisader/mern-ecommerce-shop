@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getProducts, deleteProduct } from "../../redux/apiCalls";
+import {
+  getProducts,
+  deleteProduct,
+} from "../../redux/apiCalls/productApiCalls";
 // import { savedData } from "../../data";
 import Table from "../../components/Table/Table";
 
@@ -47,22 +50,18 @@ const Products: React.FC = () => {
   const productColumns: productColumn = [
     {
       id: 1,
-      name: "ID",
-    },
-    {
-      id: 2,
       name: "Product",
     },
     {
-      id: 3,
+      id: 2,
       name: "Stock",
     },
     {
-      id: 4,
+      id: 3,
       name: "Price",
     },
     {
-      id: 5,
+      id: 4,
       name: "Action",
     },
   ];
@@ -71,17 +70,11 @@ const Products: React.FC = () => {
     {
       id: 1,
       name: (item: any) => {
-        return <span className="products-item">{item._id}</span>;
+        return <span className="products-item product-name">{item.name}</span>;
       },
     },
     {
       id: 2,
-      name: (item: any) => {
-        return <span className="products-item">{item.name}</span>;
-      },
-    },
-    {
-      id: 3,
       name: (item: any) => {
         return (
           <span className="products-item">
@@ -91,13 +84,13 @@ const Products: React.FC = () => {
       },
     },
     {
-      id: 4,
+      id: 3,
       name: (item: any) => {
         return <span className="products-item">{item.price}</span>;
       },
     },
     {
-      id: 5,
+      id: 4,
       name: (item: any) => {
         return (
           <div className="products-options">

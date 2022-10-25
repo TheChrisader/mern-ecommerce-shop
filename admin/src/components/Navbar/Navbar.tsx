@@ -1,9 +1,20 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import "./Navbar.scss";
 
-const Navbar = () => {
+interface INavbar {
+  setState: (state: boolean) => void;
+}
+
+const Navbar: React.FC<INavbar> = ({ setState }) => {
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
+  const orders = useSelector((state: any) => state.order.orders);
+
+  const unprocessedOrders = orders.filter(
+    (order: any) => order.status === "Not Processed"
+  );
 
   const changeNav = () => {
     window.scrollY >= 20 ? setHasScrolled(true) : setHasScrolled(false);
@@ -19,13 +30,17 @@ const Navbar = () => {
       <h1 className="nav-header">ShopLite</h1>
       <ul className="nav-list">
         <li className="nav-list-item">
-          <i className="fa-solid fa-bell nav-icon"></i>
+          <Link className="link order-notification" to="/orders">
+            <div className="order-notification-number">
+              {unprocessedOrders.length}
+            </div>
+            <i className="fa-solid fa-bell nav-icon"></i>
+          </Link>
         </li>
         <li className="nav-list-item">
-          <i className="fa-solid fa-gear nav-icon"></i>
-        </li>
-        <li className="nav-list-item">
-          <div className="nav-account-image"></div>
+          <button className="sidebar-button" onClick={() => setState(false)}>
+            <i className="fa-solid fa-bars nav-icon"></i>
+          </button>
         </li>
       </ul>
     </nav>

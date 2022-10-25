@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
 import Input from "../../components/Input/Input";
 
-import { addProduct } from "../../redux/apiCalls";
+import { addProduct } from "../../redux/apiCalls/productApiCalls";
 import {
   handleInputChange,
   handleFileInputChange,

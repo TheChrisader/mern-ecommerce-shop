@@ -56,7 +56,9 @@ const Products: React.FC<filterProps> = ({ category, filters, sort }) => {
     switch (sort) {
       case "newest":
         setProducts((prev: any) =>
-          [...prev].sort((a, b) => a.createdAt - b.createdAt)
+          [...prev].sort(
+            (a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt)
+          )
         );
         break;
       case "lowest":

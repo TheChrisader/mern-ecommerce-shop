@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 // import { savedData } from "../../data";
 import Table from "../../components/Table/Table";
+import EventBus from "../../utils/services/EventBus";
 
 import "./User.scss";
-import axios from "axios";
 
 type orderColumn = {
   id: Number;
@@ -20,20 +21,25 @@ type orderRow = {
 
 const User = () => {
   const [orders, setOrders] = useState([] as any);
-  const user = useSelector((state: any) => state.user.currentUser);
+  const user = useSelector((state: any) => state?.user?.currentUser);
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get(`/order/${user._id}`);
-        setOrders(response.data);
-      } catch (err) {
-        console.log(err);
+        const response = await axios.get(`/order/${user?._id}`);
+        setOrders(response?.data);
+      } catch (err: any) {
+        if (
+          err?.response?.data?.message === "You are not authenticated" ||
+          err?.response?.data?.message === "Forbidden Access"
+        ) {
+          await EventBus.dispatch("logout");
+        }
       }
     };
 
     fetchOrders();
-  });
+  }, []);
 
   // Saved
 
@@ -58,11 +64,11 @@ const User = () => {
       name: (item: any) => {
         return (
           <Link
-            to={`/product/${item.productSlug}`}
+            to={`/product/${item?.productSlug}`}
             className="link saved-items-product"
           >
-            <img src={item.productImage} alt="" className="saved-items-img" />
-            <span className="saved-items-table-item">{item.productName}</span>
+            <img src={item?.productImage} alt="" className="saved-items-img" />
+            <span className="saved-items-table-item">{item?.productName}</span>
           </Link>
         );
       },
@@ -73,7 +79,7 @@ const User = () => {
         return (
           <div>
             <span className="saved-items-table-item">
-              {item.inStock ? "In Stock" : "Out of Stock"}
+              {item?.inStock ? "In Stock" : "Out of Stock"}
             </span>
           </div>
         );
@@ -84,7 +90,7 @@ const User = () => {
       name: (item: any) => {
         return (
           <div>
-            <span className="saved-items-table-item">{item.productPrice}</span>
+            <span className="saved-items-table-item">{item?.productPrice}</span>
           </div>
         );
       },
@@ -124,7 +130,7 @@ const User = () => {
     {
       id: 0,
       name: (item: any) => {
-        return <div className="saved-items-table-item">{item._id}</div>;
+        return <div className="saved-items-table-item">{item?._id}</div>;
       },
     },
     {
@@ -132,11 +138,11 @@ const User = () => {
       name: (item: any) => {
         return (
           <Link
-            to={`/product/${item.productSlug}`}
+            to={`/product/${item?.productSlug}`}
             className="link saved-items-product"
           >
-            <img src={item.productImage} alt="" className="saved-items-img" />
-            <span className="saved-items-table-item">{item.productName}</span>
+            <img src={item?.productImage} alt="" className="saved-items-img" />
+            <span className="saved-items-table-item">{item?.productName}</span>
           </Link>
         );
       },
@@ -144,13 +150,13 @@ const User = () => {
     {
       id: 2,
       name: (item: any) => {
-        return <div className="saved-items-table-item">{item.quantity}</div>;
+        return <div className="saved-items-table-item">{item?.quantity}</div>;
       },
     },
     {
       id: 3,
       name: (item: any) => {
-        return <div className="saved-items-table-item">{item.totalPrice}</div>;
+        return <div className="saved-items-table-item">{item?.totalPrice}</div>;
       },
     },
     {
@@ -158,7 +164,7 @@ const User = () => {
       name: (item: any) => {
         return (
           <div className="saved-items-table-item">
-            {new Date(item.paidAt).toDateString()}
+            {new Date(item?.paidAt).toDateString()}
           </div>
         );
       },
@@ -166,7 +172,7 @@ const User = () => {
     {
       id: 5,
       name: (item: any) => {
-        return <div className="saved-items-table-item">{item.status}</div>;
+        return <div className="saved-items-table-item">{item?.status}</div>;
       },
     },
   ];
@@ -178,22 +184,22 @@ const User = () => {
         <div className="account-details-wrapper">
           <div className="account-details-title-wrapper">
             <h1 className="account-details-title">Account Details</h1>
-            <Link to={"/user/" + user._id + "/edit"}>
+            {/* <Link to={"/user/" + user?._id + "/edit"}>
               <i className="account-icon fa-solid fa-user-pen"></i>
-            </Link>
+            </Link> */}
           </div>
           <div className="account-details">
-            <span className="account-details-username">{user.username}</span>
-            <span className="account-details-email">{user.email}</span>
-            <span className="account-details-change-password">
+            <span className="account-details-username">{user?.username}</span>
+            <span className="account-details-email">{user?.email}</span>
+            {/* <span className="account-details-change-password">
               CHANGE PASSWORD
-            </span>
+            </span> */}
           </div>
         </div>
         <div className="saved-items-wrapper">
           <div className="saved-items-title-wrapper">
             <h1 className="saved-items-title">Saved Items</h1>
-            <Link to={"/user/" + user._id + "/saved"}>
+            <Link to={"/user/" + user?._id + "/saved"}>
               <i className="account-icon fa-solid fa-pen"></i>
             </Link>
           </div>

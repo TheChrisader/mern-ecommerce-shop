@@ -1,28 +1,37 @@
-// import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-// import { transactionData } from "../../data";
-import Chart from "../../components/Chart/Chart";
-import Table from "../../components/Table/Table";
-import WidgetMd from "../../components/WidgetMd/WidgetMd";
-import WidgetsSm from "../../components/WidgetsSm/WidgetsSm";
-import "./Home.scss";
 import { getOrders } from "../../redux/apiCalls/orderApiCalls";
-import { useDispatch, useSelector } from "react-redux";
+import Table from "../../components/Table/Table";
+
+import "./Orders.scss";
 
 type orderColumn = {
-  id: Number;
+  id: number;
   name: string;
 }[];
 
 type orderRow = {
-  id: Number;
+  id: number;
   name: Function;
 }[];
 
-const Home = () => {
+const Orders: React.FC = () => {
   const dispatch = useDispatch();
+
   const orders = useSelector((state: any) => state.order.orders);
+  const isFetching = useSelector((state: any) => state.order.isFetching);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      getOrders(dispatch);
+    };
+    fetchOrders();
+  }, [dispatch]);
+
+  //   const handleChange = (id: string) => {
+  //       updateOrder(dispatch, id, orders);
+  //   };
 
   const orderColumns: orderColumn = [
     {
@@ -72,7 +81,7 @@ const Home = () => {
               className="transaction-item-img"
               alt=""
             />
-            <span className="transactions-item" style={{ maxWidth: "250px" }}>
+            <span className="transactions-item" style={{ maxWidth: "200px" }}>
               {item.productName}
             </span>
           </div>
@@ -118,32 +127,25 @@ const Home = () => {
       },
     },
   ];
-
-  useEffect(() => {
-    const fetchOrders = async () => {
-      getOrders(dispatch);
-    };
-    fetchOrders();
-  }, [dispatch]);
-
   return (
-    <main className="home">
-      <WidgetsSm />
-      <div className="home-middle-wrapper">
-        <WidgetMd />
-        <Chart />
+    <main className="products">
+      <div className="products-new-product">
+        <h2 className="add-new-product">Orders</h2>
       </div>
-      <section className="home-transactions-table">
-        <h2 className="transactions-title">Latest Transactions</h2>
-        <Table
-          columns={orderColumns}
-          rows={orderRows}
-          items={orders}
-          pageSize={5}
-        />
-      </section>
+      {isFetching && (
+        <div className="products-loader-backdrop">
+          <div className="products-loader"></div>
+        </div>
+      )}
+      <Table
+        columns={orderColumns}
+        rows={orderRows}
+        items={orders}
+        pageSize={6}
+        pagination={true}
+      />
     </main>
   );
 };
 
-export default Home;
+export default Orders;
