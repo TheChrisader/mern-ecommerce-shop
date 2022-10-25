@@ -73,3 +73,13 @@
     background-color: $sucessColorDark;
   }
 }
+
+@include customBreakpoint(700px) {
+  .single-product-form-right {
+    flex-direction: column;
+  }
+
+  .single-product-form-divider {
+    width: 100%;
+  }
+}

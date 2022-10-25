@@ -50,3 +50,13 @@
     background-color: $sucessColorDark;
   }
 }
+
+@include customBreakpoint(700px) {
+  .create-product-image {
+    flex-direction: column;
+  }
+
+  .create-product-inputs-group {
+    width: 100%;
+  }
+}
