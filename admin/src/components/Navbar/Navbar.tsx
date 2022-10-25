@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 
 import "./Navbar.scss";
 
-const Navbar = () => {
+interface INavbar {
+  setState: (state: boolean) => void;
+}
+
+const Navbar: React.FC<INavbar> = ({ setState }) => {
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
 
   const changeNav = () => {
@@ -22,10 +26,9 @@ const Navbar = () => {
           <i className="fa-solid fa-bell nav-icon"></i>
         </li>
         <li className="nav-list-item">
-          <i className="fa-solid fa-gear nav-icon"></i>
-        </li>
-        <li className="nav-list-item">
-          <div className="nav-account-image"></div>
+          <button className="sidebar-button" onClick={() => setState(false)}>
+            <i className="fa-solid fa-bars nav-icon"></i>
+          </button>
         </li>
       </ul>
     </nav>

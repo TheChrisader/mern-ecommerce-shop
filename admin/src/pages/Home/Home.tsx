@@ -65,7 +65,18 @@ const Home = () => {
     {
       id: 2,
       name: (item: any) => {
-        return <span className="transactions-item">{item.productName}</span>;
+        return (
+          <div style={{ display: "flex" }}>
+            <img
+              src={item.productImage}
+              className="transaction-item-img"
+              alt=""
+            />
+            <span className="transactions-item" style={{ maxWidth: "250px" }}>
+              {item.productName}
+            </span>
+          </div>
+        );
       },
     },
     {

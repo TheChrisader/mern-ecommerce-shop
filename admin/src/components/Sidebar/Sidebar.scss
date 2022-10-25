@@ -80,8 +80,39 @@
   text-align: center;
 }
 
-@include customBreakpoint(1180px) {
+.sidebar-bg {
+  background-color: rgba(0, 0, 0, 0.418);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 50;
+}
+
+@include customBreakpoint(1200px) {
   .sidebar {
-    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 51;
+    margin: auto;
+    min-width: 400px;
+    max-width: 400px;
+    height: fit-content;
+  }
+
+  .sidebar-wrapper {
+    width: 100%;
+  }
+}
+
+@include customBreakpoint(500px) {
+  .sidebar {
+    min-width: auto;
+    max-width: 80%;
+    width: 80%;
   }
 }

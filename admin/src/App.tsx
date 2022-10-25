@@ -1,6 +1,6 @@
 import "./App.scss";
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -14,8 +14,16 @@ import CreateProduct from "./pages/CreateProduct/CreateProduct";
 import Login from "./pages/Login/Login";
 import EventBus from "./utils/services/EventBus";
 import { signOut } from "./redux/apiCalls/userApiCalls";
+import useMediaQuery from "./utils/hooks/useMediaQuery";
 
 function App() {
+  const shouldSidebarShow = useMediaQuery("(max-width: 1200px)");
+  const [isClosed, setIsClosed] = useState(shouldSidebarShow);
+
+  useEffect(() => {
+    setIsClosed(shouldSidebarShow);
+  }, [shouldSidebarShow]);
+
   let user = useSelector((state: any) => state?.user?.currentUser?.isAdmin);
   const dispatch = useDispatch();
 
@@ -42,9 +50,15 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        {user && <Navbar />}
+        {user && <Navbar setState={setIsClosed} />}
         <div className="container">
-          {user && <Sidebar />}
+          {user && (
+            <Sidebar
+              state={isClosed}
+              shouldSidebarShow={shouldSidebarShow}
+              setState={setIsClosed}
+            />
+          )}
           <Routes>
             <Route path="/" element={loginRedirect(<Home />)} />
             <Route path="/products" element={loginRedirect(<Products />)} />
