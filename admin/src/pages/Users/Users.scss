@@ -88,6 +88,10 @@
     background-color: $alertColor;
     color: $white;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 .users-loader-backdrop {

@@ -47,15 +47,15 @@ const Users: React.FC = () => {
   const userColumns: userColumn = [
     {
       id: 1,
-      name: "user",
+      name: "Username",
     },
     {
       id: 2,
-      name: "Stock",
+      name: "Role",
     },
     {
       id: 3,
-      name: "Price",
+      name: "Email",
     },
     {
       id: 4,
@@ -75,7 +75,7 @@ const Users: React.FC = () => {
       name: (item: any) => {
         return (
           <span className="users-item">
-            {!item.isEmailVerified ? "In Stock" : "Out of Stock"}
+            {!item.isAdmin ? "Admin" : "Customer"}
           </span>
         );
       },
@@ -91,13 +91,11 @@ const Users: React.FC = () => {
       name: (item: any) => {
         return (
           <div className="users-options">
-            <Link to={"/user/" + item._id} className="users-view link">
-              View
-            </Link>
             <button
               type="button"
               onClick={() => handleDelete(item._id, idArray)}
               className="users-delete link"
+              disabled={!item.isAdmin}
             >
               Delete
             </button>
@@ -110,10 +108,6 @@ const Users: React.FC = () => {
     <main className="users">
       <div className="users-new-user">
         <h2 className="add-new-user">Add New User</h2>
-        <Link to="/user/new" className="link add-new-button">
-          {" "}
-          Add New
-        </Link>
       </div>
       {isFetching && (
         <div className="users-loader-backdrop">
