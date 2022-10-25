@@ -12,6 +12,8 @@ import Users from "./pages/Users/Users";
 import SingleProduct from "./pages/SingleProduct/SingleProduct";
 import CreateProduct from "./pages/CreateProduct/CreateProduct";
 import Login from "./pages/Login/Login";
+import Orders from "./pages/Orders/Orders";
+
 import EventBus from "./utils/services/EventBus";
 import { signOut } from "./redux/apiCalls/userApiCalls";
 import useMediaQuery from "./utils/hooks/useMediaQuery";
@@ -29,7 +31,7 @@ function App() {
 
   const logout = useCallback(() => {
     signOut(dispatch);
-  }, []);
+  }, []); // eslint-disable-line
 
   const loginRedirect = (element: JSX.Element) => {
     return user ? element : <Navigate replace to="/login" />;
@@ -63,22 +65,19 @@ function App() {
             <Route path="/" element={loginRedirect(<Home />)} />
             <Route path="/products" element={loginRedirect(<Products />)} />
             <Route path="/users" element={loginRedirect(<Users />)} />
+            <Route path="/orders" element={loginRedirect(<Orders />)} />
             <Route
               path="/product/:slug"
               element={loginRedirect(<SingleProduct />)}
             />
-            <Route path="/user/:id" element={loginRedirect(<Home />)} />
             <Route
               path="/product/new"
               element={loginRedirect(<CreateProduct />)}
             />
-            <Route path="/user/new" element={loginRedirect(<Home />)} />
             <Route
               path="/login"
               element={!user ? <Login /> : <Navigate replace to="/" />}
             />
-            <Route path="/settings" element={loginRedirect(<Home />)} />
-            <Route path="/profile" element={loginRedirect(<Home />)} />
             <Route
               path="*"
               element={

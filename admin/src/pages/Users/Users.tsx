@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getUsers, deleteUser } from "../../redux/apiCalls/usersApiCalls";
-// import { savedData } from "../../data";
 import Table from "../../components/Table/Table";
 
 import "./Users.scss";
@@ -107,7 +105,7 @@ const Users: React.FC = () => {
   return (
     <main className="users">
       <div className="users-new-user">
-        <h2 className="add-new-user">Add New User</h2>
+        <h2 className="add-new-user">Users</h2>
       </div>
       {isFetching && (
         <div className="users-loader-backdrop">

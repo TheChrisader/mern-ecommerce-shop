@@ -24,7 +24,7 @@ const Sidebar: React.FC<ISidebar> = ({
     if (shouldSidebarShow && !state) {
       setState(true);
     }
-  }, [location]);
+  }, [location]); // eslint-disable-line
 
   return (
     <>
@@ -63,12 +63,12 @@ const Sidebar: React.FC<ISidebar> = ({
                     <span className="sidebar-item-name">Product</span>
                   </Link>
                 </ul>
-                <ul className="sidebar-item">
+                {/* <ul className="sidebar-item">
                   <Link to="/user/new" className="link sidebar-link">
                     <i className="fa-solid fa-circle-plus sidebar-icon"></i>
                     <span className="sidebar-item-name">User</span>
                   </Link>
-                </ul>
+                </ul> */}
               </nav>
             </div>
             <div className="sidebar-menu-group">
