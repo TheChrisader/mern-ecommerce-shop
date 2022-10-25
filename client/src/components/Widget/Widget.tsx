@@ -1,4 +1,6 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
+
 import useObserver from "../../utils/hooks/useObserver";
 
 import "./Widget.scss";
@@ -21,7 +23,9 @@ const Widget: React.FC<Props> = ({ icon, title, description }) => {
       <i className={"widget-icon " + icon}></i>
       <h3 className="widget-title">{title}</h3>
       <span className="widget-desc">{description}</span>
-      <span className="more">Read More</span>
+      <Link to="products" className="more">
+        See More
+      </Link>
     </div>
   );
 };

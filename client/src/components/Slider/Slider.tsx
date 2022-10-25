@@ -16,7 +16,7 @@ const Slider = () => {
             <span className="slider-price">Price</span>
             <span className="slider-price-number">$117.99</span>
           </div>
-          <Link to="product/:slug" className="link">
+          <Link to="product/adidas-white-hoodie" className="link">
             <button className="slider-button">Shop Now</button>
           </Link>
         </div>
