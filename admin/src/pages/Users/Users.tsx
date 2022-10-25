@@ -73,7 +73,7 @@ const Users: React.FC = () => {
       name: (item: any) => {
         return (
           <span className="users-item">
-            {!item.isAdmin ? "Admin" : "Customer"}
+            {item.isAdmin ? "Admin" : "Customer"}
           </span>
         );
       },
@@ -93,7 +93,7 @@ const Users: React.FC = () => {
               type="button"
               onClick={() => handleDelete(item._id, idArray)}
               className="users-delete link"
-              disabled={!item.isAdmin}
+              disabled={item.isAdmin}
             >
               Delete
             </button>

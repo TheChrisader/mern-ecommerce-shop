@@ -21,7 +21,6 @@ const Login: React.FC = () => {
     if (isMount) {
       return;
     } else {
-      console.log("first");
       setErrorMessage(loginError);
     }
   }, [loginError]); //eslint-disable-line react-hooks/exhaustive-deps
