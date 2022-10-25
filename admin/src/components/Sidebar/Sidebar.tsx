@@ -70,9 +70,9 @@ const Sidebar: React.FC<ISidebar> = ({
               </nav>
             </div>
             <div className="sidebar-menu-group">
-              <h2 className="sidebar-title">ACCOUNT</h2>
+              {/* <h2 className="sidebar-title">ACCOUNT</h2> */}
               <nav className="sidebar-nav">
-                <ul className="sidebar-item">
+                {/* <ul className="sidebar-item">
                   <Link to="/profile" className="link sidebar-link">
                     <i className="fa-solid fa-id-card sidebar-icon"></i>
                     <span className="sidebar-item-name">Profile</span>
@@ -83,7 +83,7 @@ const Sidebar: React.FC<ISidebar> = ({
                     <i className="fa-solid fa-gears sidebar-icon"></i>
                     <span className="sidebar-item-name">Settings</span>
                   </Link>
-                </ul>
+                </ul> */}
                 <ul className="sidebar-item">
                   <Link
                     to="/login"
