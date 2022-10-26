@@ -58,6 +58,9 @@ const Cart = () => {
           {
             amount: Math.round(cartTotal * 100),
             token: stripeToken?.id,
+          },
+          {
+            withCredentials: true,
           }
         );
 
@@ -74,6 +77,9 @@ const Cart = () => {
               isPaid: true,
               paidAt: new Date(),
               quantity: cartItem.quantity,
+            },
+            {
+              withCredentials: true,
             }
           );
         }

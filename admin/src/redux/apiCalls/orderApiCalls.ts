@@ -34,7 +34,9 @@ export const getOrders = async (dispatch: Dispatch<any>) => {
 export const deleteOrder = async (dispatch: Dispatch<any>, id: any) => {
   dispatch(deleteOrderStart());
   try {
-    await axios.delete(`${process.env.REACT_APP_API_URL}/order/${id}`);
+    await axios.delete(`${process.env.REACT_APP_API_URL}/order/${id}`, {
+      withCredentials: true,
+    });
     dispatch(deleteOrderSuccess(id));
   } catch (err: any) {
     if (
@@ -56,7 +58,10 @@ export const updateOrder = async (
   try {
     const response = await axios.put(
       `${process.env.REACT_APP_API_URL}/order/${id}`,
-      order
+      order,
+      {
+        withCredentials: true,
+      }
     );
     const updatedProduct = response.data;
     dispatch(updateOrderSuccess({ id, updatedProduct }));

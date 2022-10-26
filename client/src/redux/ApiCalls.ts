@@ -27,11 +27,17 @@ export const login = async (dispatch: Dispatch<any>, user: userResponse) => {
   try {
     const response = await axios.post(
       process.env.REACT_APP_API_URL + "/auth/login",
-      user
+      user,
+      {
+        withCredentials: true,
+      }
     );
     dispatch(loginSuccess(response.data));
     const cart = await axios.get(
-      process.env.REACT_APP_API_URL + `/cart/${response.data._id}`
+      process.env.REACT_APP_API_URL + `/cart/${response.data._id}`,
+      {
+        withCredentials: true,
+      }
     );
     dispatch(getCart(cart.data.products));
     window.location.replace("/");
@@ -49,7 +55,10 @@ export const register = async (dispatch: Dispatch<any>, user: any) => {
   try {
     const response = await axios.post(
       process.env.REACT_APP_API_URL + "/auth/register",
-      user
+      user,
+      {
+        withCredentials: true,
+      }
     );
     dispatch(registerSuccess(response.data));
     window.location.replace("/");
@@ -73,7 +82,10 @@ export const getProducts = async (dispatch: Dispatch<any>) => {
   dispatch(getProductsStart());
   try {
     const response = await axios.get(
-      process.env.REACT_APP_API_URL + "/product"
+      process.env.REACT_APP_API_URL + "/product",
+      {
+        withCredentials: true,
+      }
     );
     dispatch(getProductsSuccess(response.data));
   } catch (err: any) {

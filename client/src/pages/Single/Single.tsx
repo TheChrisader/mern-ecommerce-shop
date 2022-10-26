@@ -25,7 +25,10 @@ const Single = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/product/${productSlug}`
+          `${process.env.REACT_APP_API_URL}/product/${productSlug}`,
+          {
+            withCredentials: true,
+          }
         );
         setProduct(response.data);
       } catch (err) {
@@ -82,7 +85,10 @@ const Single = () => {
       try {
         await axios.put(
           `${process.env.REACT_APP_API_URL}/cart/${user?._id}`,
-          data
+          data,
+          {
+            withCredentials: true,
+          }
         );
       } catch (err) {
         console.error(err);
@@ -94,9 +100,15 @@ const Single = () => {
   useEffect(() => {
     const updateLikedItems = async () => {
       try {
-        await axios.put(`${process.env.REACT_APP_API_URL}/user/${user._id}`, {
-          savedItems: user.savedItems,
-        });
+        await axios.put(
+          `${process.env.REACT_APP_API_URL}/user/${user._id}`,
+          {
+            savedItems: user.savedItems,
+          },
+          {
+            withCredentials: true,
+          }
+        );
       } catch (err) {
         console.log(err);
       }

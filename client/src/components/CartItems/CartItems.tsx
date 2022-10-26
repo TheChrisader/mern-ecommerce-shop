@@ -20,7 +20,10 @@ const CartItems = () => {
     const fetchCart = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/cart/${userId}`
+          `${process.env.REACT_APP_API_URL}/cart/${userId}`,
+          {
+            withCredentials: true,
+          }
         );
         dispatch(getCart(response.data.products));
       } catch (err) {
@@ -40,7 +43,10 @@ const CartItems = () => {
       try {
         await axios.put(
           `${process.env.REACT_APP_API_URL}/cart/${userId}`,
-          data
+          data,
+          {
+            withCredentials: true,
+          }
         );
       } catch (err) {
         console.error(err);

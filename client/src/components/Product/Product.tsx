@@ -47,7 +47,10 @@ const Product: React.FC<Props> = ({
       try {
         await axios.put(
           `${process.env.REACT_APP_API_URL}/cart/${userId}`,
-          data
+          data,
+          {
+            withCredentials: true,
+          }
         );
       } catch (err) {
         console.error(err);

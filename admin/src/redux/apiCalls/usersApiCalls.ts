@@ -16,7 +16,9 @@ import {
 export const getUsers = async (dispatch: Dispatch<any>) => {
   dispatch(getUsersStart());
   try {
-    const response = await axios.get(process.env.REACT_APP_API_URL + "/user");
+    const response = await axios.get(process.env.REACT_APP_API_URL + "/user", {
+      withCredentials: true,
+    });
     dispatch(getUsersSuccess(response.data));
   } catch (err: any) {
     if (
@@ -32,7 +34,9 @@ export const getUsers = async (dispatch: Dispatch<any>) => {
 export const deleteUser = async (dispatch: Dispatch<any>, id: any) => {
   dispatch(deleteUserStart());
   try {
-    await axios.delete(`${process.env.REACT_APP_API_URL}/user/${id}`);
+    await axios.delete(`${process.env.REACT_APP_API_URL}/user/${id}`, {
+      withCredentials: true,
+    });
     dispatch(deleteUserSuccess(id));
   } catch (err: any) {
     if (
@@ -54,7 +58,10 @@ export const updateUser = async (
   try {
     const response = await axios.put(
       `${process.env.REACT_APP_API_URL}/user/${id}`,
-      product
+      product,
+      {
+        withCredentials: true,
+      }
     );
     const updatedProduct = response.data;
     dispatch(updateUserSuccess({ id, updatedProduct }));

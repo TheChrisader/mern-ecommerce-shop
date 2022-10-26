@@ -20,7 +20,10 @@ export const getProducts = async (dispatch: Dispatch<any>) => {
   dispatch(getProductsStart());
   try {
     const response = await axios.get(
-      process.env.REACT_APP_API_URL + "/product"
+      process.env.REACT_APP_API_URL + "/product",
+      {
+        withCredentials: true,
+      }
     );
     dispatch(getProductsSuccess(response.data));
   } catch (err: any) {
@@ -39,7 +42,10 @@ export const addProduct = async (dispatch: Dispatch<any>, newProduct: any) => {
   try {
     const response = await axios.post(
       process.env.REACT_APP_API_URL + "/product",
-      newProduct
+      newProduct,
+      {
+        withCredentials: true,
+      }
     );
     dispatch(addProductSuccess(response.data));
     window.location.replace(`/product/${response.data.slug}`);
@@ -57,7 +63,9 @@ export const addProduct = async (dispatch: Dispatch<any>, newProduct: any) => {
 export const deleteProduct = async (dispatch: Dispatch<any>, id: any) => {
   dispatch(deleteProductStart());
   try {
-    await axios.delete(`${process.env.REACT_APP_API_URL}/product/${id}`);
+    await axios.delete(`${process.env.REACT_APP_API_URL}/product/${id}`, {
+      withCredentials: true,
+    });
     dispatch(deleteProductSuccess(id));
   } catch (err: any) {
     if (
@@ -79,7 +87,10 @@ export const updateProduct = async (
   try {
     const response = await axios.put(
       `${process.env.REACT_APP_API_URL}/product/${id}`,
-      product
+      product,
+      {
+        withCredentials: true,
+      }
     );
     const updatedProduct = response.data;
     dispatch(updateProductSuccess({ id, updatedProduct }));
