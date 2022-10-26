@@ -14,8 +14,18 @@ const paymentRoute = require("./routes/stripe.routes");
 
 const app = express();
 
+const corsConfig = {
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "https://shoplite-admin.onrender.com",
+    "https://shoplite.onrender.com",
+  ],
+  credentials: true,
+};
+
 //middleware
-app.use(cors());
+app.use(cors(corsConfig));
 app.use(express.json({ limit: "3mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
