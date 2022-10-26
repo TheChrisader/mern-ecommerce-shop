@@ -67,6 +67,8 @@ const verifyToken = async (req, res, next) => {
     res.cookie("token", cookieToken, {
       maxAge: 3 * 86400000,
       httpOnly: true,
+      samesite: "none",
+      secure: true,
     });
   }
 
