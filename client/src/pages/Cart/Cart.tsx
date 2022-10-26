@@ -53,23 +53,29 @@ const Cart = () => {
   useEffect(() => {
     const makePaymentRequest = async () => {
       try {
-        const response = await axios.post(`/payment/${user?._id}`, {
-          amount: Math.round(cartTotal * 100),
-          token: stripeToken?.id,
-        });
+        const response = await axios.post(
+          `${process.env.REACT_APP_API_URL}/payment/${user?._id}`,
+          {
+            amount: Math.round(cartTotal * 100),
+            token: stripeToken?.id,
+          }
+        );
 
         for (let cartItem of cart) {
-          await axios.post(`/order/${user._id}`, {
-            productSlug: cartItem?.productSlug,
-            productName: cartItem?.productName,
-            productImage: cartItem?.productImage,
-            user: user?._id,
-            userName: user?.username,
-            totalPrice: cartItem?.productPrice * cartItem?.quantity,
-            isPaid: true,
-            paidAt: new Date(),
-            quantity: cartItem.quantity,
-          });
+          await axios.post(
+            `${process.env.REACT_APP_API_URL}/order/${user._id}`,
+            {
+              productSlug: cartItem?.productSlug,
+              productName: cartItem?.productName,
+              productImage: cartItem?.productImage,
+              user: user?._id,
+              userName: user?.username,
+              totalPrice: cartItem?.productPrice * cartItem?.quantity,
+              isPaid: true,
+              paidAt: new Date(),
+              quantity: cartItem.quantity,
+            }
+          );
         }
 
         dispatch(emptyCart());

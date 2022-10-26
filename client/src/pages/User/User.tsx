@@ -26,7 +26,9 @@ const User = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get(`/order/${user?._id}`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/order/${user?._id}`
+        );
         setOrders(response?.data);
       } catch (err: any) {
         if (

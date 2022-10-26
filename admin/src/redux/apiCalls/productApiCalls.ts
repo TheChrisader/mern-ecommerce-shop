@@ -19,7 +19,9 @@ import {
 export const getProducts = async (dispatch: Dispatch<any>) => {
   dispatch(getProductsStart());
   try {
-    const response = await axios.get("/product");
+    const response = await axios.get(
+      process.env.REACT_APP_API_URL + "/product"
+    );
     dispatch(getProductsSuccess(response.data));
   } catch (err: any) {
     if (
@@ -35,7 +37,10 @@ export const getProducts = async (dispatch: Dispatch<any>) => {
 export const addProduct = async (dispatch: Dispatch<any>, newProduct: any) => {
   dispatch(addProductStart());
   try {
-    const response = await axios.post("/product", newProduct);
+    const response = await axios.post(
+      process.env.REACT_APP_API_URL + "/product",
+      newProduct
+    );
     dispatch(addProductSuccess(response.data));
     window.location.replace(`/product/${response.data.slug}`);
   } catch (err: any) {
@@ -52,7 +57,7 @@ export const addProduct = async (dispatch: Dispatch<any>, newProduct: any) => {
 export const deleteProduct = async (dispatch: Dispatch<any>, id: any) => {
   dispatch(deleteProductStart());
   try {
-    await axios.delete(`/product/${id}`);
+    await axios.delete(`${process.env.REACT_APP_API_URL}/product/${id}`);
     dispatch(deleteProductSuccess(id));
   } catch (err: any) {
     if (
@@ -72,7 +77,10 @@ export const updateProduct = async (
 ) => {
   dispatch(updateProductStart());
   try {
-    const response = await axios.put(`/product/${id}`, product);
+    const response = await axios.put(
+      `${process.env.REACT_APP_API_URL}/product/${id}`,
+      product
+    );
     const updatedProduct = response.data;
     dispatch(updateProductSuccess({ id, updatedProduct }));
     window.location.replace(`/product/${response.data.slug}`);

@@ -18,7 +18,8 @@ const Register: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      if (password !== confirmPassword) throw new Error("Don't be stupid");
+      if (password !== confirmPassword)
+        throw new Error("Please input the correct password");
       let data = {
         username,
         email,

@@ -13,7 +13,10 @@ type userResponse = {
 export const login = async (dispatch: Dispatch<any>, user: userResponse) => {
   dispatch(loginStart());
   try {
-    const response = await axios.post("/auth/login", user);
+    const response = await axios.post(
+      process.env.REACT_APP_API_URL + "/auth/login",
+      user
+    );
     if (!response.data.isAdmin) throw new Error("You Are Not Authorized.");
     dispatch(loginSuccess(response.data));
   } catch (err: any) {

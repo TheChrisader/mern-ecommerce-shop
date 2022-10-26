@@ -31,7 +31,9 @@ const Products: React.FC<filterProps> = ({ category, filters, sort }) => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          category ? `/product?category=${category}` : `/product`
+          category
+            ? `${process.env.REACT_APP_API_URL}/product?category=${category}`
+            : `${process.env.REACT_APP_API_URL}/product`
         );
         setProducts(response.data);
       } catch (err) {

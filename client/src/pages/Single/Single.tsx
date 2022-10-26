@@ -24,7 +24,9 @@ const Single = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`/product/${productSlug}`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/product/${productSlug}`
+        );
         setProduct(response.data);
       } catch (err) {
         console.log(err);
@@ -78,7 +80,10 @@ const Single = () => {
       };
 
       try {
-        await axios.put(`/cart/${user?._id}`, data);
+        await axios.put(
+          `${process.env.REACT_APP_API_URL}/cart/${user?._id}`,
+          data
+        );
       } catch (err) {
         console.error(err);
       }
@@ -89,7 +94,7 @@ const Single = () => {
   useEffect(() => {
     const updateLikedItems = async () => {
       try {
-        await axios.put(`/user/${user._id}`, {
+        await axios.put(`${process.env.REACT_APP_API_URL}/user/${user._id}`, {
           savedItems: user.savedItems,
         });
       } catch (err) {

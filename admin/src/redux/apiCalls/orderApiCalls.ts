@@ -16,7 +16,9 @@ import {
 export const getOrders = async (dispatch: Dispatch<any>) => {
   dispatch(getOrdersStart());
   try {
-    const response = await axios.get("/order");
+    const response = await axios.get(process.env.REACT_APP_API_URL + "/order", {
+      withCredentials: true,
+    });
     dispatch(getOrdersSuccess(response.data));
   } catch (err: any) {
     if (
@@ -32,7 +34,7 @@ export const getOrders = async (dispatch: Dispatch<any>) => {
 export const deleteOrder = async (dispatch: Dispatch<any>, id: any) => {
   dispatch(deleteOrderStart());
   try {
-    await axios.delete(`/order/${id}`);
+    await axios.delete(`${process.env.REACT_APP_API_URL}/order/${id}`);
     dispatch(deleteOrderSuccess(id));
   } catch (err: any) {
     if (
@@ -52,7 +54,10 @@ export const updateOrder = async (
 ) => {
   dispatch(updateOrderStart());
   try {
-    const response = await axios.put(`/order/${id}`, order);
+    const response = await axios.put(
+      `${process.env.REACT_APP_API_URL}/order/${id}`,
+      order
+    );
     const updatedProduct = response.data;
     dispatch(updateOrderSuccess({ id, updatedProduct }));
     //   window.location.replace(`/order/${response.data.slug}`);

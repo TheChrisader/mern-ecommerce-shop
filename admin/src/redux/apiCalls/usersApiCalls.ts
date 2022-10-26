@@ -16,7 +16,7 @@ import {
 export const getUsers = async (dispatch: Dispatch<any>) => {
   dispatch(getUsersStart());
   try {
-    const response = await axios.get("/user");
+    const response = await axios.get(process.env.REACT_APP_API_URL + "/user");
     dispatch(getUsersSuccess(response.data));
   } catch (err: any) {
     if (
@@ -32,7 +32,7 @@ export const getUsers = async (dispatch: Dispatch<any>) => {
 export const deleteUser = async (dispatch: Dispatch<any>, id: any) => {
   dispatch(deleteUserStart());
   try {
-    await axios.delete(`/user/${id}`);
+    await axios.delete(`${process.env.REACT_APP_API_URL}/user/${id}`);
     dispatch(deleteUserSuccess(id));
   } catch (err: any) {
     if (
@@ -52,7 +52,10 @@ export const updateUser = async (
 ) => {
   dispatch(updateUserStart());
   try {
-    const response = await axios.put(`/user/${id}`, product);
+    const response = await axios.put(
+      `${process.env.REACT_APP_API_URL}/user/${id}`,
+      product
+    );
     const updatedProduct = response.data;
     dispatch(updateUserSuccess({ id, updatedProduct }));
     window.location.replace(`/product/${response.data.slug}`);

@@ -19,7 +19,9 @@ const CartItems = () => {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const response = await axios.get(`/cart/${userId}`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/cart/${userId}`
+        );
         dispatch(getCart(response.data.products));
       } catch (err) {
         console.error(err);
@@ -36,7 +38,10 @@ const CartItems = () => {
       };
 
       try {
-        await axios.put(`/cart/${userId}`, data);
+        await axios.put(
+          `${process.env.REACT_APP_API_URL}/cart/${userId}`,
+          data
+        );
       } catch (err) {
         console.error(err);
       }
