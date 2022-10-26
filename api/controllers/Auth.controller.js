@@ -35,6 +35,8 @@ const register = async (req, res, next) => {
       .cookie("token", token, {
         maxAge: 3 * 86400000,
         httpOnly: true,
+        samesite: "none",
+        secure: true,
       })
       .status(200)
       .json({ ...details });
