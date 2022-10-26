@@ -30,7 +30,9 @@ export const login = async (dispatch: Dispatch<any>, user: userResponse) => {
       user
     );
     dispatch(loginSuccess(response.data));
-    const cart = await axios.get(`/cart/${response.data._id}`);
+    const cart = await axios.get(
+      process.env.REACT_APP_API_URL + `/cart/${response.data._id}`
+    );
     dispatch(getCart(cart.data.products));
     window.location.replace("/");
   } catch (err: any) {
