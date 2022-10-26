@@ -15,7 +15,10 @@ export const login = async (dispatch: Dispatch<any>, user: userResponse) => {
   try {
     const response = await axios.post(
       process.env.REACT_APP_API_URL + "/auth/login",
-      user
+      user,
+      {
+        withCredentials: true,
+      }
     );
     if (!response.data.isAdmin) throw new Error("You Are Not Authorized.");
     dispatch(loginSuccess(response.data));
