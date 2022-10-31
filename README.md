@@ -1,6 +1,6 @@
 # Shoplite
 
-# As a result of the backend being hosted on [Render's](render.com) free tier, it will take quite a bit before the API responds to initial requests. You may even have to refresh the page to resend requests. Unfortunately, short of paying to upgrade my tier, there is nothing I can do about this.
+# As a result of the backend being hosted on [Render's](https://render.com) free tier, it will take quite a bit before the API responds to initial requests. You may even have to refresh the page to resend requests. Unfortunately, short of paying to upgrade my tier, there is nothing I can do about this.
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
